@@ -6,30 +6,138 @@
     android:layout_height="match_parent"
     android:background="#817EFF"
     android:backgroundTint="#817EFF"
-    tools:context=".LoginFragment" >
+    tools:context=".LoginFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
         android:background="?attr/colorPrimary"
         android:backgroundTint="#5FADE6"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Accesso"
+        app:titleMarginStart="160dp"
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="191dp"
-        android:layout_marginTop="195dp"
-        android:text="TextView"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="197dp"
+        android:text="@string/unilife"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <Button
+        android:id="@+id/accediButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#6D91EAC5"
+        android:text="@string/accedi"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/creaButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/creaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:backgroundTint="#6F91EAC5"
+        android:text="@string/crea_un_nuovo_account"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/username"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextUsernameLogin"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.958"
+        tools:layout_editor_absoluteX="123dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/password"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordLogin"
+        app:layout_constraintStart_toStartOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/editTextUsernameLogin"
+        android:layout_width="229dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="100dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.978" />
+
+    <EditText
+        android:id="@+id/editTextPasswordLogin"
+        android:layout_width="227dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="88dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/accediButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toStartOf="@+id/editTextUsernameLogin" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="22dp"
+        android:src="@drawable/ic_person"
+        app:layout_constraintBottom_toTopOf="@+id/editTextUsernameLogin"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/lockicon"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordLogin"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

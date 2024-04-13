@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#817EFF"
+    android:foregroundTint="#000000"
     tools:context=".RegistrationFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -45,7 +46,9 @@
         android:layout_width="264dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
+        android:backgroundTint="#000000"
         android:ems="10"
+        android:foregroundTint="#060C10"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"

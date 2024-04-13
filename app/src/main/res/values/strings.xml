@@ -7,4 +7,10 @@
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="accedi">Accedi</string>
+    <string name="crea_un_nuovo_account">Crea un nuovo account</string>
+    <string name="conferma">Conferma</string>
+    <string name="oppure_crea_un_gruppo_cliccando_sul">Oppure crea un gruppo cliccando sul +</string>
+    <string name="inserisci_il_codice_per_unirti_al_gruppo">Inserisci il codice per unirti al gruppo</string>
+    <string name="non_appartieni_a_nessun_n_gruppo_di_coinquilini">Non appartieni a nessun\n gruppo di coinquilini :(</string>
 </resources>
