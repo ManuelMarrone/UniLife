@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/bottom_phone"
+        android:title="Search"
+        android:icon="@drawable/ic_phone"/>
+    <item
+        android:id="@+id/bottom_add"
+        android:title="Add"
+        android:icon="@drawable/ic_add"/>
+    <item
+        android:id="@+id/bottom_calendario"
+        android:title="Reels"
+        android:icon="@drawable/ic_calendar"/>
+    <item
+        android:id="@+id/bottom_spese"
+        android:title="Profile"
+        android:icon="@drawable/ic_money"/>
+</menu>
+
