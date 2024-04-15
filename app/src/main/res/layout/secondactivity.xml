@@ -52,6 +52,7 @@
             android:layout_marginTop="30dp"
             android:background="#817EFF"
             android:text="UniLife"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"

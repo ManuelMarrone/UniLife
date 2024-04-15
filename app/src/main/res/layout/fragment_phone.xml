@@ -14,12 +14,26 @@
 
 
     <TextView
+        android:id="@+id/textUnilife"
+        android:layout_width="92dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="#817EFF"
+        android:text="UniLife"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="182dp"
         android:layout_height="55dp"
-        android:layout_marginStart="112dp"
+        android:layout_marginStart="124dp"
 
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="104dp"
         android:background="#1082D5"
         android:text="Contatti"
         android:textAlignment="center"
@@ -33,20 +47,20 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="183dp"
-        android:background="#F73E04"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="208dp"
+        android:backgroundTint="@color/red"
         android:text="Rimuovi"
         android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/button4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="286dp"
-        android:layout_height="410dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="89dp"
-        android:background="#91EAC5"
+        android:layout_width="244dp"
+        android:layout_height="321dp"
+        android:layout_marginTop="72dp"
+        android:background="#817EFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3">
 
@@ -67,11 +81,26 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="49dp"
-        android:background="@color/red"
+        android:backgroundTint="@color/verdeacqua"
         android:text="+ Aggiungi Contatto"
         android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_menu"
+        android:background="@color/azzurro"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:itemIconSize="30dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
