@@ -56,24 +56,7 @@
         app:layout_constraintStart_toEndOf="@+id/button4"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:layout_width="244dp"
-        android:layout_height="321dp"
-        android:layout_marginTop="72dp"
-        android:background="#817EFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </ScrollView>
 
     <Button
         android:id="@+id/button4"
@@ -101,6 +84,14 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:itemIconSize="30dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="251dp"
+        android:layout_height="295dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/verdone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
