@@ -3,12 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/viola"
     tools:context=".SpeseFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textUnilife"
+        android:layout_width="92dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="#817EFF"
+        android:text="UniLife"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="165dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
+        android:gravity="left"
+        android:text="Divisione Spese:"
+        android:textSize="21dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView3"
+        android:layout_width="338dp"
+        android:layout_height="299dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="26dp"
+        android:background="@color/verdone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="37dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/verdeacqua"
+        android:src="@drawable/ic_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_menu"
+        android:background="@color/azzurro"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:itemIconSize="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

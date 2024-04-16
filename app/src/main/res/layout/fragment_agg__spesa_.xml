@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/viola"
+    tools:context=".Agg_Spesa_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textUnilife"
+        android:layout_width="92dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="#817EFF"
+        android:text="UniLife"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="231dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="17dp"
+        android:background="@color/blu"
+        android:gravity="center"
+        android:text="Nuova Spesa"
+        android:textColor="@color/black"
+        android:textSize="27dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
+
+    <EditText
+        android:id="@+id/editTextText5"
+        android:layout_width="302dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="34dp"
+        android:background="@color/verdone"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Titolo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <EditText
+        android:id="@+id/editTextText6"
+        android:layout_width="304dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/verdone"
+        android:ems="10"
+        android:inputType="text"
+        android:text="...€"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+
+    <EditText
+        android:id="@+id/editTextText7"
+        android:layout_width="303dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/verdone"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+
+    <EditText
+        android:id="@+id/editTextText8"
+        android:layout_width="303dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Pagato da"
+        android:background="@color/verdone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView4"
+        android:layout_width="302dp"
+        android:layout_height="139dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/verdone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText8" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="127dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/blu"
+        android:text="< Indietro"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="137dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/verdeacqua"
+        android:text="Completata"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
