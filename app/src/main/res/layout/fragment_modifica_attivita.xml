@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#817EFF"
-    tools:context=".Visual_attivi_Fragment">
+    android:background="@color/viola"
+    android:backgroundTint="@color/viola"
+    tools:context=".ModificaAttivitaFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textUnilife"
         android:layout_width="92dp"
@@ -16,37 +17,22 @@
         android:layout_marginTop="30dp"
         android:background="#817EFF"
         android:text="UniLife"
-        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="221dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="564dp"
-        android:background="#1082D5"
-        android:gravity="center"
-        android:text="Visualizza Attività"
-        android:textColor="@color/black"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextText3"
         android:layout_width="304dp"
         android:layout_height="52dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="52dp"
+        android:background="#81C6BA"
         android:ems="10"
         android:inputType="text"
         android:text="Attività"
-        android:background="#81C6BA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -54,12 +40,12 @@
         android:id="@+id/editTextText4"
         android:layout_width="307dp"
         android:layout_height="52dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/verdone"
         android:ems="10"
         android:inputType="text"
         android:text="Data"
-        android:background="@color/verdone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
@@ -67,8 +53,8 @@
         android:id="@+id/scrollView2"
         android:layout_width="306dp"
         android:layout_height="131dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="56dp"
         android:background="@color/verdone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText4">
@@ -79,50 +65,44 @@
             android:orientation="vertical" />
     </ScrollView>
 
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="221dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="568dp"
+        android:background="#1082D5"
+        android:gravity="center"
+        android:text="Modifica Attività"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
-        android:id="@+id/button7"
-        android:layout_width="127dp"
+        android:id="@+id/button9"
+        android:layout_width="137dp"
         android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="28dp"
-        android:text="< Indietro"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/blu"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="80dp"
+        android:backgroundTint="@color/verdeacqua"
+        android:text="@string/conferma"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="137dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="76dp"
-        android:backgroundTint="@color/verdeacqua"
-        android:text="Completata"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#1082D5"
+        android:text="@string/indietro"
         android:textColor="@color/black"
         android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-    <ImageButton
-        android:id="@+id/eliminaButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/modificaButton"
-        android:layout_width="49dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="17dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/pencil"
-        app:layout_constraintEnd_toStartOf="@+id/eliminaButton"
-        tools:layout_editor_absoluteY="113dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
