@@ -16,7 +16,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -32,7 +32,7 @@
         android:background="#81C6BA"
         android:ems="10"
         android:inputType="text"
-        android:text="Attività"
+        android:hint="@string/attivit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -40,30 +40,14 @@
         android:id="@+id/editTextText4"
         android:layout_width="307dp"
         android:layout_height="52dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
         android:background="@color/verdone"
         android:ems="10"
         android:inputType="text"
-        android:text="Data"
+        android:hint="@string/data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="306dp"
-        android:layout_height="131dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="56dp"
-        android:background="@color/verdone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <TextView
         android:id="@+id/textView16"
@@ -73,36 +57,49 @@
         android:layout_marginBottom="568dp"
         android:background="#1082D5"
         android:gravity="center"
-        android:text="Modifica Attività"
+        android:text="@string/modifica_attivit"
         android:textColor="@color/black"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/buttonConferma"
         android:layout_width="137dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="56dp"
         android:backgroundTint="@color/verdeacqua"
         android:text="@string/conferma"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/listView3" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="137dp"
         android:layout_height="50dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#1082D5"
         android:text="@string/indietro"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/buttonConferma"
+        app:layout_constraintHorizontal_bias="0.275"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/listView3" />
+
+    <ListView
+        android:id="@+id/listView3"
+        android:layout_width="306dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="53dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

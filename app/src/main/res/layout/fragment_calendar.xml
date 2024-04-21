@@ -26,7 +26,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -42,7 +42,7 @@
         android:layout_marginTop="82dp"
 
         android:backgroundTint="#91EAC5"
-        android:text="+ Aggiungi Attività"
+        android:text="@string/aggiungi_attivit"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />

@@ -8,14 +8,15 @@
     tools:context=".Agg_Spesa_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/textUnilife"
         android:layout_width="92dp"
         android:layout_height="56dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -30,71 +31,71 @@
         android:layout_marginTop="17dp"
         android:background="@color/blu"
         android:gravity="center"
-        android:text="Nuova Spesa"
+        android:text="@string/nuova_spesa"
         android:textColor="@color/black"
-        android:textSize="27dp"
+        android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
 
     <EditText
         android:id="@+id/editTextText5"
-        android:layout_width="302dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="34dp"
+        android:layout_width="301dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="12dp"
         android:background="@color/verdone"
         android:ems="10"
+        android:hint="@string/titolo"
         android:inputType="text"
-        android:text="Titolo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
-        android:id="@+id/editTextText6"
-        android:layout_width="304dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:id="@+id/editTextText8"
+        android:layout_width="303dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="16dp"
         android:background="@color/verdone"
         android:ems="10"
+        android:hint="@string/pagato_da"
         android:inputType="text"
-        android:text="...€"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
 
     <EditText
         android:id="@+id/editTextText7"
         android:layout_width="303dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
         android:background="@color/verdone"
         android:ems="10"
+        android:hint="@string/data"
         android:inputType="text"
-        android:text="Data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
 
     <EditText
-        android:id="@+id/editTextText8"
-        android:layout_width="303dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Pagato da"
+        android:id="@+id/editTextText6"
+        android:layout_width="295dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
         android:background="@color/verdone"
+        android:ems="10"
+        android:hint="@string/money"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView4"
         android:layout_width="302dp"
         android:layout_height="139dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="44dp"
         android:background="@color/verdone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText8" />
@@ -106,9 +107,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/blu"
-        android:text="< Indietro"
+        android:text="@string/indietro"
         android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
 
@@ -119,9 +120,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/verdeacqua"
-        android:text="Completata"
+        android:text="@string/completata"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
 

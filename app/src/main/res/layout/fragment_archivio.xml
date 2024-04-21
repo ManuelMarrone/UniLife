@@ -15,7 +15,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -36,9 +36,9 @@
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
-        android:text="Archivio:"
+        android:text="@string/archivio"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
 
@@ -57,30 +57,33 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="50dp"
         android:layout_marginStart="31dp"
         android:layout_marginTop="105dp"
+        android:contentDescription="@string/elimina"
         android:src="@drawable/ic_delete"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
         android:layout_marginTop="105dp"
         android:layout_marginEnd="90dp"
+        android:contentDescription="@string/aggiungi"
         android:src="@drawable/ic_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="49dp"
         android:layout_marginTop="105dp"
         android:layout_marginEnd="31dp"
+        android:contentDescription="@string/scarica"
         android:src="@drawable/ic_cloud"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -88,8 +91,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="258dp"
         android:layout_height="362dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="56dp"
         android:background="@color/verdone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />

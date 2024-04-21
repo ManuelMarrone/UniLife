@@ -12,13 +12,13 @@
     <EditText
         android:id="@+id/editTextText7"
         android:layout_width="303dp"
-        android:layout_height="43dp"
+        android:layout_height="50dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="28dp"
         android:background="@color/verdone"
         android:ems="10"
+        android:hint="@string/data"
         android:inputType="text"
-        android:text="Data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
 
@@ -39,7 +39,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -54,9 +54,9 @@
         android:layout_marginTop="17dp"
         android:background="@color/blu"
         android:gravity="center"
-        android:text="Modifica Spesa"
+        android:text="@string/modifica_spesa"
         android:textColor="@color/black"
-        android:textSize="27dp"
+        android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
@@ -64,26 +64,26 @@
     <EditText
         android:id="@+id/editTextText8"
         android:layout_width="303dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="32dp"
         android:background="@color/verdone"
         android:ems="10"
+        android:hint="@string/pagato_da"
         android:inputType="text"
-        android:text="Pagato da"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
 
     <EditText
         android:id="@+id/editTextText5"
-        android:layout_width="302dp"
-        android:layout_height="40dp"
+        android:layout_width="305dp"
+        android:layout_height="50dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="32dp"
         android:background="@color/verdone"
         android:ems="10"
+        android:hint="@string/titolo"
         android:inputType="text"
-        android:text="Titolo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -92,36 +92,39 @@
         android:layout_width="137dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="52dp"
         android:backgroundTint="@color/verdeacqua"
         android:text="@string/conferma"
         android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView4"
-        tools:layout_editor_absoluteX="245dp" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/buttonBack"
         android:layout_width="137dp"
         android:layout_height="50dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="33dp"
         android:backgroundTint="@color/azzurro"
         android:text="@string/indietro"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
 
     <EditText
         android:id="@+id/editTextText6"
-        android:layout_width="304dp"
-        android:layout_height="40dp"
+        android:layout_width="302dp"
+        android:layout_height="50dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="28dp"
         android:background="@color/verdone"
         android:ems="10"
+        android:hint="@string/money"
         android:inputType="text"
-        android:text="...€"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -35,11 +35,11 @@
 
         android:layout_marginTop="104dp"
         android:background="#1082D5"
-        android:text="Contatti"
+        android:text="@string/contatti"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorLink="#1082D5"
-        android:textSize="35dp"
+        android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="208dp"
         android:backgroundTint="@color/red"
-        android:text="Rimuovi"
+        android:text="@string/rimuovi"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/button4"
@@ -65,7 +65,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="49dp"
         android:backgroundTint="@color/verdeacqua"
-        android:text="+ Aggiungi Contatto"
+        android:text="@string/aggiungi_contatto"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +88,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="251dp"
         android:layout_height="295dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="48dp"
         android:background="@color/verdone"
         app:layout_constraintStart_toStartOf="parent"

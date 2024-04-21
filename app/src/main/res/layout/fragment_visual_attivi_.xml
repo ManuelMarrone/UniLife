@@ -15,7 +15,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -30,23 +30,87 @@
         android:layout_marginBottom="564dp"
         android:background="#1082D5"
         android:gravity="center"
-        android:text="Visualizza Attività"
+        android:text="@string/visualizza_attivit"
         android:textColor="@color/black"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="127dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/blu"
+        android:text="@string/indietro"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView4" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="137dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="60dp"
+        android:backgroundTint="@color/verdeacqua"
+        android:text="@string/completata"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView4" />
+
+    <ImageButton
+        android:id="@+id/eliminaButton"
+        android:layout_width="55dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/elimina"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/modificaButton"
+        android:layout_width="55dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/modifica"
+        android:scaleType="centerInside"
+        android:src="@drawable/pencil"
+        app:layout_constraintEnd_toStartOf="@+id/eliminaButton"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/listView4"
+        android:layout_width="307dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 
     <EditText
         android:id="@+id/editTextText3"
         android:layout_width="304dp"
         android:layout_height="52dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="54dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Attività"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
         android:background="#81C6BA"
+        android:ems="10"
+        android:hint="@string/attivit"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -54,75 +118,13 @@
         android:id="@+id/editTextText4"
         android:layout_width="307dp"
         android:layout_height="52dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Data"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
         android:background="@color/verdone"
+        android:ems="10"
+        android:hint="@string/data"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="306dp"
-        android:layout_height="131dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:background="@color/verdone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="127dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="28dp"
-        android:text="< Indietro"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/blu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="137dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="76dp"
-        android:backgroundTint="@color/verdeacqua"
-        android:text="Completata"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-    <ImageButton
-        android:id="@+id/eliminaButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/modificaButton"
-        android:layout_width="49dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="17dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/pencil"
-        app:layout_constraintEnd_toStartOf="@+id/eliminaButton"
-        tools:layout_editor_absoluteY="113dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

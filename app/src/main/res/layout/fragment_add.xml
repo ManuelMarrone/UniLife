@@ -14,7 +14,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -34,19 +34,22 @@
         app:itemTextColor="@color/white"
         app:itemIconSize="30dp"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
         android:layout_width="202dp"
         android:layout_height="158dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="210dp"
         android:layout_marginBottom="410dp"
         android:background="#81C6BA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538" />
 
     <Button
         android:id="@+id/button3"
@@ -55,7 +58,7 @@
         android:layout_marginTop="212dp"
         android:layout_marginEnd="45dp"
         android:backgroundTint="@color/red"
-        android:text="Rimuovi"
+        android:text="@string/rimuovi"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,13 +67,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textinputlayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="346dp"
+        android:layout_height="66dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="480dp"
         android:layout_marginEnd="32dp"
         android:background="#817EFF"
-        android:hint="Email"
+        android:hint="@string/email"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:helperTextTextColor="@color/material_on_background_emphasis_medium"
@@ -92,36 +95,27 @@
         android:id="@+id/textView18"
         android:layout_width="292dp"
         android:layout_height="40dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="164dp"
-        android:text="Invita un nuovo coinquilino"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="63dp"
+        android:text="@string/invita_un_nuovo_coinquilino"
         android:textColor="@color/black"
-        android:textSize="23dp"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginBottom="760dp"
-        android:src="@drawable/ic_person"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="460dp"
-        android:text="Invita"
-        android:textColor="@color/black"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="162dp"
         android:backgroundTint="@color/verdeacqua"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/invita"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textinputlayout" />
 

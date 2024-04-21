@@ -15,7 +15,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -28,9 +28,8 @@
         android:layout_height="42dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
-        android:gravity="left"
-        android:text="Divisione Spese:"
-        android:textSize="21dp"
+        android:text="@string/divisione_spese"
+        android:textSize="21sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
@@ -45,17 +44,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
+
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="37dp"
-        android:layout_height="42dp"
+        android:layout_width="48dp"
+        android:layout_height="50dp"
         android:layout_marginStart="180dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="56dp"
         android:background="@color/verdeacqua"
+        android:contentDescription="@string/add"
         android:src="@drawable/ic_add"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

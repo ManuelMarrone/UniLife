@@ -14,7 +14,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:background="#817EFF"
-        android:text="UniLife"
+        android:text="@string/unilife"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -29,9 +29,9 @@
         android:layout_marginBottom="564dp"
         android:background="#1082D5"
         android:gravity="center"
-        android:text="Aggiungi Attività"
+        android:text="@string/aggiungi_attivit"
         android:textColor="@color/black"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -40,12 +40,12 @@
         android:id="@+id/editTextText3"
         android:layout_width="304dp"
         android:layout_height="52dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
+        android:background="#81C6BA"
         android:ems="10"
         android:inputType="text"
-        android:text="Aggiungi titolo"
-        android:background="#81C6BA"
+        android:text="@string/aggiungi_titolo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -53,57 +53,57 @@
         android:id="@+id/editTextText4"
         android:layout_width="307dp"
         android:layout_height="52dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="64dp"
+        android:background="@color/verdone"
         android:ems="10"
         android:inputType="text"
-        android:text="Data"
-        android:background="@color/verdone"
+        android:text="@string/data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="306dp"
-        android:layout_height="131dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:background="@color/verdone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <Button
         android:id="@+id/button7"
         android:layout_width="127dp"
         android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="28dp"
-        android:text="< Indietro"
-        android:textSize="18dp"
-        android:textColor="@color/white"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="43dp"
         android:backgroundTint="@color/blu"
+        android:text="@string/indietro"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/listView2" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="137dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="76dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="52dp"
         android:backgroundTint="@color/verdeacqua"
-        android:text="Salva"
+        android:text="@string/salva"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/listView2" />
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="307dp"
+        android:layout_height="146dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="52dp"
+        android:background="@color/verdone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
