@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/viola"
     android:backgroundTint="@color/viola"
-    tools:context=".ModificaSpesaFragment" >
+    tools:context=".View.ModificaSpesaFragment" >
 
     <EditText
         android:id="@+id/editTextText7"

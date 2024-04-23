@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/viola"
-    tools:context=".Agg_Spesa_Fragment">
+    tools:context=".View.Agg_Spesa_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
 

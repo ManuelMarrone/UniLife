@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/secondomain"
-    tools:context=".SecondActivity">
+    tools:context=".View.SecondActivity">
 
 
 
@@ -20,7 +20,7 @@
         android:layout_marginTop="200dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
+        android:text="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +51,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:background="#817EFF"
-            android:text="UniLife"
+            android:text="@string/unilife"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="28sp"

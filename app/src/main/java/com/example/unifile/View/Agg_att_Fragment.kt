@@ -1,10 +1,11 @@
-package com.example.unifile
+package com.example.unifile.View
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.unifile.R
 
 class Agg_att_Fragment : Fragment() {
 

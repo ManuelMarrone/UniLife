@@ -7,7 +7,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
-        android:name="com.example.unifile.LoginFragment"
+        android:name="com.example.unifile.View.LoginFragment"
         android:layout_width="407dp"
         android:layout_height="711dp"
         android:layout_marginStart="197dp"

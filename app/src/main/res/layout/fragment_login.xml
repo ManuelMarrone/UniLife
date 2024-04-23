@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#817EFF"
     android:backgroundTint="#817EFF"
-    tools:context=".LoginFragment">
+    tools:context=".View.LoginFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"

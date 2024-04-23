@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/viola"
     android:backgroundTint="@color/viola"
-    tools:context=".ModificaAttivitaFragment" >
+    tools:context=".View.ModificaAttivitaFragment" >
 
     <TextView
         android:id="@+id/textUnilife"
