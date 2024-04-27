@@ -15,4 +15,8 @@ class ArchivioFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_archivio, container, false)
     }
+
+    companion object {
+        fun newInstance() = ArchivioFragment()
+    }
 }
