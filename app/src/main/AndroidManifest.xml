@@ -13,6 +13,18 @@
         android:theme="@style/Theme.UniFile"
         tools:targetApi="31">
         <activity
+            android:name=".View.AttivitaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.SpesaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.AccessoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.RegistrazioneActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.MainActivity"
             android:exported="true">
             <intent-filter>

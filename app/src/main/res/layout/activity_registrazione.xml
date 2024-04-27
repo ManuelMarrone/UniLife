@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#817EFF"
     android:foregroundTint="#000000"
-    tools:context=".View.RegistrationFragment">
+    tools:context=".View.RegistrazioneActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

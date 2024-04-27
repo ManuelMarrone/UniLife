@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.unifile.R
 
-class Agg_Spesa_Fragment : Fragment() {
+class ModificaAggiungiSpesaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_agg__spesa_, container, false)
+        return inflater.inflate(R.layout.fragment_modifica_aggiungi_spesa, container, false)
     }
 }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#817EFF"
-    tools:context=".View.HomeNoGruppi">
+    tools:context=".View.HomeNoGruppiFragment">
 
     <TextView
         android:id="@+id/textView9"
@@ -27,7 +27,6 @@
         android:layout_height="48dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="28dp"
-        android:backgroundTint="#8B91EAC5"
         android:contentDescription="@string/account"
         android:src="@drawable/ic_person"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,29 +93,12 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
         android:text="@string/oppure_crea_un_gruppo_cliccando_sul"
         android:textColor="#000000"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomnav2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomnav2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/azzurro"
-        android:visibility="visible"
-        app:itemIconSize="30dp"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:labelVisibilityMode="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu2" />
+        tools:layout_editor_absoluteY="575dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
