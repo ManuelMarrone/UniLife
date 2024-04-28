@@ -25,7 +25,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
-            android:name="com.example.unifile.View.HomeFragment"
+            android:name="com.example.unilife.View.HomeFragment"
             android:layout_width="400dp"
             android:layout_height="630dp"
             android:layout_marginStart="5dp"

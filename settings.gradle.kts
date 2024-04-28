@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "UniFile"
+rootProject.name = "UniLife"
 include(":app")
  

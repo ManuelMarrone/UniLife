@@ -1,12 +1,12 @@
-package com.example.unifile.View
+package com.example.unilife.View
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.unifile.R
-import com.example.unifile.databinding.ActivityAccessoBinding
+import com.example.unilife.R
+import com.example.unilife.databinding.ActivityAccessoBinding
 
 class AccessoActivity : AppCompatActivity() {
 

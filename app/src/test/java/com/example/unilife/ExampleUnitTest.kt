@@ -1,4 +1,4 @@
-package com.example.unifile
+package com.example.unilife
 
 import org.junit.Test
 

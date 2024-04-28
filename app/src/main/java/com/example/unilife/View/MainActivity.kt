@@ -1,12 +1,11 @@
-package com.example.unifile.View
+package com.example.unilife.View
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.unifile.R
-import com.example.unifile.databinding.ActivityMainBinding
+import com.example.unilife.R
+import com.example.unilife.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

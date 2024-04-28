@@ -1,11 +1,11 @@
-package com.example.unifile.View
+package com.example.unilife.View
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.unifile.R
+import com.example.unilife.R
 
 class SpesaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
