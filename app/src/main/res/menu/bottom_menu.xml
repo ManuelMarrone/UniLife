@@ -7,19 +7,19 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/bottom_phone"
-        android:title="@string/search"
+        android:title="@string/contatti"
         android:icon="@drawable/ic_phone"/>
     <item
         android:id="@+id/bottom_add"
-        android:title="@string/add"
+        android:title="@string/invita"
         android:icon="@drawable/ic_add"/>
     <item
         android:id="@+id/bottom_calendario"
-        android:title="@string/reels"
+        android:title="@string/calendario"
         android:icon="@drawable/ic_calendar"/>
     <item
         android:id="@+id/bottom_spese"
-        android:title="@string/profile"
+        android:title="@string/pagamenti"
         android:icon="@drawable/ic_money"/>
 </menu>
 

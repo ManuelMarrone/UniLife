@@ -15,4 +15,8 @@ class ModificaAggiungiSpesaFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_modifica_aggiungi_spesa, container, false)
     }
+
+    companion object {
+        fun newInstance() = ModificaAggiungiSpesaFragment()
+    }
 }
