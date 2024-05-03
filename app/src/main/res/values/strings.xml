@@ -59,4 +59,6 @@
     <string name="profile">Profile</string>
     <string name="calendario">Calendario</string>
     <string name="pagamenti">Pagamenti</string>
+    <string name="Email">Email</string>
+    <string name="mail">Email</string>
 </resources>

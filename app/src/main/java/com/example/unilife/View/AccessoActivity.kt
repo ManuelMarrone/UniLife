@@ -7,24 +7,72 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.unilife.R
 import com.example.unilife.databinding.ActivityAccessoBinding
+import com.google.firebase.auth.FirebaseAuth
+import android.widget.Toast
+
 
 class AccessoActivity : AppCompatActivity() {
 
-    private lateinit var viewBinding: ActivityAccessoBinding
+    private lateinit var binding: ActivityAccessoBinding
+    private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityAccessoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_accesso)
 
-        viewBinding.creaButton.setOnClickListener(registraClick())
-        viewBinding.accediButton.setOnClickListener(accediClick())
-    }
+        firebaseAuth = FirebaseAuth.getInstance()
+        binding.accediButton.setOnClickListener{onclickaccedi()}
+        binding.creaButton.setOnClickListener {creaClick()}
+
+}
+
+
+
 
 
     /** Al click del pulsante accedi vengono controllate le credenziali
-      e se corrette viene effettuata l'accesso*/
-    private fun accediClick(): View.OnClickListener {
+      e se corrette viene effettuato l'accesso*/
+
+    private fun onclickaccedi(){
+        val email = binding.editTextEmailLogin.text.toString()
+        val password = binding.editTextPasswordLogin.text.toString()
+
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_accesso)
+        firebaseAuth = FirebaseAuth.getInstance()
+        if(email.isNotEmpty() && password.isNotEmpty()){
+
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this){task->
+                    if(task.isSuccessful){
+                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, HomeFragment::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else{
+                        Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+        } else {
+            Toast.makeText(this, "please enter emain and password", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+/**apertura activity registrazione*/
+    private fun creaClick(){
+
+        startActivity(Intent(this, RegistrazioneActivity::class.java))
+        finish()
+    }
+
+    }
+
+    /** private fun accediClick(email: String, password: String): View.OnClickListener {
         return View.OnClickListener {
+
             //va fatto tutto il controllo sulle crendenziali
             startActivity(
                 Intent(
@@ -33,17 +81,9 @@ class AccessoActivity : AppCompatActivity() {
                 )
             )
         }
-    }
+    }*/
 
-    //apertura activity registrazione
-    private fun registraClick(): View.OnClickListener {
-        return View.OnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    RegistrazioneActivity::class.java
-                )
-            )
-        }
-    }
-}
+
+
+
+

@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniFile"
         tools:targetApi="31">
+
         <activity
             android:name=".View.AttivitaActivity"
             android:exported="false" />
@@ -22,15 +23,17 @@
             android:name=".View.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".View.RegistrazioneActivity"
+          android:name=".View.RegistrazioneActivity"
             android:exported="false" />
         <activity
             android:name=".View.AccessoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
