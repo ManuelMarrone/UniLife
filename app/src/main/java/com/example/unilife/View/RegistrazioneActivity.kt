@@ -20,7 +20,6 @@ class RegistrazioneActivity : AppCompatActivity() {
         binding = ActivityRegistrazioneBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.registrazioneButton.setOnClickListener {registraClick()}
         binding.loginText.setOnClickListener {loginClick()}
@@ -37,6 +36,10 @@ class RegistrazioneActivity : AppCompatActivity() {
         if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
 
             viewModel.registraUtente(email, password, username)
+            startActivity(Intent(this, AccessoActivity::class.java))
+            finish()
+
+
 
         }
     }
