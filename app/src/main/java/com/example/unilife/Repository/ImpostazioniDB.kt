@@ -1,15 +1,37 @@
 package com.example.unilife.Repository
 
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
+
+
 class ImpostazioniDB {
+    companion object {
+            private const val UTENTI_COLLECTION = "utenti"
+            private const val GRUPPI_COLLECTION = "gruppi"
 
+    }
+    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
+    lateinit var utenteCorrenteDocRef: DocumentReference
+    lateinit var utentiCorrenteCollectionRef: CollectionReference
+    val utentiCollectionRef = firestore.collection(UTENTI_COLLECTION)
+    val gruppiCollectionRef = firestore.collection(GRUPPI_COLLECTION)
+    init {
+        firebaseAuth.currentUser?.let()
+    { user ->
+        utenteCorrenteDocRef = utentiCollectionRef.document(user.uid)
 
-    //FireStore
-    private val fireStore = FirebaseFirestore.getInstance()
-    lateinit var dbCurrentUser: DatabaseReference
-    lateinit var dbCurrentUserPosts: DatabaseReference
-    val dbUsers = reference.child(DATABASE_USERS_PATH)
-    val dbPosts = reference.child(DATABASE_POSTS_PATH)
-    val dbFollows = reference.child(DATABASE_FOLLOWS_PATH)
+    }
+    }
 }
+
+
+
+
+
+
+
+
