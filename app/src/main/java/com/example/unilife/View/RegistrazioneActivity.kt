@@ -58,5 +58,5 @@ class RegistrazioneActivity : AppCompatActivity() {
         startActivity(Intent(this, AccessoActivity::class.java))
         finish()
     }
-        }
+}
 

@@ -1,10 +1,11 @@
 package com.example.unilife.Repository
 
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-
+import com.google.firebase.firestore.firestore
 
 
 class ImpostazioniDB {
@@ -14,7 +15,7 @@ class ImpostazioniDB {
 
     }
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    val firestore = FirebaseFirestore.getInstance()
+    val firestore = Firebase.firestore
     lateinit var utenteCorrenteDocRef: DocumentReference
     lateinit var utentiCorrenteCollectionRef: CollectionReference
     val utentiCollectionRef = firestore.collection(UTENTI_COLLECTION)

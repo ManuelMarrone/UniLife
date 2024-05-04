@@ -50,8 +50,7 @@ class RegistrazioneViewModel : ViewModel() {
                     password = password,
                     username = username
                )
-                dbSettings.firestore.collection("utenti").document(dbSettings.firebaseAuth.uid!!)
-                    .set(utente)
+                dbSettings.firestore.collection("utenti").document(dbSettings.firebaseAuth.uid!!).set(utente)
 
 
                 _uiState.value = StatoRegistrazioneUi.success()
