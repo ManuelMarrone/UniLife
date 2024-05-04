@@ -44,15 +44,14 @@ class RegistrazioneViewModel : ViewModel() {
 
 
             if (result.isSuccess) {
-               val utente =  Utente(
-                    id = dbSettings.firebaseAuth.uid!!,
+               val utente = Utente(
                     id_gruppo = "",
                     email = email,
                     password = password,
                     username = username
-                )
-                dbSettings.firestore.collection("utenti")
-                    .add(utente)
+               )
+                dbSettings.firestore.collection("utenti").document(dbSettings.firebaseAuth.uid!!)
+                    .set(utente)
 
 
                 _uiState.value = StatoRegistrazioneUi.success()
