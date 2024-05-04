@@ -14,7 +14,7 @@ class ImpostazioniDB {
 
     }
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val firestore = FirebaseFirestore.getInstance()
+    val firestore = FirebaseFirestore.getInstance()
     lateinit var utenteCorrenteDocRef: DocumentReference
     lateinit var utentiCorrenteCollectionRef: CollectionReference
     val utentiCollectionRef = firestore.collection(UTENTI_COLLECTION)
