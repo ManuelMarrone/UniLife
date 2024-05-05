@@ -51,19 +51,8 @@ class RegistrazioneActivity : AppCompatActivity() {
         if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
 
             viewModel.registraUtente(email, password, username)
-            val utente = Utente(
-                username = username,
-                email = email,
-                password = password
-            )
-            dbSettings.firestore.collection("users")
-                .add(utente)
-                .addOnSuccessListener {
-                    Log.d(ContentValues.TAG,"Added document with ID ${it.id}")
-                }
-                .addOnFailureListener {
-                    Log.w(ContentValues.TAG, "Error adding document ${it}")
-                }
+
+            viewModel.fireStoreUtente(email,username,password)
 
             startActivity(Intent(this, AccessoActivity::class.java))
             finish()

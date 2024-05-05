@@ -9,24 +9,10 @@ import com.google.firebase.firestore.firestore
 
 
 class ImpostazioniDB {
-    companion object {
-            private const val UTENTI_COLLECTION = "utenti"
-            private const val GRUPPI_COLLECTION = "gruppi"
 
-    }
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val firestore = Firebase.firestore
-    lateinit var utenteCorrenteDocRef: DocumentReference
-    lateinit var utentiCorrenteCollectionRef: CollectionReference
-    val utentiCollectionRef = firestore.collection(UTENTI_COLLECTION)
-    val gruppiCollectionRef = firestore.collection(GRUPPI_COLLECTION)
-    init {
-        firebaseAuth.currentUser?.let()
-    { user ->
-        utenteCorrenteDocRef = utentiCollectionRef.document(user.uid)
 
-    }
-    }
 }
 
 
