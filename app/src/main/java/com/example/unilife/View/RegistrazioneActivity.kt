@@ -1,10 +1,13 @@
 package com.example.unilife.View
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.example.unilife.Model.Utente
 import com.example.unilife.R
 import com.example.unilife.Repository.ImpostazioniDB
@@ -29,6 +32,10 @@ class RegistrazioneActivity : AppCompatActivity() {
 
         binding.registrazioneButton.setOnClickListener {registraClick()}
         binding.loginText.setOnClickListener {loginClick()}
+
+
+
+
         }
 
 
@@ -41,22 +48,37 @@ class RegistrazioneActivity : AppCompatActivity() {
 
 
 
-
         if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
 
             viewModel.registraUtente(email, password, username)
+            val utente = Utente(
+                username = username,
+                email = email,
+                password = password
+            )
+            dbSettings.firestore.collection("users")
+                .add(utente)
+                .addOnSuccessListener {
+                    Log.d(ContentValues.TAG,"Added document with ID ${it.id}")
+                }
+                .addOnFailureListener {
+                    Log.w(ContentValues.TAG, "Error adding document ${it}")
+                }
+
             startActivity(Intent(this, AccessoActivity::class.java))
             finish()
 
-
-
         }
     }
+
+
     /** metodo per accedere direttamente all'interfaccia' di login*/
 
     private fun loginClick(){
         startActivity(Intent(this, AccessoActivity::class.java))
         finish()
     }
-}
+
+
+        }
 

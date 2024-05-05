@@ -1,7 +1,9 @@
 package com.example.unilife.ViewModel
 
 
+import android.content.ContentValues
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
@@ -12,6 +14,7 @@ import com.example.unilife.Repository.RegistrazioneRepo
 import com.example.unilife.StateUI.StatoRegistrazioneUi
 import com.example.unilife.View.AccessoActivity
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.firestoreSettings
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,7 +28,6 @@ import kotlinx.coroutines.tasks.await
 class RegistrazioneViewModel : ViewModel() {
 
 
-
     private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
 
 
@@ -36,7 +38,6 @@ class RegistrazioneViewModel : ViewModel() {
     val uiState: StateFlow<StatoRegistrazioneUi> = _uiState.asStateFlow()
 
 
-
     fun registraUtente(email: String, password: String, username: String) {
         viewModelScope.launch {
             _uiState.value = StatoRegistrazioneUi.loading()
@@ -44,13 +45,13 @@ class RegistrazioneViewModel : ViewModel() {
 
 
             if (result.isSuccess) {
-               val utente = Utente(
-                    id_gruppo = "",
-                    email = email,
-                    password = password,
-                    username = username
-               )
-                dbSettings.firestore.collection("utenti").document(dbSettings.firebaseAuth.uid!!).set(utente)
+                /** val utente = Utente(
+                id_gruppo = "",
+                email = email,
+                password = password,
+                username = username
+                )
+                dbSettings.firestore.collection("utenti").document(dbSettings.firebaseAuth.uid!!).set(utente)*/
 
 
                 _uiState.value = StatoRegistrazioneUi.success()
@@ -59,7 +60,8 @@ class RegistrazioneViewModel : ViewModel() {
             }
         }
     }
-    }
+
+}
 
 
 
