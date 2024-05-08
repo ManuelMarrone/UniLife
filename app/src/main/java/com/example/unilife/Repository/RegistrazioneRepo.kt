@@ -2,7 +2,9 @@ package com.example.unilife.Repository
 
 import android.content.ContentValues
 import android.util.Log
+import com.example.unilife.Model.Utente
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -10,15 +12,31 @@ import kotlinx.coroutines.tasks.await
 class RegistrazioneRepo() {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
 
-    suspend fun registrazione(email: String, password:String):
+    suspend fun registrazione(email: String, password:String, username: String):
             Result<Boolean> = withContext(Dispatchers.IO){
         try {
-            firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-            Log.d(ContentValues.TAG, "ok")
+            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful()) {
+                    val idUtente = firebaseAuth.currentUser?.uid!!
+                    val documentReference: DocumentReference =
+                        dbSettings.firestore.collection("utenti").document(idUtente)
+                    val utente = Utente(
+                        username = username,
+                        email = email,
+                        password = password
+                    )
+                    documentReference.set(utente).addOnSuccessListener {
+                        Log.d(ContentValues.TAG, "Added document with ID ${idUtente}")
+                    }
+                        .addOnFailureListener {
+                            Log.w(ContentValues.TAG, "Error adding document")
+                        }
+                }
+            }.await()
             Result.success(true)
         } catch (e: Exception) {
-            Log.d(ContentValues.TAG, "error ${e}")
             Result.failure(e)
         }
     }

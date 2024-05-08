@@ -35,7 +35,7 @@ class RegistrazioneViewModel : ViewModel() {
 
 
     private val repository = RegistrazioneRepo()
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
 
     private val _uiState = MutableStateFlow(StatoRegistrazioneUi())
@@ -70,15 +70,16 @@ class RegistrazioneViewModel : ViewModel() {
                 _uiState.value = StatoRegistrazioneUi.error(result.exceptionOrNull()!!.message!!)
             }
         }
-    }
+    }*/
 
-    */
+
 
 
     fun registraUtente(email: String, password: String, username: String) {
-        viewModelScope.launch {
-            val result = repository.registrazione(email, password)
-            if (result.isSuccess) {
+        viewModelScope.launch{
+        repository.registrazione(email, password, username)
+       /** firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful()) {
                 val idUtente = firebaseAuth.currentUser?.uid!!
                 val documentReference: DocumentReference =
                     dbSettings.firestore.collection("utenti").document(idUtente)
@@ -94,8 +95,7 @@ class RegistrazioneViewModel : ViewModel() {
                         Log.w(ContentValues.TAG, "Error adding document")
                     }
             }
-        }
-
+        }*/
         }
 
 
@@ -104,3 +104,4 @@ class RegistrazioneViewModel : ViewModel() {
 
     }
 
+}
