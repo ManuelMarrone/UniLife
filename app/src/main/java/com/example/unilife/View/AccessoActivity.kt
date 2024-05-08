@@ -9,12 +9,15 @@ import com.example.unilife.R
 import com.example.unilife.databinding.ActivityAccessoBinding
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
+import androidx.activity.viewModels
+import com.example.unilife.ViewModel.AccessoViewModel
 
 
 class AccessoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAccessoBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private val viewModel: AccessoViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAccessoBinding.inflate(layoutInflater)
@@ -66,6 +69,13 @@ class AccessoActivity : AppCompatActivity() {
 
         startActivity(Intent(this, RegistrazioneActivity::class.java))
         finish()
+    }
+    override fun onStart() {
+        super.onStart()
+        if (viewModel.isLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 
     }

@@ -1,27 +1,74 @@
 package com.example.unilife.View
 
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.example.unilife.R
+import com.example.unilife.ViewModel.AccessoViewModel
+import com.example.unilife.ViewModel.MainViewModel
 import com.example.unilife.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setHome()
+    }
 
-        replaceFragment(HomeFragment.newInstance())
-        bottomNavigationListener()
+
+    //metodo che cambia il fragment in base a se l'utente fa parte di un gruppo o meno
+    private fun setHome()
+    {
+        // Chiamare la funzione per ottenere il gruppo dal ViewModel
+        val idGruppo = viewModel.getGruppo()
+
+        // Osserva i cambiamenti nell'ID del gruppo
+        viewModel.getIdGruppoLiveData().observe(this, Observer { idGruppo ->
+            // Aggiorna l'UI con il nuovo valore dell'ID del gruppo
+            if (idGruppo != null) {
+                replaceFragment(HomeFragment.newInstance())
+                bottomNavigationListenerGruppi()
+                Log.d("MyActivity", "ID del gruppo: $idGruppo")
+            } else {
+                replaceFragment(HomeNoGruppiFragment.newInstance())
+                disabilitaBottomNavigation()
+                bottomNavigationListenerNoGruppi()
+                Log.d("MyActivity", "ID del gruppo non disponibile")
+            }
+        })
+
+    }
+
+    private fun disabilitaBottomNavigation(){
+        binding.bottomNavigation.apply {
+            menu.findItem(R.id.bottom_calendario).isVisible = false
+            menu.findItem(R.id.bottom_phone).isVisible = false
+            menu.findItem(R.id.bottom_spese).isVisible = false
+        }
+    }
+
+    private fun bottomNavigationListenerNoGruppi() {
+        binding.bottomNavigation.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.bottom_home -> replaceFragment(HomeNoGruppiFragment.newInstance())
+                R.id.bottom_add -> replaceFragment(InvitaFragment.newInstance())
+                else -> {}
+            }
+            true
+        }
     }
 
      //Metodo per gestire il comportamento della bottom navigation
-
-    private fun bottomNavigationListener() {
+    private fun bottomNavigationListenerGruppi() {
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_home -> replaceFragment(HomeFragment.newInstance())
