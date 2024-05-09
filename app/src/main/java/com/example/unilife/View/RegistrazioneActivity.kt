@@ -20,10 +20,7 @@ import com.google.firebase.firestore.firestore
 class RegistrazioneActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrazioneBinding
-    private lateinit var firebaseAuth: FirebaseAuth
     private val viewModel: RegistrazioneViewModel by viewModels()
-    private val db = Firebase.firestore
-    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistrazioneBinding.inflate(layoutInflater)
