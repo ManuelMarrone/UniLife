@@ -18,18 +18,23 @@
 
         <activity
             android:name=".View.AttivitaActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".View.SpesaActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".View.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
           android:name=".View.RegistrazioneActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".View.AccessoActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

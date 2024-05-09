@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(HomeNoGruppiFragment.newInstance())
                 disabilitaBottomNavigation()
                 bottomNavigationListenerNoGruppi()
-                Log.d("MyActivity", "ID del gruppo non disponibile")
+                Log.d("MyActivity", "ID del gruppo non disponibile nel main")
             }
         })
 

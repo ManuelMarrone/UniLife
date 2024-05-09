@@ -14,24 +14,21 @@ class GruppoRepo {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
 
-    suspend fun creaGruppo():
-            Result<Boolean> = withContext(Dispatchers.IO){
+    private val utenteRepo = UtenteRepo()
+    suspend fun creaGruppo(): Result<Boolean> = withContext(Dispatchers.IO) {
         try {
             val idUtente = firebaseAuth.currentUser?.uid!!
-
             val partecipanti = mutableListOf<String>(idUtente)
+            val gruppo = Gruppo(partecipanti = partecipanti)
 
-            val gruppo = Gruppo(
-                partecipanti = partecipanti,
-            )
-            dbSettings.firestore.collection("gruppi").add(gruppo).addOnSuccessListener {
-                Log.d(ContentValues.TAG, "partecipante aggiunto ${idUtente}")
-            }
-            .addOnFailureListener {
-                Log.w(ContentValues.TAG, "Error adding document")
-            }
+            val documentReference = dbSettings.firestore.collection("gruppi").add(gruppo).await()
+            val nuovoGruppoId = documentReference.id
+            utenteRepo.setIdGruppo(nuovoGruppoId)
+            Log.d(ContentValues.TAG, "ID del nuovo gruppo: $nuovoGruppoId")
+
             Result.success(true)
         } catch (e: Exception) {
+            Log.w(ContentValues.TAG, "Errore durante la creazione del gruppo", e)
             Result.failure(e)
         }
     }
