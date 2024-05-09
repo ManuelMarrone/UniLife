@@ -20,12 +20,13 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.firestoreSettings
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-
+import kotlinx.coroutines.withContext
 
 
 class RegistrazioneViewModel : ViewModel() {
@@ -36,6 +37,7 @@ class RegistrazioneViewModel : ViewModel() {
 
     private val repository = RegistrazioneRepo()
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+
 
 
     private val _uiState = MutableStateFlow(StatoRegistrazioneUi())
@@ -98,10 +100,47 @@ class RegistrazioneViewModel : ViewModel() {
         }*/
         }
 
-
-
-
-
     }
+
+
+    suspend fun verificaUnicitaCredenziali(email: String, username: String) :Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val controllo_username = dbSettings.firestore.collection("utenti")
+                    .whereEqualTo("username", username)
+                    .get()
+                    .await()
+
+                val controllo_email = dbSettings.firestore.collection("email")
+                    .whereEqualTo("email", email)
+                    .get()
+                    .await()
+
+               controllo_username.isEmpty() && controllo_email.isEmpty()
+
+            } catch (e: Exception) {
+                Log.e(ContentValues.TAG, "${e}")
+                false
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
