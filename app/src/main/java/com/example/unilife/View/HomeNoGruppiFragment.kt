@@ -79,7 +79,11 @@ class HomeNoGruppiFragment : Fragment() {
 
             viewModel.validaCodice(codice) { isValid ->
                 if (isValid == true) {
-                    var ciao:String
+                    //codice valido, l'account dev'essere aggiunto al gruppo
+                    viewModel.aggiungiUtenteGruppo(codice)
+                    viewBinding.editTextNumberCodice.setText("")
+                    viewBinding.editTextNumberCodice.clearFocus()
+                    (requireActivity() as MainActivity).setHome()
                 } else {
                     viewBinding.editTextNumberCodice.setError("Il codice non è corretto ${codice}")
                 }

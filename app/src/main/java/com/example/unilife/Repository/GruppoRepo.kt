@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue.arrayUnion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -38,24 +39,21 @@ class GruppoRepo {
     }
 
 
-//    fun controllaCodiceInvito(idGruppo: String, callback: (Boolean?) -> Unit) {
-//        try {
-//            val documentReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
-//            documentReference.get()
-//                .addOnSuccessListener { documentSnapshot ->
-//                    if (documentSnapshot.exists()) {
-//                        callback(true)
-//                    }
-//                }
-//                .addOnFailureListener { exception ->
-//                    callback(false)
-//
-//                }
-//            callback(false)
-//        } catch (e: Exception) {
-//            callback(false)
-//        }
-//    }
+    fun aggiungiPartecipante(idGruppo:String)
+    {
+        val idUtente = firebaseAuth.currentUser?.uid!!
+        val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
+
+        gruppoReference.get()
+            .addOnSuccessListener { documentSnapshot ->
+                dbSettings.firestore.collection("gruppi").document(idGruppo).update("partecipanti" , arrayUnion(idUtente))
+            }
+            .addOnFailureListener { exception ->
+                // Gestisci eventuali errori qui
+                Log.w(ContentValues.TAG, "Errore durante la creazione del gruppo", exception)
+            }
+
+    }
 
     suspend fun controllaCodiceInvito(idGruppo: String, callback: (Boolean?) -> Unit) {
         try {
@@ -75,3 +73,4 @@ class GruppoRepo {
 
 
 }
+
