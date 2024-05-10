@@ -1,10 +1,10 @@
 package com.example.unilife.Utils
 
 class InputCorretto {
-    fun isValidFullName(fullName: String): Boolean {
-        val regex = Regex("^[a-zA-Z ]+\$")
-        return fullName.isNotBlank() && regex.matches(fullName)
-    }
+//    fun isValidFullName(fullName: String): Boolean {
+//        val regex = Regex("^[a-zA-Z ]+\$")
+//        return fullName.isNotBlank() && regex.matches(fullName)
+//    }
 
     /**
      * Verifica se l'username contiene solo lettere dell'alfabeto, numeri, caratteri speciali e non è vuoto
@@ -34,4 +34,5 @@ class InputCorretto {
     fun isValidPassword(password: String): Boolean {
         return password.isNotEmpty() && !password.contains(" ") && password.length >= 6
     }
+
 }

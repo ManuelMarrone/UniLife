@@ -1,13 +1,17 @@
 package com.example.unilife.View
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import com.example.unilife.R
+import com.example.unilife.ViewModel.HomeNoGruppiViewModel
+import com.example.unilife.ViewModel.InvitaViewModel
 import com.example.unilife.databinding.FragmentHomeBinding
 import com.example.unilife.databinding.FragmentHomeNoGruppiBinding
 
@@ -23,6 +27,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeNoGruppiFragment : Fragment() {
     private lateinit var viewBinding: FragmentHomeNoGruppiBinding
+    private val viewModel: HomeNoGruppiViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +41,7 @@ class HomeNoGruppiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewBinding.accountButton.setOnClickListener(goToAccount())
+        viewBinding.confermaButton.setOnClickListener(accettaInvito())
     }
 
     companion object {
@@ -63,6 +69,21 @@ class HomeNoGruppiFragment : Fragment() {
     private fun goToAccount(): View.OnClickListener {
         return View.OnClickListener {
             replaceFragment(AccountFragment.newInstance())
+        }
+    }
+
+    private fun accettaInvito(): View.OnClickListener
+    {
+        return View.OnClickListener {
+            val codice = viewBinding.editTextNumberCodice.text.toString()
+
+            viewModel.validaCodice(codice) { isValid ->
+                if (isValid == true) {
+                    var ciao:String
+                } else {
+                    viewBinding.editTextNumberCodice.setError("Il codice non è corretto ${codice}")
+                }
+            }
         }
     }
 

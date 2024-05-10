@@ -9,20 +9,18 @@ class MainViewModel : ViewModel(){
     private val utenteRepo = UtenteRepo()
 
     // LiveData per contenere il valore dell'ID del gruppo
-    private val idGruppoLiveData = MutableLiveData<String?>()
+    private val _idGruppoLiveData = MutableLiveData<String?>()
+    val idGruppoLiveData: LiveData<String?>
+    get() = _idGruppoLiveData
 
     // Funzione per ottenere il gruppo
     fun getGruppo() {
-        idGruppoLiveData.postValue(null) // Resetta il valore mentre attendi i nuovi dati
+        _idGruppoLiveData.postValue(null) // Resetta il valore mentre attendi i nuovi dati
         utenteRepo.getGruppo().observeForever { idGruppo ->
-            idGruppoLiveData.postValue(idGruppo)
+            _idGruppoLiveData.postValue(idGruppo)
         }
     }
 
-    // Funzione per ottenere l'ID del gruppo come LiveData
-    fun getIdGruppoLiveData(): LiveData<String?> {
-        return idGruppoLiveData
-    }
 
 
 

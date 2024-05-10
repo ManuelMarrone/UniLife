@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.unilife.R
 import com.example.unilife.StateUI.StatoRegistrazioneUi
+import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.InvitaViewModel
 import com.example.unilife.ViewModel.RegistrazioneViewModel
 import com.example.unilife.databinding.ActivityRegistrazioneBinding
@@ -28,6 +29,8 @@ class InvitaFragment : Fragment() {
 
     private lateinit var binding: FragmentInvitaBinding
     private val viewModel: InvitaViewModel by viewModels()
+
+    private val inputCorretto = InputCorretto()
 
 
     override fun onCreateView(
@@ -48,48 +51,42 @@ class InvitaFragment : Fragment() {
 
 
     companion object {
-
         fun newInstance() = InvitaFragment()
     }
 
     private fun onClickInvita() {
-//        // Chiamare la funzione per ottenere il gruppo dal ViewModel
-//        val idGruppo = viewModel.getGruppo()
-//
-//        // Osserva i cambiamenti nell'ID del gruppo
-//        viewModel.getIdGruppoLiveData().observe(viewLifecycleOwner, Observer { idGruppo ->
-//            // Aggiorna l'UI con il nuovo valore dell'ID del gruppo
-//            if (idGruppo != null) {
-//                //invita(idGruppo)
-//                Log.d("MyActivity", "invita $idGruppo")
-//            } else {
-//                viewModel.creaGruppo()
-//                Log.d("MyActivity", "ID del gruppo non disponibile")
-//            }
-//        })
-        viewModel.getIdGruppo { idGruppo ->
-            if (idGruppo != null) {
-                invita(idGruppo)
-                Log.d("MyActivity", "ID del gruppo: $idGruppo")
-            } else {
-                viewModel.creaGruppo{ idGruppo->
-                    if (idGruppo != null) {
-                        invita(idGruppo)
+        val destinatario = binding.destEmail.text.toString()
+
+        if (inputCorretto.isValidEmail(destinatario)) {
+            viewModel.getIdGruppo { idGruppo ->
+                if (idGruppo != null) {
+                    invita(idGruppo)
+                    Log.d("MyActivity", "ID del gruppo: $idGruppo")
+                } else {
+                    viewModel.creaGruppo { idGruppo ->
+                        if (idGruppo != null) {
+                            invita(idGruppo)
+                            (requireActivity() as MainActivity).setHome()
+                        }
                     }
+                    Log.d("MyActivity", "ID del gruppo non disponibile")
                 }
-                Log.d("MyActivity", "ID del gruppo non disponibile")
             }
 
         }
+        else{
+            binding.destEmail.setError("Inserisci un'email valida")
+        }
 
     }
+
     private fun invita(idGruppo:String)
     {
-
         val destinatario = binding.destEmail.text.toString()
+
         Log.d("MyActivity", "entra in invita ${destinatario}")
         val soggetto = "Invito al gruppo di coinquilini"
-        val corpo = "Sei stato invitato al gruppo di coinquilini, registrati all'app se non l'hai ancora fatto e inserisci il codice ${idGruppo}"
+        val corpo = "Sei stato invitato al gruppo di coinquilini, registrati all'app se non l'hai ancora fatto e inserisci il codice: ${idGruppo}"
 
         /*ACTION_SEND action to launch an email client installed on your Android device.*/
         val mIntent = Intent(Intent.ACTION_SEND)
@@ -110,11 +107,14 @@ class InvitaFragment : Fragment() {
         try {
             //start email intent
             startActivity(Intent.createChooser(mIntent, "Scegli l'app per mandare l'email"))
+            binding.destEmail.setText("")
+            binding.destEmail.clearFocus()
         }
         catch (e: Exception){
             //if any thing goes wrong for example no email client application or any exception
             //get and show exception message
             Log.w(ContentValues.TAG, "Error mail ${e}")
         }
+
     }
 }

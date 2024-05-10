@@ -1,31 +1,23 @@
 package com.example.unilife.ViewModel
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.ImpostazioniDB
-import com.example.unilife.Repository.UtenteRepo
 import kotlinx.coroutines.launch
 
-
-
-class InvitaViewModel: ViewModel() {
+class HomeNoGruppiViewModel: ViewModel() {
     private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
 
-
     private val repository = GruppoRepo()
-    private val utenteRepo = UtenteRepo()
 
-    fun creaGruppo(callback: (String?) -> Unit) {
+    //funzione che preleva tutti i gruppi salvati nel database e controlla se c'è un id che corrisponde
+//    fun validaCodice(code:String, callback: (Boolean?) -> Unit) {
+//        repository.controllaCodiceInvito(code, callback)
+//    }
+    fun validaCodice(code: String, callback: (Boolean?) -> Unit) {
         viewModelScope.launch {
-            repository.creaGruppo()
-            utenteRepo.getIdGruppo(callback)
+            repository.controllaCodiceInvito(code, callback)
         }
     }
-
-    fun getIdGruppo(callback: (String?) -> Unit) {
-        utenteRepo.getIdGruppo(callback)
-    }
-
 }

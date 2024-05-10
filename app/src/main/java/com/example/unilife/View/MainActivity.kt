@@ -26,16 +26,15 @@ class MainActivity : AppCompatActivity() {
 
 
     //metodo che cambia il fragment in base a se l'utente fa parte di un gruppo o meno
-    private fun setHome()
+    public fun setHome()
     {
-        // Chiamare la funzione per ottenere il gruppo dal ViewModel
-        val idGruppo = viewModel.getGruppo()
+        viewModel.getGruppo() //per assegnare il valore a idGruppo nel viewModel
 
-        // Osserva i cambiamenti nell'ID del gruppo
-        viewModel.getIdGruppoLiveData().observe(this, Observer { idGruppo ->
-            // Aggiorna l'UI con il nuovo valore dell'ID del gruppo
+        //osservatore
+        val idGruppoObserver = Observer<String?> {idGruppo ->
             if (idGruppo != null) {
                 replaceFragment(HomeFragment.newInstance())
+                abilitaBottomNavigation()
                 bottomNavigationListenerGruppi()
                 Log.d("MyActivity", "ID del gruppo: $idGruppo")
             } else {
@@ -44,7 +43,9 @@ class MainActivity : AppCompatActivity() {
                 bottomNavigationListenerNoGruppi()
                 Log.d("MyActivity", "ID del gruppo non disponibile nel main")
             }
-        })
+        }
+        viewModel.idGruppoLiveData.observe(this, idGruppoObserver)
+
 
     }
 
@@ -53,6 +54,14 @@ class MainActivity : AppCompatActivity() {
             menu.findItem(R.id.bottom_calendario).isVisible = false
             menu.findItem(R.id.bottom_phone).isVisible = false
             menu.findItem(R.id.bottom_spese).isVisible = false
+        }
+    }
+
+    private fun abilitaBottomNavigation(){
+        binding.bottomNavigation.apply {
+            menu.findItem(R.id.bottom_calendario).isVisible = true
+            menu.findItem(R.id.bottom_phone).isVisible = true
+            menu.findItem(R.id.bottom_spese).isVisible = true
         }
     }
 

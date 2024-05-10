@@ -2,9 +2,13 @@ package com.example.unilife.Repository
 
 import android.content.ContentValues
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -32,4 +36,42 @@ class GruppoRepo {
             Result.failure(e)
         }
     }
+
+
+//    fun controllaCodiceInvito(idGruppo: String, callback: (Boolean?) -> Unit) {
+//        try {
+//            val documentReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
+//            documentReference.get()
+//                .addOnSuccessListener { documentSnapshot ->
+//                    if (documentSnapshot.exists()) {
+//                        callback(true)
+//                    }
+//                }
+//                .addOnFailureListener { exception ->
+//                    callback(false)
+//
+//                }
+//            callback(false)
+//        } catch (e: Exception) {
+//            callback(false)
+//        }
+//    }
+
+    suspend fun controllaCodiceInvito(idGruppo: String, callback: (Boolean?) -> Unit) {
+        try {
+            val documentReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
+            val documentSnapshot = withContext(Dispatchers.IO) {
+                documentReference.get().await()
+            }
+            if (documentSnapshot.exists()) {
+                callback(true)
+            } else {
+                callback(false)
+            }
+        } catch (e: Exception) {
+            callback(false)
+        }
+    }
+
+
 }

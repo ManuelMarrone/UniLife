@@ -13,6 +13,8 @@ class ImpostazioniDB {
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val firestore = Firebase.firestore
 
+    val db = FirebaseFirestore.getInstance()
+
 }
 
 
