@@ -28,4 +28,12 @@ class InvitaViewModel: ViewModel() {
         utenteRepo.getIdGruppo(callback)
     }
 
+    //metodo che preleva i partecipanti del gruppo se esiste dell'utente loggato
+    fun getPartecipantiGruppo(callback: (ArrayList<String>?) -> Unit){
+        //chiamata al repository per prendere l'informazione
+        viewModelScope.launch {
+            utenteRepo.getUsernamePartecipanti(callback)
+        }
+    }
+
 }

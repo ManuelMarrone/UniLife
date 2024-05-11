@@ -11,8 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.unilife.Adapter.ListaPartecipantiAdapter
+import com.example.unilife.Model.Utente
 import com.example.unilife.R
 import com.example.unilife.StateUI.StatoRegistrazioneUi
 import com.example.unilife.Utils.InputCorretto
@@ -32,6 +38,8 @@ class InvitaFragment : Fragment() {
 
     private val inputCorretto = InputCorretto()
 
+    private lateinit var partecipantiGruppo: ArrayList<String>
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +52,13 @@ class InvitaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.invitaBtn.setOnClickListener { onClickInvita() }
 
-        binding.invitaBtn.setOnClickListener{onClickInvita()}
+        getPartecipantiGruppo()
+
+        recyclerView = binding.recyclerViewPartecipanti
+        recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
     }
-
 
 
     companion object {
@@ -73,20 +84,19 @@ class InvitaFragment : Fragment() {
                 }
             }
 
-        }
-        else{
+        } else {
             binding.destEmail.setError("Inserisci un'email valida")
         }
 
     }
 
-    private fun invita(idGruppo:String)
-    {
+    private fun invita(idGruppo: String) {
         val destinatario = binding.destEmail.text.toString()
 
         Log.d("MyActivity", "entra in invita ${destinatario}")
         val soggetto = "Invito al gruppo di coinquilini"
-        val corpo = "Sei stato invitato al gruppo di coinquilini, registrati all'app se non l'hai ancora fatto e inserisci il codice: ${idGruppo}"
+        val corpo =
+            "Sei stato invitato al gruppo di coinquilini, registrati all'app se non l'hai ancora fatto e inserisci il codice: ${idGruppo}"
 
         /*ACTION_SEND action to launch an email client installed on your Android device.*/
         val mIntent = Intent(Intent.ACTION_SEND)
@@ -109,12 +119,28 @@ class InvitaFragment : Fragment() {
             startActivity(Intent.createChooser(mIntent, "Scegli l'app per mandare l'email"))
             binding.destEmail.setText("")
             binding.destEmail.clearFocus()
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             //if any thing goes wrong for example no email client application or any exception
             //get and show exception message
             Log.w(ContentValues.TAG, "Error mail ${e}")
         }
 
+    }
+
+
+    //obiettivo: creare una funzione che prenda un arrayList degli utenti che hanno l'idGruppo corrispondente a chi è loggato
+    private fun getPartecipantiGruppo() {
+
+        viewModel.getPartecipantiGruppo { partecipantiList ->
+            if (partecipantiList != null) {
+                partecipantiGruppo = partecipantiList
+                Log.d("partecipanti", "part ${partecipantiList}")
+                recyclerView.adapter = ListaPartecipantiAdapter(partecipantiGruppo)
+            } else {
+                partecipantiGruppo = ArrayList()
+                Log.d("partecipanti", "null")
+            }
+
+        }
     }
 }

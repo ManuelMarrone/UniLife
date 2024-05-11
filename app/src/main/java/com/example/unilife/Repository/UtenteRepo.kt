@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
+import kotlinx.coroutines.tasks.await
 import java.util.Locale
 
 class UtenteRepo {
@@ -57,6 +58,40 @@ class UtenteRepo {
                 callback(null)
             }
     }
+
+
+    suspend fun getUsernamePartecipanti(callback: (ArrayList<String>?) -> Unit) {
+        val idUtente = firebaseAuth.currentUser?.uid ?: return
+        val documentReference: DocumentReference = dbSettings.firestore.collection("utenti").document(idUtente)
+
+        val partecipantiList = ArrayList<String>()
+
+        try {
+            val documentSnapshot = documentReference.get().await()
+            val idGruppo = documentSnapshot.getString("id_gruppo")
+
+            if (idGruppo != null) {
+                val querySnapshot = dbSettings.firestore.collection("utenti")
+                    .whereEqualTo("id_gruppo", idGruppo)
+                    .get().await()
+
+                for (document in querySnapshot.documents) {
+                    val username = document.getString("username")
+                    if (username != null) {
+                        partecipantiList.add(username)
+                    }
+                }
+                callback(partecipantiList)
+            } else {
+                callback(null)
+            }
+        } catch (e: Exception) {
+            Log.e("getUsernamePartecipanti", "Errore durante il recupero degli utenti", e)
+            callback(null)
+        }
+    }
+
+
 
     //funzione per aggiornare l'idGruppo al quale fa parte o meno un utente
     fun setIdGruppo(idGruppo:String)
