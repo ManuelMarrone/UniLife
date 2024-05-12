@@ -13,13 +13,16 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import java.util.Locale
+import java.util.concurrent.CompletableFuture
 
 class UtenteRepo {
 
     private val dbSettings = ImpostazioniDB()
     private val firebaseAuth = FirebaseAuth.getInstance()
+    val db = FirebaseFirestore.getInstance()
 
     //metodo che restituisce il gruppo dell'utente se ne fa parte
     fun getGruppo(): MutableLiveData<String?> {
@@ -105,6 +108,47 @@ class UtenteRepo {
                 Log.w(ContentValues.TAG, "Errore id non settato")
             }
     }
+
+
+
+    fun getIdUtenteDaUsername(username: String, callback: (String?) -> Unit) {
+        db.collection("utenti")
+            .whereEqualTo("username", username)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    // Se troviamo un documento con l'username corrispondente, otteniamo l'ID dell'utente
+                    val idUtente = querySnapshot.documents[0].id
+                    callback(idUtente)
+                } else {
+                    Log.d("getIdUtenteDaUsername", "Nessun utente trovato con username $username")
+                    callback(null) // Indica che l'utente non è stato trovato
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w("getIdUtenteDaUsername", "Errore durante la ricerca dell'utente con username $username", e)
+                callback(null) // Indica che si è verificato un errore
+            }
+    }
+
+    fun setIdGruppoDaUsername(username: String) {
+        getIdUtenteDaUsername(username){
+            idUtente ->
+            // Aggiorniamo il campo 'id_gruppo' nel documento dell'utente
+            db.collection("utenti").document(idUtente.toString())
+                .update("id_gruppo", null)
+                .addOnSuccessListener {
+                    Log.d("eliminaPartecipante", "id settato per l'utente $idUtente")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("eliminaPartecipante", "Errore id non settato per l'utente $idUtente", e)
+                }
+        }
+
+    }
+
+
+
     fun logOut() {
         firebaseAuth.signOut()
     }

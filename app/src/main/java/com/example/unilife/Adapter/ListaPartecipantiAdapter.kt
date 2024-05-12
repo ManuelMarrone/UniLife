@@ -1,14 +1,22 @@
 package com.example.unilife.Adapter
 
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Model.Utente
 import com.example.unilife.R
 
-class ListaPartecipantiAdapter(private val partecipanti:ArrayList<String>): RecyclerView.Adapter<ListaPartecipantiAdapter.PartecipantiViewHolder>() {
+//interfaccia, serve per notificare i cambiamenti tra adapter e fragment
+interface RecyclerViewItemClickListener{
+    fun onItemClick(position: Int)
+}
+class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewItemClickListener, val partecipanti:ArrayList<String>): RecyclerView.Adapter<ListaPartecipantiAdapter.PartecipantiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -26,9 +34,39 @@ class ListaPartecipantiAdapter(private val partecipanti:ArrayList<String>): Recy
     //the number of items u want displayed
     override fun getItemCount(): Int = partecipanti.size
 
+
     //assign the views of the item to a variable
-    class PartecipantiViewHolder(val riga:View) : RecyclerView.ViewHolder(riga)
+    inner class PartecipantiViewHolder(val riga:View) : RecyclerView.ViewHolder(riga)
     {
-        val textView: TextView = riga.findViewById<TextView>(R.id.utente)
+        val textView: TextView
+        val button : ImageButton
+
+        init{
+            textView = riga.findViewById(R.id.utente)
+            button = riga.findViewById(R.id.deleteImageButton)
+            button.setOnClickListener {
+                eliminaItem(it)}
+        }
+
+        private fun eliminaItem(v:View)
+        {
+            AlertDialog.Builder(c)
+                .setTitle("Elimina")
+                .setMessage("Sicuro di voler eliminare questo partecipante?")
+                .setPositiveButton("Sì"){
+                    dialog,_->
+                    listener.onItemClick(adapterPosition)
+                    partecipanti.removeAt(adapterPosition)
+                    notifyDataSetChanged()
+                    dialog.dismiss()
+                }
+                .setNegativeButton("No"){
+                    dialog,_->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
+        }
+
     }
 }

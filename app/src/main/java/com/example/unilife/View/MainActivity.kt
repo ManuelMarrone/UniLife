@@ -26,8 +26,9 @@ class MainActivity : AppCompatActivity() {
 
 
     //metodo che cambia il fragment in base a se l'utente fa parte di un gruppo o meno
-    public fun setHome()
+    fun setHome()
     {
+        Log.d("eliminaPartecipante", "aggiornaPagina3")
         viewModel.getGruppo() //per assegnare il valore a idGruppo nel viewModel
 
         //osservatore
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 bottomNavigationListenerGruppi()
                 Log.d("MyActivity", "ID del gruppo: $idGruppo")
             } else {
+                Log.d("eliminaPartecipante", "aggiornaPagina4")
                 replaceFragment(HomeNoGruppiFragment.newInstance())
                 disabilitaBottomNavigation()
                 bottomNavigationListenerNoGruppi()

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.unilife.Adapter.ListaPartecipantiAdapter
+import com.example.unilife.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.Model.Utente
 import com.example.unilife.R
 import com.example.unilife.StateUI.StatoRegistrazioneUi
@@ -30,8 +31,12 @@ import com.example.unilife.databinding.FragmentInvitaBinding
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+/**
+manca il controllo se il partecipante da eliminare è coinvolto in qualche attività del gruppo
+ nessuna idea di come fare
+**/
 
-class InvitaFragment : Fragment() {
+class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
 
     private lateinit var binding: FragmentInvitaBinding
     private val viewModel: InvitaViewModel by viewModels()
@@ -40,6 +45,7 @@ class InvitaFragment : Fragment() {
 
     private lateinit var partecipantiGruppo: ArrayList<String>
     private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerViewAdapter : ListaPartecipantiAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +64,8 @@ class InvitaFragment : Fragment() {
 
         recyclerView = binding.recyclerViewPartecipanti
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
+
+
     }
 
 
@@ -135,12 +143,19 @@ class InvitaFragment : Fragment() {
             if (partecipantiList != null) {
                 partecipantiGruppo = partecipantiList
                 Log.d("partecipanti", "part ${partecipantiList}")
-                recyclerView.adapter = ListaPartecipantiAdapter(partecipantiGruppo)
+                recyclerView.adapter = ListaPartecipantiAdapter(requireContext(),this ,partecipantiGruppo)
             } else {
                 partecipantiGruppo = ArrayList()
                 Log.d("partecipanti", "null")
             }
 
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        viewModel.rimuoviPartecipante(partecipantiGruppo[position])
+        Log.d("eliminaPartecipante", "aggiornaPagina1")
+        (requireActivity() as MainActivity).setHome()   //problema che l'aggiornamento della pagina si verifica prima che ci sia il cambiamento nel db
+        Log.d("eliminaPartecipante", "aggiornaPagina2")
     }
 }

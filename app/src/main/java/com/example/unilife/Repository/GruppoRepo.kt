@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue.arrayRemove
 import com.google.firebase.firestore.FieldValue.arrayUnion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -54,6 +55,39 @@ class GruppoRepo {
             }
 
     }
+
+    fun rimuoviPartecipante(username:String)
+    {
+        utenteRepo.getIdGruppo { idGruppo->
+            Log.d("eliminaPartecipante", "id gruppo $idGruppo")
+            val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo!!) //sono sicuro che idGruppo non sia nullo
+            utenteRepo.getIdUtenteDaUsername(username)
+            {
+                idUtente->
+                Log.d("eliminaPartecipante", "id utente da eliminare $idUtente")
+                gruppoReference.update("partecipanti" , arrayRemove(idUtente))
+                Log.d("eliminaPartecipante", "gruppo $gruppoReference")
+                // Controlla se la lista dei partecipanti è vuota
+                gruppoReference.get()
+                    .addOnSuccessListener { documentSnapshot ->
+                        val partecipanti = documentSnapshot.toObject(Gruppo::class.java)?.partecipanti
+                        if (partecipanti == null || partecipanti.isEmpty()) {
+                            // Se la lista dei partecipanti è vuota, elimina il documento del gruppo
+                            gruppoReference.delete()
+                                .addOnSuccessListener {
+                                    Log.d("eliminaPartecipante", "Documento del gruppo $idGruppo eliminato")
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w("eliminaPartecipante", "Errore durante l'eliminazione del documento del gruppo $idGruppo", e)
+                                }
+                        }
+                    }
+            }
+        }
+
+    }
+
+
 
     suspend fun controllaCodiceInvito(idGruppo: String, callback: (Boolean?) -> Unit) {
         try {

@@ -14,12 +14,12 @@ class InvitaViewModel: ViewModel() {
     private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
 
 
-    private val repository = GruppoRepo()
+    private val gruppoRepo = GruppoRepo()
     private val utenteRepo = UtenteRepo()
 
     fun creaGruppo(callback: (String?) -> Unit) {
         viewModelScope.launch {
-            repository.creaGruppo()
+            gruppoRepo.creaGruppo()
             utenteRepo.getIdGruppo(callback)
         }
     }
@@ -33,6 +33,16 @@ class InvitaViewModel: ViewModel() {
         //chiamata al repository per prendere l'informazione
         viewModelScope.launch {
             utenteRepo.getUsernamePartecipanti(callback)
+        }
+    }
+
+    //rimuovere il partecipante dal gruppo
+    //e pulire il campo "id_gruppo" dell'utente
+    fun rimuoviPartecipante(username: String)
+    {
+        viewModelScope.launch {
+            gruppoRepo.rimuoviPartecipante(username)
+            utenteRepo.setIdGruppoDaUsername(username)
         }
     }
 
