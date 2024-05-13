@@ -22,13 +22,20 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setHome()
+
+        viewModel.utenteLiveData.observe(this, Observer{
+            setHome()
+        })
+        viewModel.updateTrigger.observe(this, Observer{
+            setHome()
+        })
+
     }
 
 
     //metodo che cambia il fragment in base a se l'utente fa parte di un gruppo o meno
     fun setHome()
     {
-        Log.d("eliminaPartecipante", "aggiornaPagina3")
         viewModel.getGruppo() //per assegnare il valore a idGruppo nel viewModel
 
         //osservatore
@@ -39,7 +46,6 @@ class MainActivity : AppCompatActivity() {
                 bottomNavigationListenerGruppi()
                 Log.d("MyActivity", "ID del gruppo: $idGruppo")
             } else {
-                Log.d("eliminaPartecipante", "aggiornaPagina4")
                 replaceFragment(HomeNoGruppiFragment.newInstance())
                 disabilitaBottomNavigation()
                 bottomNavigationListenerNoGruppi()

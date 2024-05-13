@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.unilife.Model.Gruppo
+import com.example.unilife.Model.Utente
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -14,6 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.coroutines.tasks.await
 import java.util.Locale
 import java.util.concurrent.CompletableFuture
@@ -23,6 +25,24 @@ class UtenteRepo {
     private val dbSettings = ImpostazioniDB()
     private val firebaseAuth = FirebaseAuth.getInstance()
     val db = FirebaseFirestore.getInstance()
+
+    private val idUtente = firebaseAuth.currentUser?.uid!!
+    private val utenteRef = db.collection("utenti").document(idUtente)
+    private var listenerRegistration : ListenerRegistration? = null
+
+    fun startListening(listener : (Utente?) -> Unit)
+    {
+        listenerRegistration = utenteRef.addSnapshotListener { snapshot, _ ->
+            val utente = snapshot?.toObject(Utente::class.java)
+            listener.invoke(utente)
+        }
+    }
+
+    fun stopListening()
+    {
+        listenerRegistration?.remove()
+    }
+
 
     //metodo che restituisce il gruppo dell'utente se ne fa parte
     fun getGruppo(): MutableLiveData<String?> {

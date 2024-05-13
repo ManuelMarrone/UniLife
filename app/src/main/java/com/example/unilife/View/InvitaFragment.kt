@@ -64,8 +64,6 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
 
         recyclerView = binding.recyclerViewPartecipanti
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
-
-
     }
 
 
@@ -85,7 +83,6 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
                     viewModel.creaGruppo { idGruppo ->
                         if (idGruppo != null) {
                             invita(idGruppo)
-                            (requireActivity() as MainActivity).setHome()
                         }
                     }
                     Log.d("MyActivity", "ID del gruppo non disponibile")
@@ -154,8 +151,5 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
 
     override fun onItemClick(position: Int) {
         viewModel.rimuoviPartecipante(partecipantiGruppo[position])
-        Log.d("eliminaPartecipante", "aggiornaPagina1")
-        (requireActivity() as MainActivity).setHome()   //problema che l'aggiornamento della pagina si verifica prima che ci sia il cambiamento nel db
-        Log.d("eliminaPartecipante", "aggiornaPagina2")
     }
 }
