@@ -22,10 +22,9 @@ class InvitaViewModel: ViewModel() {
 
 
 
-    fun creaGruppo(callback: (String?) -> Unit) {
+    fun creaGruppo() {
         viewModelScope.launch {
             gruppoRepo.creaGruppo()
-            utenteRepo.getIdGruppo(callback)
         }
     }
 

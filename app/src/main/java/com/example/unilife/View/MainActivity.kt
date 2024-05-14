@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
     fun setHome()
     {
         viewModel.getGruppo() //per assegnare il valore a idGruppo nel viewModel
-
+        binding.bottomNavigation.clearFocus()
         //osservatore
-        val idGruppoObserver = Observer<String?> {idGruppo ->
+        val idGruppoObserver = Observer<String?> { idGruppo ->
             if (idGruppo != null) {
                 replaceFragment(HomeFragment.newInstance())
                 abilitaBottomNavigation()
@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         viewModel.idGruppoLiveData.observe(this, idGruppoObserver)
-
 
     }
 

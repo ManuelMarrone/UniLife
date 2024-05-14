@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,6 +65,8 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
 
         recyclerView = binding.recyclerViewPartecipanti
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
+
+        aggiornaTasto()
     }
 
 
@@ -71,34 +74,44 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
         fun newInstance() = InvitaFragment()
     }
 
+    private fun aggiornaTasto()
+    {
+        viewModel.getIdGruppo { idGruppo ->
+            if (idGruppo != null) {
+                binding.invitaBtn.setText("invita")
+            }
+            else
+            {
+                binding.destEmail.visibility =View.GONE
+                binding.invitaBtn.setText("crea gruppo")
+            }
+            }
+    }
     private fun onClickInvita() {
         val destinatario = binding.destEmail.text.toString()
 
-        if (inputCorretto.isValidEmail(destinatario)) {
+
             viewModel.getIdGruppo { idGruppo ->
                 if (idGruppo != null) {
-                    invita(idGruppo)
-                    Log.d("MyActivity", "ID del gruppo: $idGruppo")
-                } else {
-                    viewModel.creaGruppo { idGruppo ->
-                        if (idGruppo != null) {
-                            invita(idGruppo)
-                        }
+                    if (inputCorretto.isValidEmail(destinatario)) {
+                        invita(idGruppo)
+                        Log.d("invita", "ID del gruppo: $idGruppo")
                     }
-                    Log.d("MyActivity", "ID del gruppo non disponibile")
+                    else {
+                        binding.destEmail.setError("Inserisci un'email valida")
+                    }
+                } else {
+                    viewModel.creaGruppo()
                 }
             }
 
-        } else {
-            binding.destEmail.setError("Inserisci un'email valida")
         }
 
-    }
 
     private fun invita(idGruppo: String) {
         val destinatario = binding.destEmail.text.toString()
 
-        Log.d("MyActivity", "entra in invita ${destinatario}")
+        Log.d("invita", "entra in invita ${destinatario}")
         val soggetto = "Invito al gruppo di coinquilini"
         val corpo =
             "Sei stato invitato al gruppo di coinquilini, registrati all'app se non l'hai ancora fatto e inserisci il codice: ${idGruppo}"
