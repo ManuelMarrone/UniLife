@@ -7,15 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Model.Utente
 import com.example.unilife.R
 
-//interfaccia, serve per notificare i cambiamenti tra adapter e fragment
-interface RecyclerViewItemClickListener{
-    fun onItemClick(position: Int)
-}
 class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewItemClickListener, val partecipanti:ArrayList<String>): RecyclerView.Adapter<ListaPartecipantiAdapter.PartecipantiViewHolder>() {
 
 
@@ -42,7 +36,7 @@ class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewItemClic
         val button : ImageButton
 
         init{
-            textView = riga.findViewById(R.id.utente)
+            textView = riga.findViewById(R.id.spesa)
             button = riga.findViewById(R.id.deleteImageButton)
             button.setOnClickListener {
                 eliminaItem(it)}

@@ -46,16 +46,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaSpesa"
-        android:layout_width="301dp"
-        android:layout_height="416dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="137dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/RVListaSpesa"
+        android:layout_width="319dp"
+        android:layout_height="386dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="49dp"
+        android:background="@color/verdeacqua"
+        android:backgroundTint="@color/verdeacqua"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textElemento"
+        app:layout_constraintTop_toBottomOf="@+id/textElemento" />
+
+    <EditText
+        android:id="@+id/textElemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="53dp"
+        android:ems="10"
+        android:hint="elemento da comprare"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
+
+    <Button
+        android:id="@+id/aggiungiBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="49dp"
+        android:text="@string/aggiungi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textElemento"
+        app:layout_constraintTop_toBottomOf="@+id/accountButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

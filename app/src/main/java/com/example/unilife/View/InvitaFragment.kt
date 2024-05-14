@@ -89,21 +89,19 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
     }
     private fun onClickInvita() {
         val destinatario = binding.destEmail.text.toString()
-
-
-            viewModel.getIdGruppo { idGruppo ->
-                if (idGruppo != null) {
-                    if (inputCorretto.isValidEmail(destinatario)) {
-                        invita(idGruppo)
-                        Log.d("invita", "ID del gruppo: $idGruppo")
-                    }
-                    else {
-                        binding.destEmail.setError("Inserisci un'email valida")
-                    }
-                } else {
-                    viewModel.creaGruppo()
+        viewModel.getIdGruppo { idGruppo ->
+            if (idGruppo != null) {
+                if (inputCorretto.isValidEmail(destinatario)) {
+                    invita(idGruppo)
+                    Log.d("invita", "ID del gruppo: $idGruppo")
                 }
+                else {
+                    binding.destEmail.setError("Inserisci un'email valida")
+                }
+            } else {
+                viewModel.creaGruppo()
             }
+        }
 
         }
 
