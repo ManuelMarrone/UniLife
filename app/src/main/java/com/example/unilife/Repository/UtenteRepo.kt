@@ -23,28 +23,6 @@ class UtenteRepo {
     private var listenerRegistration : ListenerRegistration? = null
 
 
-    //metodo che restituisce il gruppo dell'utente se ne fa parte
-    fun getGruppo(): MutableLiveData<String?> {
-        val liveData = MutableLiveData<String?>()
-        val idUtente = firebaseAuth.currentUser?.uid!!
-        val documentReference: DocumentReference =dbSettings.firestore.collection("utenti").document(idUtente)
-
-        documentReference.get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot.exists()) {
-                    val idGruppo = documentSnapshot.getString("id_gruppo")
-                    liveData.value = idGruppo
-                } else {
-                    //documento non esiste
-                }
-            }
-            .addOnFailureListener { exception ->
-                // Gestisci eventuali errori qui
-            }
-        return liveData
-    }
-
-
     fun getUtente(): Task<DocumentSnapshot> {
         val idUtente = firebaseAuth.currentUser!!.uid
         val documentReference = dbSettings.firestore.collection("utenti").document(idUtente)
@@ -69,6 +47,8 @@ class UtenteRepo {
 
     fun getIdUtenteDaUsername(username: String): Task<QuerySnapshot> {
         val documentReference = dbSettings.firestore.collection("utenti").whereEqualTo("username", username).get()
+        Log.d("Rimozione partecipanti", "document ${documentReference}")
+
         return documentReference
     }
 

@@ -120,6 +120,7 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        //viewModel.rimuoviPartecipante(partecipantiGruppo[position])
+        Log.d("Rimozione partecipanti", "posizione${position}")
+        viewModel.rimuoviPartecipante(position)
     }
 }

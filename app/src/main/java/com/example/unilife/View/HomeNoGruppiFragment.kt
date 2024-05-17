@@ -61,7 +61,7 @@ class HomeNoGruppiFragment : Fragment() {
                 viewBinding.editTextNumberCodice.setText("")
                 viewBinding.editTextNumberCodice.clearFocus()
             } else {
-                viewBinding.editTextNumberCodice.setError("Il codice non è corretto ${codice}")
+                viewBinding.editTextNumberCodice.setError("Il codice non è corretto")
             }
         }
 

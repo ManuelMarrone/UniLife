@@ -50,7 +50,6 @@ class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewItemClic
                 .setPositiveButton("Sì"){
                     dialog,_->
                     listener.onItemClick(adapterPosition)
-                    partecipanti.removeAt(adapterPosition)
                     notifyDataSetChanged()
                     dialog.dismiss()
                 }

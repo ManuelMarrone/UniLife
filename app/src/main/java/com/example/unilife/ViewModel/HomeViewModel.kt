@@ -26,8 +26,7 @@ class HomeViewModel:ViewModel() {
         getIdGruppoUtente()
     }
 
-    fun loadData()
-    {
+    fun loadData() {
         //inizializzazione listaSpesa prendendo i dati dal repo
         if (idGruppo != null) {
             gruppoRepo.getGruppo(idGruppo!!).addSnapshotListener { gruppo, e ->
@@ -35,9 +34,12 @@ class HomeViewModel:ViewModel() {
                     // Gestisci l'eccezione se si verifica un errore
                     return@addSnapshotListener
                 }
-                _listaSpesa.value = gruppo?.toObject(Gruppo::class.java)?.listaSpesa as ArrayList<String>
+                if (gruppo?.toObject(Gruppo::class.java)?.listaSpesa != null) {
+                    _listaSpesa.value =
+                        gruppo.toObject(Gruppo::class.java)?.listaSpesa as ArrayList<String>
+                }
             }
-       }
+        }
     }
 
     fun getIdGruppoUtente()

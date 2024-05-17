@@ -44,7 +44,10 @@ class InvitaViewModel: ViewModel() {
                 if (e != null) {
                     return@addSnapshotListener
                 }
-                _partecipanti.value = gruppo!!.toObject(Gruppo::class.java)!!.partecipanti as ArrayList<String>
+                if(gruppo?.toObject(Gruppo::class.java)?.partecipanti != null) {
+                    _partecipanti.value =
+                        gruppo.toObject(Gruppo::class.java)!!.partecipanti as ArrayList<String>
+                }
             }
         }
     }
@@ -78,27 +81,37 @@ class InvitaViewModel: ViewModel() {
 
     /**rimuovere il partecipante dal gruppo e pulire il campo "id_gruppo" dell'utente
     controlla se ci sono partecipanti, se la lista è vuota allora viene eliminato il gruppo**/
-    fun rimuoviPartecipante(username: String)
+    fun rimuoviPartecipante(posizione: Int)
     {
-        gruppoRepo.rimuoviPartecipante(username,_idGruppo.value!!).addOnFailureListener{
-            Log.d("Partecipanti", "errore nella rimozione del partecipante")
-        }
-        _partecipanti.value?.remove(username)
+        Log.d("Rimozione partecipanti", "user${_partecipanti.value!!.get(posizione)}")
 
-        utenteRepo.getIdUtenteDaUsername(username).addOnSuccessListener { querySnapshot ->
-            if (!querySnapshot.isEmpty) {
-                //se troviamo un documento con l'username corrispondente, otteniamo l'ID dell'utente
-                val idUtente = querySnapshot.documents[0].id
-                utenteRepo.setIdGruppoByIdUtente(idUtente)
-            } else {
-                Log.d("getIdUtenteDaUsername", "Nessun utente trovato con username $username")
-            }
+        val username = _partecipanti.value!!.get(posizione)
+        gruppoRepo.rimuoviPartecipante(username,_idGruppo.value!!).addOnFailureListener{
+            Log.d("Rimozione partecipanti", "errore nella rimozione del partecipante")
         }
+        _partecipanti.value!!.remove(username)
+
+
+        Log.d("Rimozione partecipanti", "username ${username}")
+        utenteRepo.getIdUtenteDaUsername(username).addOnSuccessListener { utente ->
+            Log.d("Rimozione partecipanti", "utente, ${utente}")
+            //se troviamo un documento con l'username corrispondente, otteniamo l'ID dell'utente
+            val document = utente.documents[0] // Otteniamo il primo documento (nel caso ce ne sia più di uno)
+            Log.d("Rimozione partecipanti", "docuemnti, ${document}")
+            val idUtente = document.id // Otteniamo l'ID del documento
+            Log.d("Rimozione partecipanti", "id utente, ${idUtente}")
+            utenteRepo.setIdGruppoByIdUtente(idUtente)
+        }
+            .addOnFailureListener{e->
+                Log.d("Rimozione partecipanti", "fail ${e}")
+
+            }
 
         if (_partecipanti.value!!.isEmpty())
         {
+            Log.d("Rimozione partecipanti", "partecipanti vuota, ${_idGruppo}")
             gruppoRepo.eliminaGruppo(_idGruppo.value!!).addOnFailureListener{
-                Log.d("Gruppo", "eliminazione gruppo fallita")
+                Log.d("Rimozione partecipanti", "eliminazione gruppo fallita")
             }
         }
     }

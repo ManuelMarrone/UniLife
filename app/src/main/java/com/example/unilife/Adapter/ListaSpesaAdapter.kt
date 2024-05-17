@@ -47,8 +47,6 @@ class ListaSpesaAdapter( val listener :RecyclerViewItemClickListener, val listaS
         {
             Log.d("posizione", " adap${adapterPosition}")
             listener.onItemClick(adapterPosition)
-            Log.d("posizione", "${adapterPosition}")
-            listaSpesa.removeAt(adapterPosition)
             notifyDataSetChanged()
         }
 
