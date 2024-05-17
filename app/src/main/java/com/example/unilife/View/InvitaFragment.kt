@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.unilife.Adapter.ListaPartecipantiAdapter
+import com.example.unilife.Adapter.ListaSpesaAdapter
 import com.example.unilife.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.Model.Utente
 import com.example.unilife.R
@@ -44,7 +45,6 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
 
     private val inputCorretto = InputCorretto()
 
-    private lateinit var partecipantiGruppo: ArrayList<String>
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter : ListaPartecipantiAdapter
 
@@ -60,13 +60,26 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.invitaBtn.setOnClickListener { onClickInvita() }
-
-        getPartecipantiGruppo()
+        binding.creaBtn.setOnClickListener { onClickCrea() }
 
         recyclerView = binding.recyclerViewPartecipanti
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
-        aggiornaTasto()
+        viewModel.partecipanti.observe(viewLifecycleOwner){listaUpdated ->
+            recyclerView.adapter = ListaPartecipantiAdapter(requireContext(),this ,listaUpdated)
+        }
+
+        viewModel.idGruppo.observe(viewLifecycleOwner){idGruppo->
+            aggiornaTasto(idGruppo)
+        }
+
+        viewModel.emailIntent.observe(viewLifecycleOwner, Observer { intent ->
+            intent?.let {
+                startActivity(Intent.createChooser(intent, "Scegli l'app per mandare l'email"))
+                binding.destEmail.setText("")
+                binding.destEmail.clearFocus()
+            }
+        })
     }
 
 
@@ -74,93 +87,39 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
         fun newInstance() = InvitaFragment()
     }
 
-    private fun aggiornaTasto()
+    private fun aggiornaTasto(id:String?)
     {
-        viewModel.getIdGruppo { idGruppo ->
-            if (idGruppo != null) {
-                binding.invitaBtn.setText("invita")
-            }
-            else
-            {
-                binding.destEmail.visibility =View.GONE
-                binding.invitaBtn.setText("crea gruppo")
-            }
-            }
+        if (id != null) {
+            binding.creaBtn.visibility = View.GONE
+            binding.destEmail.visibility =View.VISIBLE
+            binding.invitaBtn.visibility = View.VISIBLE
+        }
+        else
+        {
+            binding.destEmail.visibility =View.GONE
+            binding.creaBtn.visibility = View.VISIBLE
+            binding.invitaBtn.visibility = View.GONE
+        }
     }
+
     private fun onClickInvita() {
-        val destinatario = binding.destEmail.text.toString()
-        viewModel.getIdGruppo { idGruppo ->
-            if (idGruppo != null) {
-                if (inputCorretto.isValidEmail(destinatario)) {
-                    invita(idGruppo)
-                    Log.d("invita", "ID del gruppo: $idGruppo")
-                }
-                else {
-                    binding.destEmail.setError("Inserisci un'email valida")
-                }
-            } else {
-                viewModel.creaGruppo()
+            val destinatario = binding.destEmail.text.toString()
+
+            if (inputCorretto.isValidEmail(destinatario)) {
+                viewModel.invita(destinatario)
             }
-        }
-
-        }
-
-
-    private fun invita(idGruppo: String) {
-        val destinatario = binding.destEmail.text.toString()
-
-        Log.d("invita", "entra in invita ${destinatario}")
-        val soggetto = "Invito al gruppo di coinquilini"
-        val corpo =
-            "Sei stato invitato al gruppo di coinquilini, registrati all'app se non l'hai ancora fatto e inserisci il codice: ${idGruppo}"
-
-        /*ACTION_SEND action to launch an email client installed on your Android device.*/
-        val mIntent = Intent(Intent.ACTION_SEND)
-        /*To send an email you need to specify mailto: as URI using setData() method
-        and data type will be to text/plain using setType() method*/
-        mIntent.data = Uri.parse("mailto:")
-        mIntent.type = "text/plain"
-        // put recipient email in intent
-        /* recipient is put as array because you may wanna send email to multiple emails
-           so enter comma(,) separated emails, it will be stored in array*/
-        mIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(destinatario))
-        //put the Subject in the intent
-        mIntent.putExtra(Intent.EXTRA_SUBJECT, soggetto)
-        //put the message in the intent
-        mIntent.putExtra(Intent.EXTRA_TEXT, corpo)
-
-
-        try {
-            //start email intent
-            startActivity(Intent.createChooser(mIntent, "Scegli l'app per mandare l'email"))
-            binding.destEmail.setText("")
-            binding.destEmail.clearFocus()
-        } catch (e: Exception) {
-            //if any thing goes wrong for example no email client application or any exception
-            //get and show exception message
-            Log.w(ContentValues.TAG, "Error mail ${e}")
-        }
+            else {
+                binding.destEmail.setError("Inserisci un'email valida")
+            }
 
     }
 
-
-    //obiettivo: creare una funzione che prenda un arrayList degli utenti che hanno l'idGruppo corrispondente a chi è loggato
-    private fun getPartecipantiGruppo() {
-
-        viewModel.getPartecipantiGruppo { partecipantiList ->
-            if (partecipantiList != null) {
-                partecipantiGruppo = partecipantiList
-                Log.d("partecipanti", "part ${partecipantiList}")
-                recyclerView.adapter = ListaPartecipantiAdapter(requireContext(),this ,partecipantiGruppo)
-            } else {
-                partecipantiGruppo = ArrayList()
-                Log.d("partecipanti", "null")
-            }
-
-        }
+    private fun onClickCrea() {
+        Log.d("crea gruppo inf", "onclick")
+        viewModel.creaGruppo()
     }
 
     override fun onItemClick(position: Int) {
-        viewModel.rimuoviPartecipante(partecipantiGruppo[position])
+        //viewModel.rimuoviPartecipante(partecipantiGruppo[position])
     }
 }

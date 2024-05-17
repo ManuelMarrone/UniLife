@@ -2,6 +2,7 @@ package com.example.unilife.Adapter
 
 import android.app.AlertDialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,12 +40,14 @@ class ListaSpesaAdapter( val listener :RecyclerViewItemClickListener, val listaS
             textView = riga.findViewById(R.id.spesa)
             button = riga.findViewById(R.id.deleteImageButton)
             button.setOnClickListener {
-                eliminaItem(it)}
+                eliminaItem()}
         }
 
-        private fun eliminaItem(v:View)
+        private fun eliminaItem()
         {
+            Log.d("posizione", " adap${adapterPosition}")
             listener.onItemClick(adapterPosition)
+            Log.d("posizione", "${adapterPosition}")
             listaSpesa.removeAt(adapterPosition)
             notifyDataSetChanged()
         }

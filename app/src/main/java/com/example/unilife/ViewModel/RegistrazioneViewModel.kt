@@ -43,61 +43,12 @@ class RegistrazioneViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(StatoRegistrazioneUi())
     val uiState: StateFlow<StatoRegistrazioneUi> = _uiState.asStateFlow()
 
-   /** fun fireStoreUtente(email: String, password: String, username: String) {
-
-        val utente = Utente(
-            username = username,
-            email = email,
-            password = password
-        )
-        val idUtente = dbSettings.firebaseAuth.currentUser?.providerId!!
-        dbSettings.firestore.collection("utenti")
-            .document(idUtente)
-            .set(utente)
-            .addOnSuccessListener {
-                Log.d(ContentValues.TAG, "Added document with ID ${idUtente}")
-            }
-            .addOnFailureListener {
-                Log.w(ContentValues.TAG, "Error adding document")
-            }
-    }
-
-   fun registraUtente(email: String, password: String, username: String) {
-        viewModelScope.launch {
-            _uiState.value = StatoRegistrazioneUi.loading()
-            val result = repository.registrazione(email, password)
-            if (result.isSuccess) {
-                _uiState.value = StatoRegistrazioneUi.success()
-            } else {
-                _uiState.value = StatoRegistrazioneUi.error(result.exceptionOrNull()!!.message!!)
-            }
-        }
-    }*/
-
 
 
 
     fun registraUtente(email: String, password: String, username: String) {
         viewModelScope.launch{
-        repository.registrazione(email, password, username)
-       /** firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful()) {
-                val idUtente = firebaseAuth.currentUser?.uid!!
-                val documentReference: DocumentReference =
-                    dbSettings.firestore.collection("utenti").document(idUtente)
-                val utente = Utente(
-                    username = username,
-                    email = email,
-                    password = password
-                )
-                documentReference.set(utente).addOnSuccessListener {
-                    Log.d(ContentValues.TAG, "Added document with ID ${idUtente}")
-                }
-                    .addOnFailureListener {
-                        Log.w(ContentValues.TAG, "Error adding document")
-                    }
-            }
-        }*/
+            repository.registrazione(email, password, username)
         }
 
     }

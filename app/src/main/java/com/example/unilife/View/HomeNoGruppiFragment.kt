@@ -9,22 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import com.example.unilife.Adapter.ListaPartecipantiAdapter
 import com.example.unilife.R
 import com.example.unilife.ViewModel.HomeNoGruppiViewModel
 import com.example.unilife.ViewModel.InvitaViewModel
 import com.example.unilife.databinding.FragmentHomeBinding
 import com.example.unilife.databinding.FragmentHomeNoGruppiBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeNoGruppiFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeNoGruppiFragment : Fragment() {
     private lateinit var viewBinding: FragmentHomeNoGruppiBinding
     private val viewModel: HomeNoGruppiViewModel by viewModels()
@@ -41,28 +33,11 @@ class HomeNoGruppiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewBinding.accountButton.setOnClickListener(goToAccount())
-        viewBinding.confermaButton.setOnClickListener(accettaInvito())
+        viewBinding.confermaButton.setOnClickListener{accettaInvito()}
+
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeNoGruppi.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeNoGruppiFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-
         fun newInstance() = HomeNoGruppiFragment()
     }
 
@@ -72,23 +47,24 @@ class HomeNoGruppiFragment : Fragment() {
         }
     }
 
-    private fun accettaInvito(): View.OnClickListener
+    private fun accettaInvito()
     {
-        return View.OnClickListener {
-            val codice = viewBinding.editTextNumberCodice.text.toString()
+        val codice = viewBinding.editTextNumberCodice.text.toString()
 
-            viewModel.validaCodice(codice) { isValid ->
-                if (isValid == true) {
-                    //codice valido, l'account dev'essere aggiunto al gruppo
-                    viewModel.aggiungiUtenteGruppo(codice)
-                    viewBinding.editTextNumberCodice.setText("")
-                    viewBinding.editTextNumberCodice.clearFocus()
-                    (requireActivity() as MainActivity).setHome()
-                } else {
-                    viewBinding.editTextNumberCodice.setError("Il codice non è corretto ${codice}")
-                }
+        viewModel.validaCodice(codice)
+
+        //osserva se il codice è valido
+        viewModel.isValid.observe(viewLifecycleOwner){isValid ->
+            if (isValid == true) {
+                //codice valido, l'account dev'essere aggiunto al gruppo
+                viewModel.aggiungiUtenteGruppo(codice)
+                viewBinding.editTextNumberCodice.setText("")
+                viewBinding.editTextNumberCodice.clearFocus()
+            } else {
+                viewBinding.editTextNumberCodice.setError("Il codice non è corretto ${codice}")
             }
         }
+
     }
 
     private fun replaceFragment(fragment: Fragment) {

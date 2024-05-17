@@ -30,9 +30,6 @@ class AccessoRepo {
                 Log.e(ContentValues.TAG, "Login error: ${e.message}", e)
                 Result.failure(e)
             }
-                }
+        }
 
-                }
-
-
-
+}

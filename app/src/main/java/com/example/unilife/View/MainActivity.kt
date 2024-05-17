@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.example.unilife.Adapter.ListaSpesaAdapter
 import com.example.unilife.R
 import com.example.unilife.ViewModel.AccessoViewModel
 import com.example.unilife.ViewModel.MainViewModel
@@ -21,39 +22,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        setHome()
 
-        viewModel.utenteLiveData.observe(this, Observer{
-            setHome()
-        })
-        viewModel.updateTrigger.observe(this, Observer{
-            setHome()
+
+        viewModel.idGruppoUtente.observe(this, Observer {id ->
+            setHome(id)
         })
 
     }
 
 
     //metodo che cambia il fragment in base a se l'utente fa parte di un gruppo o meno
-    fun setHome()
+    fun setHome(idGruppo:String?)
     {
-        viewModel.getGruppo() //per assegnare il valore a idGruppo nel viewModel
-        binding.bottomNavigation.clearFocus()
-        //osservatore
-        val idGruppoObserver = Observer<String?> { idGruppo ->
-            if (idGruppo != null) {
-                replaceFragment(HomeFragment.newInstance())
-                abilitaBottomNavigation()
-                bottomNavigationListenerGruppi()
-                Log.d("MyActivity", "ID del gruppo: $idGruppo")
-            } else {
-                replaceFragment(HomeNoGruppiFragment.newInstance())
-                disabilitaBottomNavigation()
-                bottomNavigationListenerNoGruppi()
-                Log.d("MyActivity", "ID del gruppo non disponibile nel main")
-            }
+        if (idGruppo != null) {
+            replaceFragment(HomeFragment.newInstance())
+            abilitaBottomNavigation()
+            bottomNavigationListenerGruppi()
+            Log.d("MyActivity", "ID del gruppo: $idGruppo")
+        } else {
+            replaceFragment(HomeNoGruppiFragment.newInstance())
+            disabilitaBottomNavigation()
+            bottomNavigationListenerNoGruppi()
+            Log.d("MyActivity", "ID del gruppo non disponibile nel main")
         }
-        viewModel.idGruppoLiveData.observe(this, idGruppoObserver)
-
+        binding.bottomNavigation.clearFocus()
     }
 
     private fun disabilitaBottomNavigation(){

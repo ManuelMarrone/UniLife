@@ -18,12 +18,6 @@ import com.example.unilife.R
 import com.example.unilife.ViewModel.HomeViewModel
 import com.example.unilife.databinding.FragmentHomeBinding
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [HomeFragment.newInstance] factory method to
@@ -38,7 +32,6 @@ class HomeFragment : Fragment(), RecyclerViewItemClickListener {
 
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var listaSpesa: ArrayList<String>
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -47,6 +40,7 @@ class HomeFragment : Fragment(), RecyclerViewItemClickListener {
     ): View? {
         // Inflate the layout for this fragment
         viewBinding = FragmentHomeBinding.inflate(inflater, container, false)
+
         return viewBinding.root
     }
 
@@ -56,10 +50,12 @@ class HomeFragment : Fragment(), RecyclerViewItemClickListener {
         viewBinding.archivioButton.setOnClickListener(goToArchivio())
         viewBinding.aggiungiBtn.setOnClickListener{aggiungiElementoLista()}
 
-        getListaSpesa()
-
         recyclerView = viewBinding.RVListaSpesa
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
+
+        viewModel.listaSpesa.observe(viewLifecycleOwner){listaUpdated ->
+            recyclerView.adapter = ListaSpesaAdapter(this ,listaUpdated)
+        }
     }
 
     private fun goToAccount(): View.OnClickListener {
@@ -78,31 +74,13 @@ class HomeFragment : Fragment(), RecyclerViewItemClickListener {
     {
         val elemento = viewBinding.textElemento.text.toString()
         if (elemento.isNotEmpty()) {
-            viewModel.aggiungiElemento(elemento)
+            viewModel.aggiungiElementoListaSpesa(elemento)
             viewBinding.textElemento.setText("")
-//            viewModel.getListaSpesa().observe(this, Observer{
-//                //Toast here
-//            })
-            getListaSpesa()
         }
         else {
             viewBinding.textElemento.setError("Inserisci un elemento da comprare")
         }
 
-    }
-
-    private fun getListaSpesa() {
-        viewModel.getListaSpesa { lista ->
-            if (lista != null) {
-                listaSpesa = lista
-                Log.d("listaSpesa", "part ${listaSpesa}")
-                recyclerView.adapter = ListaSpesaAdapter(this ,listaSpesa)
-            } else {
-                listaSpesa = ArrayList()
-                Log.d("listaSpesa", "null")
-            }
-
-        }
     }
 
 
@@ -120,30 +98,12 @@ class HomeFragment : Fragment(), RecyclerViewItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        viewModel.rimuoviElemento(listaSpesa[position])
+        viewModel.rimuoviElemento(position)
     }
 
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-
         fun newInstance() = HomeFragment()
 
     }
