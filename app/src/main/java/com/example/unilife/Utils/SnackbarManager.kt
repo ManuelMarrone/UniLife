@@ -19,6 +19,9 @@ object SnackbarManager {
             .setBackgroundTint(activity.resources.getColor(R.color.red))
             .show()
     }
+
+
+
 }
 
     /**

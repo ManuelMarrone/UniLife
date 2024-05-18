@@ -1,5 +1,6 @@
 package com.example.unilife.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -66,7 +67,8 @@ class HomeFragment : Fragment(), RecyclerViewItemClickListener {
 
     private fun goToArchivio(): View.OnClickListener {
         return View.OnClickListener {
-            replaceFragment(ArchivioFragment.newInstance())
+            val intent = Intent(requireActivity(), ArchivioActivity::class.java)
+            startActivity(intent)
         }
     }
 

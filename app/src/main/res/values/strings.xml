@@ -61,6 +61,15 @@
     <string name="pagamenti">Pagamenti</string>
     <string name="Email">Email</string>
     <string name="mail">Email</string>
-    <string name="partecipanti_al_gruppo">Partecipanti al gruppo</string>
+    <string name="ok">OK</string>
+    <string name="storage_access_required">Storage access is required</string>
+    <string name="storage_permission_available">Storage permission is available. Starting preview</string>
+    <string name="upload_success_message">upload eseguito con successo</string>
+    <string name="upload_failure_message">upload fallito</string>
+    <string name="storage_permission_granted">permesso garantito</string>
+    <string name="permission_denied_message">permesso negato\n</string>
+    <string name="storage_permission_not_available">storage permission not available</string>
+    <string name="storage_permission_denied">permesso negato</string>
+    <string name="partecipanti_al_gruppo">partecipanti al gruppo</string>
     <string name="crea_gruppo">Crea gruppo</string>
 </resources>
