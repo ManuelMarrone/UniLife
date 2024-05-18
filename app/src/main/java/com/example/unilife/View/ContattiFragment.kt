@@ -5,58 +5,79 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.unilife.Adapter.ContattiAdapter
+import com.example.unilife.Adapter.ListaSpesaAdapter
+import com.example.unilife.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.R
+import com.example.unilife.Utils.InputCorretto
+import com.example.unilife.ViewModel.ContattiViewModel
+import com.example.unilife.ViewModel.HomeViewModel
+import com.example.unilife.databinding.FragmentContattiBinding
+import com.example.unilife.databinding.FragmentHomeBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ContattiFragment : Fragment(), RecyclerViewItemClickListener<String> {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ContattiFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ContattiFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var viewBinding: FragmentContattiBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private val viewModel: ContattiViewModel by viewModels()
+
+    private val inputCorretto = InputCorretto()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contatti, container, false)
+        viewBinding = FragmentContattiBinding.inflate(inflater, container, false)
+
+        return viewBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewBinding.addContattoButton.setOnClickListener{aggiungiContatto()}
+
+        recyclerView = viewBinding.contattiRV
+        recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
+
+        viewModel.contatti.observe(viewLifecycleOwner){contatti ->
+            recyclerView.adapter = ContattiAdapter(this ,contatti)
+        }
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PhoneFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ContattiFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-
         fun newInstance() = ContattiFragment()
     }
+
+    fun aggiungiContatto()
+    {
+        val nomeContatto = viewBinding.contattoNome.text.toString()
+        val numTelefono = viewBinding.numTelefono.text.toString()
+        //controlla se sono riempiti e se il numero di telefono è a 10 cifre
+
+        if (inputCorretto.isValidPhone(numTelefono) ) {
+            if(nomeContatto.isNotEmpty()) {
+                viewModel.aggiungiContatto(nomeContatto, numTelefono)
+                viewBinding.contattoNome.setText("")
+                viewBinding.numTelefono.setText("")
+            }
+            else
+            {
+                viewBinding.contattoNome.setError("Non lasciare vuoto il campo")
+            }
+        }
+        else {
+            viewBinding.numTelefono.setError("Numero di telefono di 10 cifre")
+        }
+
+    }
+
+    override fun onItemClick(chiave: String) {
+        viewModel.rimuoviContatto(chiave)
+    }
+
 }

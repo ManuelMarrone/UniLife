@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewItemClickListener, val partecipanti:ArrayList<String>): RecyclerView.Adapter<ListaPartecipantiAdapter.PartecipantiViewHolder>() {
+class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewItemClickListener<Int>, val partecipanti:ArrayList<String>): RecyclerView.Adapter<ListaPartecipantiAdapter.PartecipantiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -36,7 +36,7 @@ class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewItemClic
         val button : ImageButton
 
         init{
-            textView = riga.findViewById(R.id.spesa)
+            textView = riga.findViewById(R.id.nome)
             button = riga.findViewById(R.id.deleteImageButton)
             button.setOnClickListener {
                 eliminaItem(it)}

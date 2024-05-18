@@ -124,11 +124,11 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
                     Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                 intent.addCategory("android.intent.category.DEFAULT")
                 intent.data = Uri.parse(String.format("package:%s", applicationContext.packageName))
-                startActivityForResult(intent, PERMISSION_REQUEST_STORAGE)
+                startActivityForResult(intent, _REQUEST_PERMISSION_STORAGE)
             } catch (e: Exception) {
                 val intent = Intent()
                 intent.action = android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
-                startActivityForResult(intent, PERMISSION_REQUEST_STORAGE)
+                startActivityForResult(intent, _REQUEST_PERMISSION_STORAGE)
             }
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(
@@ -144,7 +144,7 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
                     ActivityCompat.requestPermissions(
                         this,
                         arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        PERMISSION_REQUEST_STORAGE
+                        _REQUEST_PERMISSION_STORAGE
                     )
                 }
             } else {
@@ -155,7 +155,7 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    PERMISSION_REQUEST_STORAGE
+                    _REQUEST_PERMISSION_STORAGE
                 )
             }
         }
@@ -180,7 +180,7 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_STORAGE) {
+        if (requestCode == _REQUEST_PERMISSION_STORAGE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Log.d("Permission", "Permission granted")
                 Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show()

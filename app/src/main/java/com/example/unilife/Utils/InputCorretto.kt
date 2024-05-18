@@ -35,4 +35,8 @@ class InputCorretto {
         return password.isNotEmpty() && !password.contains(" ") && password.length >= 6
     }
 
+    fun isValidPhone(telefono: String): Boolean {
+        return telefono.isNotEmpty() && telefono.length == 10
+    }
+
 }

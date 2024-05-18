@@ -72,4 +72,7 @@
     <string name="storage_permission_denied">permesso negato</string>
     <string name="partecipanti_al_gruppo">partecipanti al gruppo</string>
     <string name="crea_gruppo">Crea gruppo</string>
+    <string name="addContatto">+</string>
+    <string name="nome">Nome</string>
+    <string name="numero_di_telefono">Numero di telefono</string>
 </resources>

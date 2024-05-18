@@ -1,7 +1,5 @@
 package com.example.unilife.Adapter
 
-import android.app.AlertDialog
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ListaSpesaAdapter( val listener :RecyclerViewItemClickListener, val listaSpesa:ArrayList<String>): RecyclerView.Adapter<ListaSpesaAdapter.SpesaViewHolder>() {
+class ListaSpesaAdapter( val listener :RecyclerViewItemClickListener<Int>, val listaSpesa:ArrayList<String>): RecyclerView.Adapter<ListaSpesaAdapter.SpesaViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -37,7 +35,7 @@ class ListaSpesaAdapter( val listener :RecyclerViewItemClickListener, val listaS
         val button : ImageButton
 
         init{
-            textView = riga.findViewById(R.id.spesa)
+            textView = riga.findViewById(R.id.nome)
             button = riga.findViewById(R.id.deleteImageButton)
             button.setOnClickListener {
                 eliminaItem()}

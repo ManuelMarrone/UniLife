@@ -38,7 +38,7 @@ manca il controllo se il partecipante da eliminare è coinvolto in qualche attiv
  nessuna idea di come fare
 **/
 
-class InvitaFragment : Fragment(), RecyclerViewItemClickListener {
+class InvitaFragment : Fragment(), RecyclerViewItemClickListener<Int> {
 
     private lateinit var binding: FragmentInvitaBinding
     private val viewModel: InvitaViewModel by viewModels()

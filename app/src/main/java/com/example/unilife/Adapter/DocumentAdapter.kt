@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Model.Documento
 import com.example.unilife.R
 
-class DocumentAdapter(val listener: RecyclerViewItemClickListener, val listaDocumenti:ArrayList<Documento>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
+class DocumentAdapter(val listener: RecyclerViewItemClickListener<Int>, val listaDocumenti:ArrayList<Documento>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)

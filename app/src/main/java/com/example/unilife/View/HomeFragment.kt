@@ -24,13 +24,8 @@ import com.example.unilife.databinding.FragmentHomeBinding
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment(), RecyclerViewItemClickListener {
+class HomeFragment : Fragment(), RecyclerViewItemClickListener<Int> {
     private lateinit var viewBinding: FragmentHomeBinding
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
 
     private lateinit var recyclerView: RecyclerView
     private val viewModel: HomeViewModel by viewModels()
