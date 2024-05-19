@@ -1,6 +1,7 @@
 package com.example.unilife.Repository
 
 import android.util.Log
+import com.example.unilife.Model.Attivita
 import com.example.unilife.Model.Gruppo
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +24,8 @@ class GruppoRepo {
         val partecipanti = mutableListOf<String>(username)
         val listaSpesa = mutableListOf<String>()
         val contatti = mutableMapOf<String,String>()
-        val gruppo = Gruppo(partecipanti = partecipanti, listaSpesa, contatti)
+        val attivita = mutableListOf<Attivita>()
+        val gruppo = Gruppo(partecipanti = partecipanti, listaSpesa, contatti, attivita)
         Log.d("crea gruppo inf", "repo")
 
         return dbSettings.firestore.collection("gruppi").add(gruppo)

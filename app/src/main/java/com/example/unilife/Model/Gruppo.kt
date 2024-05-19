@@ -1,7 +1,8 @@
 package com.example.unilife.Model
 
-data class Gruppo (
+data class Gruppo(
     val partecipanti: MutableList<String> = mutableListOf(),
     val listaSpesa: MutableList<String> = mutableListOf(),
     val contatti: MutableMap<String,String> = mutableMapOf(),
+    val attivita: MutableList<Attivita> = mutableListOf(),
 )

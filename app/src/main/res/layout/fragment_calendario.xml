@@ -35,7 +35,7 @@
 
 
     <Button
-        android:id="@+id/addContattoBtn"
+        android:id="@+id/attivitaBtn"
         android:layout_width="177dp"
         android:layout_height="48dp"
         android:layout_marginStart="28dp"
