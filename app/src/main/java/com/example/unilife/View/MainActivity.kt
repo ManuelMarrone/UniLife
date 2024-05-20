@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-     //Metodo per gestire il comportamento della bottom navigation
+     //Metodo per gestire il comportamento della bottom items
     private fun bottomNavigationListenerGruppi() {
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {

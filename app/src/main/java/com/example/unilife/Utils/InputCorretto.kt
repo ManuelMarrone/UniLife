@@ -1,5 +1,9 @@
 package com.example.unilife.Utils
 
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
+
 class InputCorretto {
 //    fun isValidFullName(fullName: String): Boolean {
 //        val regex = Regex("^[a-zA-Z ]+\$")
@@ -38,5 +42,16 @@ class InputCorretto {
     fun isValidPhone(telefono: String): Boolean {
         return telefono.isNotEmpty() && telefono.length == 10
     }
+
+    fun isValidDate(data: String): Boolean {
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            dateFormat.isLenient = false
+            return try {
+                dateFormat.parse(data)
+                true
+            } catch (e: ParseException) {
+                false
+            }
+        }
 
 }

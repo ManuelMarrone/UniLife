@@ -40,7 +40,7 @@ class CalendarioFragment : Fragment() {
                     val data = (dayOfMonth.toString() + "-"
                             + (month + 1) + "-" + year)
 
-                    goToVisualizzaListaAttivita()
+                    goToVisualizzaListaAttivita(data)
 
                     Toast.makeText(requireContext(), data, Toast.LENGTH_SHORT).show()
 
@@ -62,13 +62,14 @@ class CalendarioFragment : Fragment() {
         }
     }
 
-    private fun goToVisualizzaListaAttivita() {
+    private fun goToVisualizzaListaAttivita(data:String) {
             startActivity(
                 Intent(
                     requireActivity(),
                     AttivitaActivity::class.java
                 )
                     .putExtra("FRAGMENT_TO_LOAD", "ListaAttivitaFragment")
+                    .putExtra("DATA", data)
             )
     }
 

@@ -75,4 +75,7 @@
     <string name="addContatto">+</string>
     <string name="nome">Nome</string>
     <string name="numero_di_telefono">Numero di telefono</string>
+    <string name="annulla">Annulla</string>
+    <string name="titolo_attivit">Titolo Attività</string>
+    <string name="agg">Aggiungi</string>
 </resources>

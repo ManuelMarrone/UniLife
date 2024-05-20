@@ -9,6 +9,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FieldValue.arrayRemove
 import com.google.firebase.firestore.FieldValue.arrayUnion
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 
 
@@ -36,6 +37,12 @@ class GruppoRepo {
         val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
 
         return gruppoReference.update("partecipanti" , arrayUnion(username))
+    }
+
+    fun aggiungiAttivita(attivita: Attivita, idGruppo: String): Task<Void> {
+        val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
+
+        return gruppoReference.update("attivita" , arrayUnion(attivita))
     }
 
 
@@ -96,6 +103,13 @@ class GruppoRepo {
         val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoDoc
     }
+
+    fun getAttivitaByData(data: String, idGruppo: String): Task<QuerySnapshot> {
+        val documentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
+
+        return documentReference.collection("attivita").whereEqualTo("data", data).get()
+    }
+
 }
 
 

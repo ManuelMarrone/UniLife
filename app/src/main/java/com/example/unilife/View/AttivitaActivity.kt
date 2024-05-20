@@ -19,12 +19,19 @@ class AttivitaActivity : AppCompatActivity() {
 
         // Recupera l'Intent e i dati passati
         val fragmentToLoad = intent.getStringExtra("FRAGMENT_TO_LOAD")
+        val data = intent.getStringExtra("DATA")
 
         // Carica il Fragment appropriato
         when (fragmentToLoad) {
-            "ListaAttivitaFragment" -> replaceFragment(ListaAttivitaFragment.newInstance())
+            "ListaAttivitaFragment" ->{
+                val bundle = Bundle()
+                bundle.putString("DATA", data)
+                val listaAttivitaFragment = ListaAttivitaFragment()
+                listaAttivitaFragment.arguments = bundle
+                replaceFragment(listaAttivitaFragment)
+            }
             "AggiungiAttivitaFragment" -> replaceFragment(AggiungiAttivitaFragment.newInstance())
-            else -> {ListaAttivitaFragment.newInstance()}
+            else -> {finish()}
         }
 
 

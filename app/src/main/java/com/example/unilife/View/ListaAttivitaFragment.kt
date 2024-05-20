@@ -1,11 +1,21 @@
 package com.example.unilife.View
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import com.example.unilife.Adapter.ListaAttivitaAdapter
+import com.example.unilife.Adapter.ListaPartecipantiAdapter
+import com.example.unilife.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.R
+import com.example.unilife.Utils.InputCorretto
+import com.example.unilife.ViewModel.InvitaViewModel
+import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.databinding.FragmentAggiungiAttivitaBinding
 import com.example.unilife.databinding.FragmentListaAttivitaBinding
 
@@ -15,9 +25,12 @@ import com.example.unilife.databinding.FragmentListaAttivitaBinding
  * Use the [ListaAttivitaFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListaAttivitaFragment : Fragment() {
+class ListaAttivitaFragment : Fragment(), RecyclerViewItemClickListener<Int> {
 
     private lateinit var viewBinding: FragmentListaAttivitaBinding
+    private val viewModel: ListaAttivitaViewModel by viewModels()
+
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,10 +44,28 @@ class ListaAttivitaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val data = arguments?.getString("DATA")
+
+        fetchAttivita(data!!)
+
+        viewModel.listaAttivita.observe(viewLifecycleOwner){listaUpdated ->
+            recyclerView.adapter = ListaAttivitaAdapter(requireContext(),this ,listaUpdated)
+        }
     }
 
     companion object {
         fun newInstance() = ListaAttivitaFragment()
 
+    }
+
+    private fun fetchAttivita(data:String)
+    {
+        viewModel.getAttivitaByData(data)
+    }
+
+    override fun onItemClick(position: Int) {
+        Log.d("Rimozione partecipanti", "posizione${position}")
+        //viewModel.rimuoviAttivita(position)
     }
 }
