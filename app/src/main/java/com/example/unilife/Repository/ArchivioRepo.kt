@@ -7,7 +7,9 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.unilife.Model.Documento
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
@@ -29,13 +31,23 @@ class ArchivioRepo {
     private val storage = FirebaseStorage.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
     private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
-    private val auth = FirebaseAuth.getInstance()
+
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     private val _lista_documenti : MutableLiveData<ArrayList<Documento>> = MutableLiveData()
     val lista_documenti: LiveData<ArrayList<Documento>> = _lista_documenti
 
 
 
+
+
+    fun getUtente(): Task<DocumentSnapshot> {
+        val idUtente = firebaseAuth.currentUser!!.uid
+        val documentReference = dbSettings.firestore.collection("utenti").document(idUtente)
+        return documentReference.get()
+    }
+
+    /**
     suspend fun uploadFile(byteArray: ByteArray, uri: Uri) {
         // Implementazione dell'upload del file su Firebase Storage
         val storageRef = storage.reference
@@ -52,8 +64,9 @@ class ArchivioRepo {
         } else {
             Log.e("GroupID", "Group ID is null")
         }
-    }
+    }*/
 
+    /**
     suspend fun getID_doc(): String? = withContext(Dispatchers.IO) {
         val utenteId = auth.currentUser?.uid
         var groupId: String? = null
@@ -72,26 +85,18 @@ class ArchivioRepo {
         groupId
     }
 
+*/
 
-
-    private fun saveDocumentToFirestore(fileName: String, id_doc: String) {
-        // Implementazione del salvataggio dei metadati del documento su Firestore
-        val documento = Documento(
-            nome_doc = fileName,
-            id_documento = id_doc
-        )
-        firestore.collection("documenti").add(documento)
-            .addOnSuccessListener {
-                Log.d("Firestore", "File metadata saved successfully in 'documenti' collection")
-            }
-            .addOnFailureListener { e ->
-                Log.d("Firestore", "Failed to save file metadata in 'documenti' collection", e)
-            }
-    }
 
 }
 
 
+    /**
+
+
+
+
+*/
 
 
 

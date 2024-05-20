@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Model.Documento
 import com.example.unilife.R
 
-class DocumentAdapter(val listener: RecyclerViewItemClickListener<Int>, val listaDocumenti:ArrayList<Documento>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
+class DocumentAdapter(val listener: RecyclerViewItemClickListener<Int>, val listaDocumenti:MutableMap<String,String>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -23,7 +23,11 @@ class DocumentAdapter(val listener: RecyclerViewItemClickListener<Int>, val list
     //assign values to the views we created in the recycler_view_row layout file
     //based on the position of the recycler view
     override fun onBindViewHolder(holder: DocumentiViewHolder, position: Int) {
-        holder.textView.text = listaDocumenti.get(position).toString()
+        val keys = listaDocumenti.keys.toList()
+        val currentKey = keys[position]
+        val currentValue = listaDocumenti[currentKey]
+        holder.keyTextView.text = currentKey
+        holder.valueTextView.text = currentValue
     }
 
     //the number of items u want displayed
@@ -33,11 +37,13 @@ class DocumentAdapter(val listener: RecyclerViewItemClickListener<Int>, val list
     //assign the views of the item to a variable
     inner class DocumentiViewHolder(val riga: View) : RecyclerView.ViewHolder(riga)
     {
-        val textView: TextView
+        val keyTextView: TextView
+        val valueTextView:TextView
         val button : ImageButton
 
         init{
-            textView = riga.findViewById(R.id.documento)
+            keyTextView = riga.findViewById(R.id.documento)
+            valueTextView = riga.findViewById(R.id.numero)
             button = riga.findViewById(R.id.deleteImageButton)
             button.setOnClickListener {
                 eliminaItem()}
