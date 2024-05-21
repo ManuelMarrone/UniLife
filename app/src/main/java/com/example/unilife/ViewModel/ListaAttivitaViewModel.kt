@@ -22,42 +22,57 @@ class ListaAttivitaViewModel:ViewModel() {
     private var idGruppo: String? = null
 
     init {
-        getIdGruppoUtente()
+        _listaAttivita.value = ArrayList()
     }
 
-    fun loadData() {
-        //inizializzazione listaSpesa prendendo i dati dal repo
-        if (idGruppo != null) {
-            gruppoRepo.getGruppo(idGruppo!!).addSnapshotListener { gruppo, e ->
-                if (e != null) {
-                    // Gestisci l'eccezione se si verifica un errore
-                    return@addSnapshotListener
-                }
-                if (gruppo?.toObject(Gruppo::class.java)?.listaSpesa != null) {
-                    val attivita = gruppo.toObject(Gruppo::class.java)?.attivita
-
-                    _listaAttivita.value = attivita?.map { it.titolo }?.let { ArrayList(it) }
-
-                }
-            }
-        }
-    }
-
-    fun getIdGruppoUtente() {
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
-            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
-            Log.d("inizializza", "idGruppo ${idGruppo}")
-            loadData()
-        }
-    }
 
     fun getAttivitaByData(data:String)
     {
-        if(idGruppo != null)
-        {
-        gruppoRepo.getAttivitaByData(data, idGruppo!!).addOnSuccessListener { listaAttivita ->
-            _listaAttivita.value = listaAttivita as ArrayList<String>
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+
+            Log.d("listaAttivita", "getAttivita idGruppo ${idGruppo}")
+            if (idGruppo != null) {
+                gruppoRepo.getAttivitaByData(data, idGruppo!!)
+                    .addOnSuccessListener { listaAttivita ->
+                        if (!listaAttivita.isEmpty) {
+                            val lista : ArrayList<String> = ArrayList()
+                            for (document in listaAttivita.documents) {
+                                // Ottieni i dati di ogni documento
+                                val titoloAttivita =
+                                    document.toObject(Attivita::class.java)!!.titolo
+                                Log.d("listaAttivita", "elementi ${titoloAttivita}")
+                                lista.add(titoloAttivita)
+                            }
+                            _listaAttivita.value = lista
+                            Log.d("listaAttivita", "lista ${_listaAttivita.value}")
+                        } else {
+                            _listaAttivita.value = ArrayList()
+                            Log.d(
+                                "listaAttivita",
+                                "Nessun documento trovato con la data specificata."
+                            )
+                        }
+                    }
+                    .addOnFailureListener { e ->
+                        Log.d("listaAttivita", "eccezione ${e}")
+                    }
             }
         }
     }
+
+//    fun rimuoviAttivita(position:Int)
+//    {
+//        utenteRepo.getUtente().addOnSuccessListener { utente ->
+//            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+//            if (idGruppo != null) {
+//                gruppoRepo.rimuoviAttivita(_listaAttivita.value?.get(position))
+//            }
+//            }
+//        }
+//    }
+
+
+
+
 }

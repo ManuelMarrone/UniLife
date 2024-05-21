@@ -43,15 +43,5 @@ class InputCorretto {
         return telefono.isNotEmpty() && telefono.length == 10
     }
 
-    fun isValidDate(data: String): Boolean {
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            dateFormat.isLenient = false
-            return try {
-                dateFormat.parse(data)
-                true
-            } catch (e: ParseException) {
-                false
-            }
-        }
 
 }

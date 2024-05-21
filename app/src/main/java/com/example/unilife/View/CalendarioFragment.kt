@@ -41,9 +41,6 @@ class CalendarioFragment : Fragment() {
                             + (month + 1) + "-" + year)
 
                     goToVisualizzaListaAttivita(data)
-
-                    Toast.makeText(requireContext(), data, Toast.LENGTH_SHORT).show()
-
                 })
 
 

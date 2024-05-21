@@ -20,10 +20,11 @@ class AggiungiAttivitaViewModel:ViewModel() {
     private var _partecipanti = MutableLiveData<MutableMap<String,Boolean>>()
     val partecipanti: LiveData<MutableMap<String,Boolean>> get() = _partecipanti
 
-    private var idGruppo : String? = null
-
     private var _isValid = MutableLiveData<Boolean>()
     val isValid: LiveData<Boolean> get() = _isValid
+
+    private var idGruppo : String? = null
+    
 
     init {
         getIdGruppoUtente()
@@ -65,20 +66,13 @@ class AggiungiAttivitaViewModel:ViewModel() {
         _partecipanti.value?.set(username, valore)
     }
 
-    fun isValid()
+    fun validaInput()
     {
-        if(partecipanti.value!!.values.any { it == true })
-        {
-            _isValid.value = true
-        }
-        else{
-            _isValid.value = false
-        }
+        _isValid.value = _partecipanti.value!!.values.any { it == true }
     }
+
     fun aggiungiAttivita(titolo: String, data: String) {
         if (idGruppo != null) {
-            Log.e("validita","valid true")
-            _isValid.value = true
             val attivita = Attivita(titolo, data, _partecipanti.value!!)
             gruppoRepo.aggiungiAttivita(attivita, idGruppo!!).addOnFailureListener {e->
                 Log.e("attivita","Failed adding element ${e}")

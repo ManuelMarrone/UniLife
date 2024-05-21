@@ -1,5 +1,6 @@
 package com.example.unilife.View
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.renderscript.ScriptGroup.Input
@@ -24,6 +25,7 @@ import com.example.unilife.databinding.FragmentAggiungiAttivitaBinding
 import com.example.unilife.databinding.FragmentVisualizzaSpesaBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Calendar
 
 
 class AggiungiAttivitaFragment : Fragment(), RecyclerViewItemClickListener<String> {
@@ -32,7 +34,8 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewItemClickListener<Strin
 
     private lateinit var recyclerView: RecyclerView
     private val viewModel: AggiungiAttivitaViewModel by viewModels()
-    private val inputCorretto = InputCorretto()
+
+    var data :String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +62,35 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewItemClickListener<Strin
         viewBinding.aggiungiButton.setOnClickListener{aggiungiAttivita()}
         viewBinding.annulaBtn.setOnClickListener{annulla()}
 
+
+
+
+        val dataTxt = viewBinding.dataTxt
+
+        dataTxt.setOnClickListener {
+
+            val c = Calendar.getInstance()
+
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                // on below line we are passing context.
+                requireContext(),
+                { view, year, monthOfYear, dayOfMonth ->
+                    // on below line we are setting
+                    // date to our edit text.
+                    data = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                    dataTxt.setText(data)
+                },
+                year,
+                month,
+                day
+            )
+            datePickerDialog.show()
+        }
+
     }
 
     companion object {
@@ -77,38 +109,40 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewItemClickListener<Strin
             ))
     }
 
-    private fun aggiungiAttivita()
-    {
-        val titolo = viewBinding.titoloTxt.text.toString()
-        val dataTxt = viewBinding.dataTxt.text.toString()
+    private fun aggiungiAttivita() {
 
-        viewModel.isValid()
+        viewModel.validaInput()
 
-        viewModel.isValid.observe(viewLifecycleOwner) { validita ->
-            Log.e("validita","is ${validita}")
-            if(validita == true) {
-                if (inputCorretto.isValidDate(dataTxt)) {
-                    if (titolo.isNotEmpty()) {
-                        viewModel.aggiungiAttivita(titolo, dataTxt)
+        //osserva se il codice è valido
+        viewModel.isValid.observe(viewLifecycleOwner) { isInputValid ->
 
+                if (isInputValid) {
+                    val titolo = viewBinding.titoloTxt.text.toString()
+
+                    if (data.isNotEmpty()) {
+                        if (titolo.isNotEmpty()) {
+                            viewModel.aggiungiAttivita(titolo, data)
+                            startActivity(
+                                Intent(
+                                    requireActivity(),
+                                    MainActivity::class.java
+                                )
+                            )
+
+                        } else {
+                            viewBinding.titoloTxt.setError("Non lasciare vuoto il campo")
+                        }
                     } else {
-                        viewBinding.titoloTxt.setError("Non lasciare vuoto il campo")
+                        viewBinding.dataTxt.setError("Inserisci una data")
                     }
                 } else {
-                    viewBinding.dataTxt.setError("Inserisci una data esistente giorno/mese/anno")
+                    Toast.makeText(
+                        requireContext(),
+                        "Seleziona almeno un coinquilino",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-            else{
-                Toast.makeText(requireContext(),"Seleziona almeno un coinquilino", Toast.LENGTH_SHORT).show()
-            }
-        }
-        startActivity(
-            Intent(
-                requireActivity(),
-                MainActivity::class.java
-            )
-        )
-
     }
 
 

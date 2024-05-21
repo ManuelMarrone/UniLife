@@ -25,8 +25,7 @@ class GruppoRepo {
         val partecipanti = mutableListOf<String>(username)
         val listaSpesa = mutableListOf<String>()
         val contatti = mutableMapOf<String,String>()
-        val attivita = mutableListOf<Attivita>()
-        val gruppo = Gruppo(partecipanti = partecipanti, listaSpesa, contatti, attivita)
+        val gruppo = Gruppo(partecipanti = partecipanti, listaSpesa, contatti)
         Log.d("crea gruppo inf", "repo")
 
         return dbSettings.firestore.collection("gruppi").add(gruppo)
@@ -39,10 +38,11 @@ class GruppoRepo {
         return gruppoReference.update("partecipanti" , arrayUnion(username))
     }
 
-    fun aggiungiAttivita(attivita: Attivita, idGruppo: String): Task<Void> {
+    //aggiunge il documento dentro la raccolta attivita dentro la raccolta gruppi
+    fun aggiungiAttivita(attivita: Attivita, idGruppo: String): Task<DocumentReference> {
         val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
 
-        return gruppoReference.update("attivita" , arrayUnion(attivita))
+        return gruppoReference.collection("attivita").add(attivita)
     }
 
 

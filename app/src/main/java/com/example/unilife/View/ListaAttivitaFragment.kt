@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Adapter.ListaAttivitaAdapter
 import com.example.unilife.Adapter.ListaPartecipantiAdapter
@@ -45,11 +46,15 @@ class ListaAttivitaFragment : Fragment(), RecyclerViewItemClickListener<Int> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val data = arguments?.getString("DATA")
+        recyclerView = viewBinding.RVListaAttivita
+        recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
+        val data = arguments?.getString("DATA")
+        viewBinding.dataText.text = data
         fetchAttivita(data!!)
 
         viewModel.listaAttivita.observe(viewLifecycleOwner){listaUpdated ->
+            Log.d("listaAtivita" , "Recycler ${listaUpdated}")
             recyclerView.adapter = ListaAttivitaAdapter(requireContext(),this ,listaUpdated)
         }
     }

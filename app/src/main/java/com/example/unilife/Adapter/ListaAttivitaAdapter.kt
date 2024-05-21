@@ -15,7 +15,7 @@ class ListaAttivitaAdapter(val c: Context, val listener :RecyclerViewItemClickLi
 
     // This is where u inflate the layout(giving a look to out rows)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttivitaViewHolder {
-        val layout = LayoutInflater.from(parent.context).inflate(R.layout.row_item, parent, false)
+        val layout = LayoutInflater.from(parent.context).inflate(R.layout.item_attivita, parent, false)
         return AttivitaViewHolder(layout)
     }
 
@@ -36,7 +36,7 @@ class ListaAttivitaAdapter(val c: Context, val listener :RecyclerViewItemClickLi
         val button : ImageButton
 
         init{
-            textView = riga.findViewById(R.id.documento)
+            textView = riga.findViewById(R.id.titolo)
             button = riga.findViewById(R.id.deleteImageButton)
             button.setOnClickListener {
                 eliminaItem()}
@@ -45,7 +45,7 @@ class ListaAttivitaAdapter(val c: Context, val listener :RecyclerViewItemClickLi
         private fun eliminaItem()
         {
             Log.d("posizione", " adap${adapterPosition}")
-            listener.onItemClick(adapterPosition)
+//            listener.onItemClick(adapterPosition)
         }
 
     }

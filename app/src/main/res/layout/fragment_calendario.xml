@@ -11,13 +11,14 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="37dp"
+        android:layout_width="352dp"
+        android:layout_height="318dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
         android:background="#81C6BA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <TextView
         android:id="@+id/textUnilife"
@@ -39,13 +40,27 @@
         android:layout_width="177dp"
         android:layout_height="48dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="50dp"
 
         android:backgroundTint="#91EAC5"
         android:text="@string/aggiungi_attivit"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="335dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="48dp"
+        android:text="@string/clicca_sul_calendario_per_visualizzare_le_attivit_del_giorno"
+        android:textColor="#020101"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,26 +65,13 @@
         android:layout_width="307dp"
         android:layout_height="208dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="33dp"
         android:layout_marginEnd="52dp"
         android:background="@color/verdone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dataTxt" />
-
-    <EditText
-        android:id="@+id/dataTxt"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="81dp"
-        android:ems="10"
-        android:hint="@string/data"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titoloTxt"
-        app:layout_constraintTop_toBottomOf="@+id/titoloTxt" />
 
     <EditText
         android:id="@+id/titoloTxt"
@@ -99,5 +86,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <EditText
+        android:id="@+id/dataTxt"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:hint="@string/data"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/titoloTxt"
+        app:layout_constraintTop_toBottomOf="@+id/titoloTxt"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
