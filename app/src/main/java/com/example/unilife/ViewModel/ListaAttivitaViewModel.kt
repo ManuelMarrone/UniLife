@@ -22,6 +22,9 @@ class ListaAttivitaViewModel:ViewModel() {
     private var idGruppo: String? = null
 
     private var listaAttivitaObj : MutableMap<String, Attivita> = mutableMapOf()
+
+    private var _attivita = MutableLiveData<MutableMap<String, Attivita>>()
+    val attivita: LiveData<MutableMap<String, Attivita>> get() = _attivita
     init {
         _listaAttivita.value = ArrayList()
     }
@@ -87,6 +90,31 @@ class ListaAttivitaViewModel:ViewModel() {
             }
             }
         }
+
+    fun visualizzaItem(posizione:Int)
+    {
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+            if (idGruppo != null) {
+                // Ricava l'oggetto Attivita dalla posizione nella lista delle attività
+                val attivita: Attivita? = listaAttivitaObj.entries.elementAtOrNull(posizione)?.value
+                // Assegna l'oggetto Attivita a _attivita.value solo se attivita non è null
+                if (attivita != null) {
+                    val key =  listaAttivitaObj.entries.elementAtOrNull(posizione)?.key
+                    if (key != null) {
+                        val map : MutableMap<String,Attivita> = mutableMapOf(key to attivita)
+                        _attivita.value = map
+                        Log.d("VisualizzaAttivita", "Attivita nel VM ${_attivita.value}")
+                    }
+                }
+
+            }
+        }
     }
+
+
+
+
+}
 
 

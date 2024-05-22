@@ -26,16 +26,14 @@
         android:id="@+id/textView16"
         android:layout_width="217dp"
         android:layout_height="58dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="112dp"
         android:background="#1082D5"
         android:gravity="center"
         android:text="@string/visualizza_attivit"
         android:textColor="@color/black"
         android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/modificaButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,33 +65,21 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <ImageButton
-        android:id="@+id/eliminaButton"
-        android:layout_width="55dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="20dp"
-        android:contentDescription="@string/elimina"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/modificaButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
         android:id="@+id/modificaButton"
         android:layout_width="55dp"
         android:layout_height="58dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="50dp"
         android:contentDescription="@string/modifica"
         android:scaleType="centerInside"
         android:src="@drawable/pencil"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/visualizzaTitoloText"
         android:layout_width="304dp"
         android:layout_height="52dp"
         android:layout_marginStart="52dp"
@@ -109,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/visualizzaDatatext"
         android:layout_width="307dp"
         android:layout_height="52dp"
         android:layout_marginStart="52dp"
@@ -121,7 +107,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/visualizzaTitoloText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -132,7 +118,7 @@
         android:background="@color/verdone"
         android:backgroundTint="@color/verdone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editTextText4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintStart_toStartOf="@+id/visualizzaDatatext"
+        app:layout_constraintTop_toBottomOf="@+id/visualizzaDatatext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
