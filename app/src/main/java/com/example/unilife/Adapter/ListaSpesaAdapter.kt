@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ListaSpesaAdapter( val listener :RecyclerViewItemClickListener<Int>, val listaSpesa:ArrayList<String>): RecyclerView.Adapter<ListaSpesaAdapter.SpesaViewHolder>() {
+class ListaSpesaAdapter(val listener :RecyclerViewDeleteClickListener<Int>, val listaSpesa:ArrayList<String>): RecyclerView.Adapter<ListaSpesaAdapter.SpesaViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -44,7 +44,7 @@ class ListaSpesaAdapter( val listener :RecyclerViewItemClickListener<Int>, val l
         private fun eliminaItem()
         {
             Log.d("posizione", " adap${adapterPosition}")
-            listener.onItemClick(adapterPosition)
+            listener.onDeleteClick(adapterPosition)
             notifyDataSetChanged()
         }
 

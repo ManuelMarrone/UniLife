@@ -5,21 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Adapter.ContattiAdapter
-import com.example.unilife.Adapter.ListaSpesaAdapter
-import com.example.unilife.Adapter.RecyclerViewItemClickListener
-import com.example.unilife.R
+import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.ContattiViewModel
-import com.example.unilife.ViewModel.HomeViewModel
 import com.example.unilife.databinding.FragmentContattiBinding
-import com.example.unilife.databinding.FragmentHomeBinding
 
-class ContattiFragment : Fragment(), RecyclerViewItemClickListener<String> {
+class ContattiFragment : Fragment(), RecyclerViewDeleteClickListener<String> {
 
     private lateinit var viewBinding: FragmentContattiBinding
 
@@ -76,7 +71,7 @@ class ContattiFragment : Fragment(), RecyclerViewItemClickListener<String> {
 
     }
 
-    override fun onItemClick(chiave: String) {
+    override fun onDeleteClick(chiave: String) {
         viewModel.rimuoviContatto(chiave)
     }
 

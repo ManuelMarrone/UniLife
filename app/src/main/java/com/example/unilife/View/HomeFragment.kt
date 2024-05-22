@@ -2,7 +2,6 @@ package com.example.unilife.View
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Adapter.ListaPartecipantiAdapter
 import com.example.unilife.Adapter.ListaSpesaAdapter
-import com.example.unilife.Adapter.RecyclerViewItemClickListener
+import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
 import com.example.unilife.R
 import com.example.unilife.ViewModel.HomeViewModel
 import com.example.unilife.databinding.FragmentHomeBinding
@@ -24,7 +22,7 @@ import com.example.unilife.databinding.FragmentHomeBinding
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment(), RecyclerViewItemClickListener<Int> {
+class HomeFragment : Fragment(), RecyclerViewDeleteClickListener<Int> {
     private lateinit var viewBinding: FragmentHomeBinding
 
     private lateinit var recyclerView: RecyclerView
@@ -94,7 +92,7 @@ class HomeFragment : Fragment(), RecyclerViewItemClickListener<Int> {
 
     }
 
-    override fun onItemClick(position: Int) {
+    override fun onDeleteClick(position: Int) {
         viewModel.rimuoviElemento(position)
     }
 

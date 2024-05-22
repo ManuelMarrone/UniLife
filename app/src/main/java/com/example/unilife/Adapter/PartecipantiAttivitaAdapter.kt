@@ -1,17 +1,14 @@
 package com.example.unilife.Adapter
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewItemClickListener<String>, val partecipanti:ArrayList<String>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
+class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewDeleteClickListener<String>, val partecipanti:ArrayList<String>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -49,7 +46,7 @@ class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewItemC
 
         private fun onItemClick(username:String)
         {
-            listener.onItemClick(username)
+            listener.onDeleteClick(username)
         }
 
     }

@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Model.Documento
 import com.example.unilife.R
 
-class DocumentAdapter(val listener: RecyclerViewItemClickListener<Int>, val listaDocumenti:MutableMap<String,String>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
+class DocumentAdapter(val listener: RecyclerViewDeleteClickListener<Int>, val listaDocumenti:MutableMap<String,String>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -52,7 +51,7 @@ class DocumentAdapter(val listener: RecyclerViewItemClickListener<Int>, val list
         private fun eliminaItem()
         {
             Log.d("posizione", " adap${adapterPosition}")
-            listener.onItemClick(adapterPosition)
+            listener.onDeleteClick(adapterPosition)
             notifyDataSetChanged()
         }
 

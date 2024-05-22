@@ -1,44 +1,28 @@
 package com.example.unilife.View
 
-import android.content.ContentValues
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.unilife.Adapter.ListaPartecipantiAdapter
-import com.example.unilife.Adapter.ListaSpesaAdapter
-import com.example.unilife.Adapter.RecyclerViewItemClickListener
-import com.example.unilife.Model.Utente
-import com.example.unilife.R
-import com.example.unilife.StateUI.StatoRegistrazioneUi
+import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.InvitaViewModel
-import com.example.unilife.ViewModel.RegistrazioneViewModel
-import com.example.unilife.databinding.ActivityRegistrazioneBinding
-import com.example.unilife.databinding.FragmentHomeBinding
 import com.example.unilife.databinding.FragmentInvitaBinding
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+
 /**
 manca il controllo se il partecipante da eliminare è coinvolto in qualche attività del gruppo
  nessuna idea di come fare
 **/
 
-class InvitaFragment : Fragment(), RecyclerViewItemClickListener<Int> {
+class InvitaFragment : Fragment(), RecyclerViewDeleteClickListener<Int> {
 
     private lateinit var binding: FragmentInvitaBinding
     private val viewModel: InvitaViewModel by viewModels()
@@ -119,7 +103,7 @@ class InvitaFragment : Fragment(), RecyclerViewItemClickListener<Int> {
         viewModel.creaGruppo()
     }
 
-    override fun onItemClick(position: Int) {
+    override fun onDeleteClick(position: Int) {
         Log.d("Rimozione partecipanti", "posizione${position}")
         viewModel.rimuoviPartecipante(position)
     }

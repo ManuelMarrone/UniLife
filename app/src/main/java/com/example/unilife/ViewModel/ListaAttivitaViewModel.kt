@@ -21,11 +21,12 @@ class ListaAttivitaViewModel:ViewModel() {
 
     private var idGruppo: String? = null
 
+    private var listaAttivitaObj : MutableMap<String, Attivita> = mutableMapOf()
     init {
         _listaAttivita.value = ArrayList()
     }
 
-
+//ricava l'array di Attivita e l'array dei titoli delle attività
     fun getAttivitaByData(data:String)
     {
         utenteRepo.getUtente().addOnSuccessListener { utente ->
@@ -38,7 +39,10 @@ class ListaAttivitaViewModel:ViewModel() {
                         if (!listaAttivita.isEmpty) {
                             val lista : ArrayList<String> = ArrayList()
                             for (document in listaAttivita.documents) {
-                                // Ottieni i dati di ogni documento
+                                //conversione a oggetto
+                                val attivita = document.toObject(Attivita::class.java)!!
+                                listaAttivitaObj[document.id] = attivita
+
                                 val titoloAttivita =
                                     document.toObject(Attivita::class.java)!!.titolo
                                 Log.d("listaAttivita", "elementi ${titoloAttivita}")
@@ -61,18 +65,28 @@ class ListaAttivitaViewModel:ViewModel() {
         }
     }
 
-//    fun rimuoviAttivita(position:Int)
-//    {
-//        utenteRepo.getUtente().addOnSuccessListener { utente ->
-//            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
-//            if (idGruppo != null) {
-//                gruppoRepo.rimuoviAttivita(_listaAttivita.value?.get(position))
-//            }
-//            }
-//        }
-//    }
+
+    fun rimuoviAttivita(position:Int)
+    {
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+            if (idGruppo != null) {
+
+                //ricavo l'oggetto attività dalla posizione per ricavarmi l'id
+                val attivita = listaAttivitaObj.entries.elementAtOrNull(position)
+                if (attivita != null) {
+                    gruppoRepo.rimuoviAttivita(attivita.key, idGruppo!!).addOnFailureListener()
+                    {e->
+                        Log.d("RimozioneAttivita", "failed remove ${e}")
+                    }
+                    val updatedList = _listaAttivita.value
+                    updatedList?.removeAt(position)
+                    _listaAttivita.value = updatedList!!
+                }
+
+            }
+            }
+        }
+    }
 
 
-
-
-}

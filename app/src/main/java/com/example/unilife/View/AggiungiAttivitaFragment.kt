@@ -3,8 +3,6 @@ package com.example.unilife.View
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Input
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,22 +11,14 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Adapter.ListaPartecipantiAdapter
-import com.example.unilife.Adapter.ListaSpesaAdapter
 import com.example.unilife.Adapter.PartecipantiAttivitaAdapter
-import com.example.unilife.Adapter.RecyclerViewItemClickListener
-import com.example.unilife.R
-import com.example.unilife.Utils.InputCorretto
+import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
 import com.example.unilife.ViewModel.AggiungiAttivitaViewModel
-import com.example.unilife.ViewModel.HomeViewModel
 import com.example.unilife.databinding.FragmentAggiungiAttivitaBinding
-import com.example.unilife.databinding.FragmentVisualizzaSpesaBinding
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
 
-class AggiungiAttivitaFragment : Fragment(), RecyclerViewItemClickListener<String> {
+class AggiungiAttivitaFragment : Fragment(), RecyclerViewDeleteClickListener<String> {
 
     private lateinit var viewBinding: FragmentAggiungiAttivitaBinding
 
@@ -97,7 +87,7 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewItemClickListener<Strin
         fun newInstance() = AggiungiAttivitaFragment()
     }
 
-    override fun onItemClick(username: String) {
+    override fun onDeleteClick(username: String) {
         viewModel.setChecked(username)
     }
     private fun annulla()

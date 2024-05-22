@@ -1,8 +1,5 @@
 package com.example.unilife.Adapter
 
-import android.app.AlertDialog
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ContattiAdapter( val listener :RecyclerViewItemClickListener<String>, val contatti:MutableMap<String,String>): RecyclerView.Adapter<ContattiAdapter.ContattiViewHolder>() {
+class ContattiAdapter(val listener :RecyclerViewDeleteClickListener<String>, val contatti:MutableMap<String,String>): RecyclerView.Adapter<ContattiAdapter.ContattiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -54,7 +51,7 @@ class ContattiAdapter( val listener :RecyclerViewItemClickListener<String>, val 
 
 
         private fun eliminaItem(chiave: String) {
-            listener.onItemClick(chiave)
+            listener.onDeleteClick(chiave)
         }
 
 

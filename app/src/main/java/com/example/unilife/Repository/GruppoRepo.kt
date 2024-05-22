@@ -110,6 +110,12 @@ class GruppoRepo {
         return documentReference.collection("attivita").whereEqualTo("data", data).get()
     }
 
+    fun rimuoviAttivita(id:String, idGruppo: String): Task<Void> {
+        val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
+        val attivitaDoc = gruppoDoc.collection("attivita").document(id)
+        return attivitaDoc.delete()
+    }
+
 }
 
 
