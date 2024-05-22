@@ -9,12 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Adapter.ContattiAdapter
-import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
+import com.example.unilife.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.ContattiViewModel
 import com.example.unilife.databinding.FragmentContattiBinding
 
-class ContattiFragment : Fragment(), RecyclerViewDeleteClickListener<String> {
+class ContattiFragment : Fragment(), RecyclerViewButtonClickListener<String> {
 
     private lateinit var viewBinding: FragmentContattiBinding
 
@@ -71,7 +71,7 @@ class ContattiFragment : Fragment(), RecyclerViewDeleteClickListener<String> {
 
     }
 
-    override fun onDeleteClick(chiave: String) {
+    override fun onButtonClick(chiave: String) {
         viewModel.rimuoviContatto(chiave)
     }
 

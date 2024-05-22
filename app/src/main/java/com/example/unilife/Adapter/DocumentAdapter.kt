@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class DocumentAdapter(val listener: RecyclerViewDeleteClickListener<Int>, val listaDocumenti:MutableMap<String,String>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
+class DocumentAdapter(val listener: RecyclerViewButtonClickListener<Int>, val listaDocumenti:MutableMap<String,String>): RecyclerView.Adapter<DocumentAdapter.DocumentiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -51,7 +51,7 @@ class DocumentAdapter(val listener: RecyclerViewDeleteClickListener<Int>, val li
         private fun eliminaItem()
         {
             Log.d("posizione", " adap${adapterPosition}")
-            listener.onDeleteClick(adapterPosition)
+            listener.onButtonClick(adapterPosition)
             notifyDataSetChanged()
         }
 

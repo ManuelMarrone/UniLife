@@ -7,24 +7,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
+import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.unilife.Adapter.PartecipantiAttivitaAdapter
+import com.example.unilife.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.Model.Attivita
 import com.example.unilife.Model.Utente
 import com.example.unilife.R
+import com.example.unilife.ViewModel.AggiungiAttivitaViewModel
 import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.ViewModel.VisualizzaModificaAttivitaViewModel
 import com.example.unilife.databinding.FragmentCalendarioBinding
 import com.example.unilife.databinding.FragmentVisualizzaModificaAttivitaBinding
 import com.example.unilife.databinding.FragmentVisualizzaSpesaBinding
 
-class VisualizzaModificaAttivitaFragment : Fragment() {
+class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<String> {
 
     private lateinit var viewBinding: FragmentVisualizzaModificaAttivitaBinding
 
     private val viewModel: VisualizzaModificaAttivitaViewModel by viewModels()
-    private val viewModelList: ListaAttivitaViewModel by viewModels()
+
+    private lateinit var recyclerView: RecyclerView
 
 
     override fun onCreateView(
@@ -39,6 +48,53 @@ class VisualizzaModificaAttivitaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recyclerView = viewBinding.recyclerViewPartecipantiAtt
+        recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
+
+        setUIVisualizzazione()
+
+        viewBinding.completaButton.setOnClickListener{onCompletaClick()}
+        viewBinding.modificaButton.setOnClickListener{setUIModifica()}
+
+        viewBinding.annulaBtn.setOnClickListener {
+            // Torna al fragment precedente
+            parentFragmentManager.popBackStack()
+        }
+    }
+
+    private fun shouldHandleBackPress(): Boolean {
+        // Logica per determinare se gestire il back press
+        // Restituisci true se gestisci il back press, altrimenti false
+        return true
+    }
+
+
+
+    private fun onCompletaClick()
+    {
+        viewModel.completaAttivita()
+    }
+
+    private fun setUIModifica()
+    {
+        viewBinding.completaButton.visibility =View.GONE
+        viewBinding.salvabutton.visibility =View.VISIBLE
+        viewBinding.titoloFragment.text = "Modifica Attività"
+        viewBinding.visualizzaTitoloText.isEnabled = true
+        viewBinding.visualizzaDatatext.isEnabled = true
+
+        // Disabilitare le CheckBox dopo che l'adapter è impostato
+        recyclerView.viewTreeObserver.addOnGlobalLayoutListener {
+            for (i in 0 until recyclerView.childCount) {
+                val child = recyclerView.getChildAt(i)
+                val checkBox: CheckBox = child.findViewById(R.id.checkBox)
+                checkBox.isEnabled = true
+            }
+        }
+    }
+
+    private fun setUIVisualizzazione()
+    {
         val bundle = arguments
         if (bundle != null) {
             val attivitaList: ArrayList<Attivita>? = bundle.getSerializable("ATTIVITA") as? ArrayList<Attivita>
@@ -55,12 +111,28 @@ class VisualizzaModificaAttivitaFragment : Fragment() {
                 val data: String = attivitaObj.data
                 viewBinding.visualizzaDatatext.setText(data, TextView.BufferType.EDITABLE)
                 viewBinding.visualizzaDatatext.isEnabled = false
+
+                recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this ,attivitaObj.partecipanti)
+                // Disabilitare le CheckBox dopo che l'adapter è impostato
+                recyclerView.viewTreeObserver.addOnGlobalLayoutListener {
+                    for (i in 0 until recyclerView.childCount) {
+                        val child = recyclerView.getChildAt(i)
+                        val checkBox: CheckBox = child.findViewById(R.id.checkBox)
+                        checkBox.isEnabled = false
+                    }
+                }
             }
+
+
         }
-
-
+        viewBinding.completaButton.visibility =View.VISIBLE
+        viewBinding.salvabutton.visibility =View.GONE
 
     }
+    override fun onButtonClick(username: String) {
+        //viewModel.setChecked(username)
+    }
+
 
     companion object {
         fun newInstance() = VisualizzaModificaAttivitaFragment()
@@ -70,6 +142,5 @@ class VisualizzaModificaAttivitaFragment : Fragment() {
 
     //al click di salva modifica l'attività e la salva nel db con update
 
-    //al click di completa mette a false la selezione dell'utente che l'ha cliccata
-    //se tutti sono a false allora elimina l'attività automaticamente
+
 }

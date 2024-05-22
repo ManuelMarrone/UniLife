@@ -8,6 +8,19 @@
     tools:context=".View.VisualizzaModificaAttivitaFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/salvabutton"
+        android:layout_width="137dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/verdeacqua"
+        android:text="@string/salva"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPartecipantiAtt"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPartecipantiAtt" />
+
     <TextView
         android:id="@+id/textUnilife"
         android:layout_width="92dp"
@@ -23,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/titoloFragment"
         android:layout_width="217dp"
         android:layout_height="58dp"
         android:layout_marginStart="52dp"
@@ -47,13 +60,13 @@
         android:text="@string/indietro"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/aggiungiButton"
+        app:layout_constraintEnd_toStartOf="@+id/completaButton"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewPartecipantiAtt"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPartecipantiAtt" />
 
     <Button
-        android:id="@+id/aggiungiButton"
+        android:id="@+id/completaButton"
         android:layout_width="137dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
@@ -61,8 +74,8 @@
         android:text="@string/completata"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPartecipantiAtt"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPartecipantiAtt" />
 
     <ImageButton
         android:id="@+id/modificaButton"
@@ -75,7 +88,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/pencil"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintStart_toEndOf="@+id/titoloFragment"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -92,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/titoloFragment" />
 
     <EditText
         android:id="@+id/visualizzaDatatext"
@@ -110,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/visualizzaTitoloText" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewPartecipantiAtt"
         android:layout_width="308dp"
         android:layout_height="205dp"
         android:layout_marginTop="22dp"

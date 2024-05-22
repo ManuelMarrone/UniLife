@@ -17,6 +17,12 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
     private val utenteRepo = UtenteRepo()
 
 
+    //al click di completa mette a false il value dell'utente che l'ha cliccata
+    //se tutti sono a false allora elimina l'attività automaticamente
+    fun completaAttivita()
+    {
+
+    }
 
 
 }

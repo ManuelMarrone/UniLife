@@ -12,9 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Adapter.ListaAttivitaAdapter
-import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
+import com.example.unilife.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.Adapter.RecyclerViewItemClickListener
-import com.example.unilife.Model.Attivita
 import com.example.unilife.R
 import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.databinding.FragmentListaAttivitaBinding
@@ -25,7 +24,7 @@ import com.example.unilife.databinding.FragmentListaAttivitaBinding
  * Use the [ListaAttivitaFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListaAttivitaFragment : Fragment(), RecyclerViewDeleteClickListener<Int>,RecyclerViewItemClickListener {
+class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,RecyclerViewItemClickListener {
 
     private lateinit var viewBinding: FragmentListaAttivitaBinding
     private val viewModel: ListaAttivitaViewModel by viewModels()
@@ -68,7 +67,7 @@ class ListaAttivitaFragment : Fragment(), RecyclerViewDeleteClickListener<Int>,R
         viewModel.getAttivitaByData(data)
     }
 
-    override fun onDeleteClick(position: Int) {
+    override fun onButtonClick(position: Int) {
         Log.d("Rimozione partecipanti", "posizione${position}")
         viewModel.rimuoviAttivita(position)
     }

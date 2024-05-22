@@ -12,13 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Adapter.PartecipantiAttivitaAdapter
-import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
+import com.example.unilife.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.ViewModel.AggiungiAttivitaViewModel
 import com.example.unilife.databinding.FragmentAggiungiAttivitaBinding
 import java.util.Calendar
 
 
-class AggiungiAttivitaFragment : Fragment(), RecyclerViewDeleteClickListener<String> {
+class AggiungiAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<String> {
 
     private lateinit var viewBinding: FragmentAggiungiAttivitaBinding
 
@@ -43,10 +43,7 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewDeleteClickListener<Str
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
         viewModel.partecipanti.observe(viewLifecycleOwner){mapUpdated ->
-            val listaUpdated: ArrayList<String> = ArrayList()
-            // Aggiungi tutte le chiavi della mappa all'ArrayList
-            listaUpdated.addAll(mapUpdated.keys)
-            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this ,listaUpdated)
+            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this ,mapUpdated)
         }
 
         viewBinding.aggiungiButton.setOnClickListener{aggiungiAttivita()}
@@ -87,7 +84,7 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewDeleteClickListener<Str
         fun newInstance() = AggiungiAttivitaFragment()
     }
 
-    override fun onDeleteClick(username: String) {
+    override fun onButtonClick(username: String) {
         viewModel.setChecked(username)
     }
     private fun annulla()

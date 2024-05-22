@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ListaAttivitaAdapter(val c: Context, val listener :RecyclerViewDeleteClickListener<Int>, val itemClicklistener : RecyclerViewItemClickListener, val listaAttivita:ArrayList<String>): RecyclerView.Adapter<ListaAttivitaAdapter.AttivitaViewHolder>() {
+class ListaAttivitaAdapter(val c: Context, val listener :RecyclerViewButtonClickListener<Int>, val itemClicklistener : RecyclerViewItemClickListener, val listaAttivita:ArrayList<String>): RecyclerView.Adapter<ListaAttivitaAdapter.AttivitaViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -49,7 +49,7 @@ class ListaAttivitaAdapter(val c: Context, val listener :RecyclerViewDeleteClick
         private fun eliminaItem()
         {
             Log.d("posizione", " adap${adapterPosition}")
-            listener.onDeleteClick(adapterPosition)
+            listener.onButtonClick(adapterPosition)
         }
 
 

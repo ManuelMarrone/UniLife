@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Adapter.ListaPartecipantiAdapter
-import com.example.unilife.Adapter.RecyclerViewDeleteClickListener
+import com.example.unilife.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.InvitaViewModel
 import com.example.unilife.databinding.FragmentInvitaBinding
@@ -22,7 +22,7 @@ manca il controllo se il partecipante da eliminare è coinvolto in qualche attiv
  nessuna idea di come fare
 **/
 
-class InvitaFragment : Fragment(), RecyclerViewDeleteClickListener<Int> {
+class InvitaFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
 
     private lateinit var binding: FragmentInvitaBinding
     private val viewModel: InvitaViewModel by viewModels()
@@ -103,7 +103,7 @@ class InvitaFragment : Fragment(), RecyclerViewDeleteClickListener<Int> {
         viewModel.creaGruppo()
     }
 
-    override fun onDeleteClick(position: Int) {
+    override fun onButtonClick(position: Int) {
         Log.d("Rimozione partecipanti", "posizione${position}")
         viewModel.rimuoviPartecipante(position)
     }

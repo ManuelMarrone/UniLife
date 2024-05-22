@@ -8,7 +8,10 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewDeleteClickListener<String>, val partecipanti:ArrayList<String>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
+class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewButtonClickListener<String>, val partecipanti:Map<String, Boolean>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
+
+
+    private val keys = partecipanti.keys.toList()
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -20,7 +23,11 @@ class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewDelet
     //assign values to the views we created in the recycler_view_row layout file
     //based on the position of the recycler view
     override fun onBindViewHolder(holder: PartecipantiViewHolder, position: Int) {
-        holder.text.text = partecipanti[position]
+        val key = keys[position]
+        val value = partecipanti[key] ?: false
+
+        holder.text.text = key
+        holder.text.isChecked = value
     }
 
     //the number of items u want displayed
@@ -37,7 +44,7 @@ class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewDelet
             text.setOnClickListener {
                 val posizione = adapterPosition
                 if (posizione != RecyclerView.NO_POSITION) {
-                    val username = partecipanti[posizione]
+                    val username = keys[posizione]
                     onItemClick(username)
                 }
             }
@@ -46,7 +53,7 @@ class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewDelet
 
         private fun onItemClick(username:String)
         {
-            listener.onDeleteClick(username)
+            listener.onButtonClick(username)
         }
 
     }

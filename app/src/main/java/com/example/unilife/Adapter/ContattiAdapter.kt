@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ContattiAdapter(val listener :RecyclerViewDeleteClickListener<String>, val contatti:MutableMap<String,String>): RecyclerView.Adapter<ContattiAdapter.ContattiViewHolder>() {
+class ContattiAdapter(val listener :RecyclerViewButtonClickListener<String>, val contatti:MutableMap<String,String>): RecyclerView.Adapter<ContattiAdapter.ContattiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -51,7 +51,7 @@ class ContattiAdapter(val listener :RecyclerViewDeleteClickListener<String>, val
 
 
         private fun eliminaItem(chiave: String) {
-            listener.onDeleteClick(chiave)
+            listener.onButtonClick(chiave)
         }
 
 

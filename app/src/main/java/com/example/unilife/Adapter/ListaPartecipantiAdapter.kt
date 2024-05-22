@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewDeleteClickListener<Int>, val partecipanti:ArrayList<String>): RecyclerView.Adapter<ListaPartecipantiAdapter.PartecipantiViewHolder>() {
+class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewButtonClickListener<Int>, val partecipanti:ArrayList<String>): RecyclerView.Adapter<ListaPartecipantiAdapter.PartecipantiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)
@@ -49,7 +49,7 @@ class ListaPartecipantiAdapter(val c:Context, val listener :RecyclerViewDeleteCl
                 .setMessage("Sicuro di voler eliminare questo partecipante?")
                 .setPositiveButton("Sì"){
                     dialog,_->
-                    listener.onDeleteClick(adapterPosition)
+                    listener.onButtonClick(adapterPosition)
                     notifyDataSetChanged()
                     dialog.dismiss()
                 }
