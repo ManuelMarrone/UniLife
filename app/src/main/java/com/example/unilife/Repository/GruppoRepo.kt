@@ -46,6 +46,16 @@ class GruppoRepo {
     }
 
 
+    fun modificaAttivita(idAttivita: String , attivita: Attivita, idGruppo: String): Task<Void> {
+
+        val gruppoReference: DocumentReference =  dbSettings.firestore.collection("gruppi").document(idGruppo)
+        val attivitaReference = gruppoReference.collection("attivita").document(idAttivita)
+
+        // Aggiorna i campi dell'attività utilizzando il metodo "set" o "update"
+        return attivitaReference.set(attivita, SetOptions.merge())
+    }
+
+
     fun aggiungiElementoListaSpesa(nome: String, idGruppo: String): Task<Void> {
         val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoReference.update("listaSpesa", arrayUnion(nome))
@@ -97,6 +107,12 @@ class GruppoRepo {
     fun rimuoviPartecipante(username: String, idGruppo: String): Task<Void> {
         val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoReference.update("partecipanti", arrayRemove(username))
+    }
+
+    fun rimuoviPartecipanteAttivita(idAttivita : String, idGruppo: String, partecipantiAttivita: Map<String, Boolean>): Task<Void> {
+        val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
+        val attivitaDoc = gruppoDoc.collection("attivita").document(idAttivita)
+        return attivitaDoc.update("partecipanti", partecipantiAttivita)
     }
 
     fun getGruppo(idGruppo: String): DocumentReference {

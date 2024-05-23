@@ -1,5 +1,6 @@
 package com.example.unilife.ViewModel
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -7,22 +8,111 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.unilife.Model.Attivita
+import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
 import com.example.unilife.R
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
+import com.google.protobuf.ListValue
 
 class VisualizzaModificaAttivitaViewModel:ViewModel() {
     private val gruppoRepo = GruppoRepo()
     private val utenteRepo = UtenteRepo()
 
 
-    //al click di completa mette a false il value dell'utente che l'ha cliccata
-    //se tutti sono a false allora elimina l'attività automaticamente
-    fun completaAttivita()
-    {
+    private var _partecipanti = MutableLiveData<MutableMap<String,Boolean>>()
+    val partecipanti: LiveData<MutableMap<String,Boolean>> get() = _partecipanti
 
+    private var _isPartecipante = MutableLiveData<Boolean>()
+    val isPartecipante : LiveData<Boolean> get() = _isPartecipante
+
+    private var _isValid = MutableLiveData<Boolean>()
+    val isValid: LiveData<Boolean> get() = _isValid
+
+    fun setPartecipantiAttività(partecipantiAttivita:Map<String, Boolean>)
+    {
+        val newMap = partecipantiAttivita as MutableMap<String,Boolean>
+
+        // Aggiornare il valore di _partecipanti
+        _partecipanti.value = newMap
     }
 
 
+    //al click di completa mette a false il value dell'utente che l'ha cliccata
+    //se tutti sono a false allora elimina l'attività automaticamente
+    fun completaAttivita(idAttivita:String, partecipantiAttivita:MutableMap<String, Boolean>)
+    {
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            val idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+            if (idGruppo != null) {
+                utenteRepo.getUtente().addOnSuccessListener { utente ->
+                    val usernameUtente = utente.toObject(Utente::class.java)?.username
+                    partecipantiAttivita[usernameUtente.toString()] = false
+                    Log.d("attivitaPArt", "idAttivita ${idAttivita} idGruppo ${idGruppo} partecipanti ${partecipantiAttivita}")
+                    gruppoRepo.rimuoviPartecipanteAttivita(
+                        idAttivita,
+                        idGruppo!!,
+                        partecipantiAttivita
+                    ).addOnFailureListener{e->
+                        Log.d("attivitaPart" , "failed ${e}")
+                    }
+                    partecipantiAttivita[usernameUtente.toString()] = false
+                    if (partecipantiAttivita.values.all { it == false })
+                    {
+                        gruppoRepo.rimuoviAttivita(idAttivita, idGruppo)
+                    }
+                }
+
+            }
+        }
+    }
+
+    fun isPartecipante (partecipantiAttivita:Map<String, Boolean>)
+    {
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            val idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+            if (idGruppo != null) { }
+                utenteRepo.getUtente().addOnSuccessListener { utente ->
+                    val usernameUtente = utente.toObject(Utente::class.java)?.username
+                    if (partecipantiAttivita.containsKey(usernameUtente)) {
+                        // Ottieni il valore booleano associato alla chiave
+                        val stato = partecipantiAttivita[usernameUtente]
+                        // Verifica se il valore booleano è true
+                        if (stato == true) {
+                            _isPartecipante.value = true
+                        } else {
+                            _isPartecipante.value = false
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+    fun setChecked(username: String)
+    {
+        val valore = !(_partecipanti.value?.get(username))!!
+        // Imposta nuovamente la mappa modificata all'interno di _partecipanti
+        _partecipanti.value?.set(username, valore)
+    }
+
+    fun validaInput()
+    {
+        _isValid.value = _partecipanti.value!!.values.any { it == true }
+    }
+
+    fun salvaModifica(idAttivita: String, titolo: String, data: String) {
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            val idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+            if (idGruppo != null) {
+                    val attivita = Attivita(titolo, data, _partecipanti.value!!)
+                    gruppoRepo.modificaAttivita(idAttivita,attivita, idGruppo!!).addOnFailureListener { e ->
+                        Log.e("attivita", "Failed adding element ${e}")
+                    }
+
+                }
+        }
+
+    }
 }

@@ -75,12 +75,14 @@ class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,R
     override fun onItemClickListener(posizione: Int) {
         viewModel.visualizzaItem(posizione)
         viewModel.attivita.observe(viewLifecycleOwner) { attivita ->
-            Log.d("VisualizzaAttivita", "AttivitainLista ${attivita.keys}")
-            Log.d("VisualizzaAttivita", "AttivitainLista ${attivita.values}")
+            val chiave = attivita.keys.first()
+            val attivita = attivita[chiave]
+            Log.d("VisualizzaAttivita", "AttivitainLista ${chiave}")
+            Log.d("VisualizzaAttivita", "AttivitainLista ${attivita}")
             val bundle = Bundle().apply {
-                putSerializable("ATTIVITA", ArrayList(attivita.values)) // Converte l'HashMap in ArrayList e la mette nel Bundle
+                putSerializable("ATTIVITA", attivita) // Converte l'HashMap in ArrayList e la mette nel Bundle
                 // Aggiungi altri dati se necessario
-                putSerializable("CHIAVE", ArrayList(attivita.keys))
+                putSerializable("CHIAVE", chiave)
             }
             val fragment = VisualizzaModificaAttivitaFragment.newInstance()
             fragment.arguments = bundle
@@ -94,7 +96,7 @@ class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,R
         // Inizia una transazione per sostituire il fragment
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView3, fragment)
-        fragmentTransaction.addToBackStack(null) // Aggiungi la transazione allo stack per tornare indietro
+        fragmentTransaction.addToBackStack("lista") // Aggiungi la transazione allo stack per tornare indietro
         fragmentTransaction.commit()
 
     }

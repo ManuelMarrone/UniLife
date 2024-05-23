@@ -25,7 +25,7 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Str
     private lateinit var recyclerView: RecyclerView
     private val viewModel: AggiungiAttivitaViewModel by viewModels()
 
-    var data :String = ""
+    private var data :String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,5 +1,7 @@
 package com.example.unilife.View
 
+import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -26,6 +28,7 @@ import com.example.unilife.ViewModel.VisualizzaModificaAttivitaViewModel
 import com.example.unilife.databinding.FragmentCalendarioBinding
 import com.example.unilife.databinding.FragmentVisualizzaModificaAttivitaBinding
 import com.example.unilife.databinding.FragmentVisualizzaSpesaBinding
+import java.util.Calendar
 
 class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<String> {
 
@@ -34,7 +37,10 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
     private val viewModel: VisualizzaModificaAttivitaViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var chiave:String
+    private lateinit var partecipantiAttivita:Map<String, Boolean>
 
+    private var data :String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +57,11 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
         recyclerView = viewBinding.recyclerViewPartecipantiAtt
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
+        viewModel.partecipanti.observe(viewLifecycleOwner){mapUpdated ->
+            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this ,mapUpdated)
+        }
+
+
         setUIVisualizzazione()
 
         viewBinding.completaButton.setOnClickListener{onCompletaClick()}
@@ -58,22 +69,48 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
 
         viewBinding.annulaBtn.setOnClickListener {
             // Torna al fragment precedente
-            parentFragmentManager.popBackStack()
+            parentFragmentManager.popBackStack("lista", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+
+        viewBinding.completaButton.setOnClickListener{onCompletaClick()}
+        viewBinding.salvabutton.setOnClickListener{onSalvaClick()}
+
+        val dataTxt = viewBinding.visualizzaDatatext
+
+        dataTxt.setOnClickListener {
+
+            val c = Calendar.getInstance()
+
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                // on below line we are passing context.
+                requireContext(),
+                { view, year, monthOfYear, dayOfMonth ->
+                    // on below line we are setting
+                    // date to our edit text.
+                    data = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                    dataTxt.setText(data)
+                },
+                year,
+                month,
+                day
+            )
+            datePickerDialog.show()
         }
     }
 
-    private fun shouldHandleBackPress(): Boolean {
-        // Logica per determinare se gestire il back press
-        // Restituisci true se gestisci il back press, altrimenti false
-        return true
+
+    override fun onButtonClick(username: String) {
+        viewModel.setChecked(username)
     }
-
-
 
     private fun onCompletaClick()
     {
-        viewModel.completaAttivita()
-    }
+        viewModel.completaAttivita(chiave, partecipantiAttivita as MutableMap<String, Boolean>)
+        parentFragmentManager.popBackStack("lista", FragmentManager.POP_BACK_STACK_INCLUSIVE)    }
 
     private fun setUIModifica()
     {
@@ -97,22 +134,24 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
     {
         val bundle = arguments
         if (bundle != null) {
-            val attivitaList: ArrayList<Attivita>? = bundle.getSerializable("ATTIVITA") as? ArrayList<Attivita>
-            val chiave: ArrayList<String>? = bundle.getSerializable("CHIAVE") as? ArrayList<String>
+            val attivita: Attivita = bundle.getSerializable("ATTIVITA") as Attivita
+            chiave = bundle.getSerializable("CHIAVE") as String
 
-            if (attivitaList != null && attivitaList.isNotEmpty()) {
-                val attivitaObj: Attivita = attivitaList[0]
-                Log.d("VisualizzaAttivita", "visualizza-modifica ${attivitaList} e ${chiave}")
+            if (attivita != null) {
+                Log.d("VisualizzaAttivita", "visualizza-modifica ${attivita} e ${chiave}")
 
-                val titolo: String = attivitaObj.titolo
+                val titolo: String = attivita.titolo
                 viewBinding.visualizzaTitoloText.setText(titolo, TextView.BufferType.EDITABLE)
                 viewBinding.visualizzaTitoloText.isEnabled = false
 
-                val data: String = attivitaObj.data
+                data = attivita.data
                 viewBinding.visualizzaDatatext.setText(data, TextView.BufferType.EDITABLE)
                 viewBinding.visualizzaDatatext.isEnabled = false
 
-                recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this ,attivitaObj.partecipanti)
+                partecipantiAttivita = attivita.partecipanti
+
+                viewModel.setPartecipantiAttività(partecipantiAttivita)
+
                 // Disabilitare le CheckBox dopo che l'adapter è impostato
                 recyclerView.viewTreeObserver.addOnGlobalLayoutListener {
                     for (i in 0 until recyclerView.childCount) {
@@ -121,16 +160,57 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
                         checkBox.isEnabled = false
                     }
                 }
+
+
+
+                viewBinding.completaButton.visibility = View.VISIBLE
+                viewBinding.salvabutton.visibility =View.GONE
+
+                viewModel.isPartecipante(partecipantiAttivita)
+                viewModel.isPartecipante.observe(viewLifecycleOwner) { isPartecipante ->
+
+                    if (isPartecipante == true) {
+                        viewBinding.completaButton.isEnabled = true
+                    } else {
+                        viewBinding.completaButton.isEnabled = false
+                    }
+                }
             }
 
 
         }
-        viewBinding.completaButton.visibility =View.VISIBLE
-        viewBinding.salvabutton.visibility =View.GONE
+
 
     }
-    override fun onButtonClick(username: String) {
-        //viewModel.setChecked(username)
+    private fun onSalvaClick()
+    {    //al click di salva modifica l'attività e la salva nel db con update
+        viewModel.validaInput()
+
+        //osserva se il codice è valido
+        viewModel.isValid.observe(viewLifecycleOwner) { isInputValid ->
+
+            if (isInputValid) {
+                val titolo = viewBinding.visualizzaTitoloText.text.toString()
+
+                if (data.isNotEmpty()) {
+                    if (titolo.isNotEmpty()) {
+                        viewModel.salvaModifica(chiave, titolo, data)
+                        parentFragmentManager.popBackStack("lista", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                    } else {
+                        viewBinding.visualizzaTitoloText.setError("Non lasciare vuoto il campo")
+                    }
+                } else {
+                    viewBinding.visualizzaDatatext.setError("Inserisci una data")
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Seleziona almeno un coinquilino",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
 
@@ -140,7 +220,7 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
 
     //funzione che aggiorna la lista osservabile di nomi con cui riempire la recyclerView
 
-    //al click di salva modifica l'attività e la salva nel db con update
+
 
 
 }
