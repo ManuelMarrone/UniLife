@@ -1,4 +1,4 @@
-package com.example.unilife.Adapter
+package com.example.unilife.View.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ContattiAdapter(val listener :RecyclerViewButtonClickListener<String>, val contatti:MutableMap<String,String>): RecyclerView.Adapter<ContattiAdapter.ContattiViewHolder>() {
+class ContattiAdapter(val listener : RecyclerViewButtonClickListener<String>, val contatti:MutableMap<String,String>): RecyclerView.Adapter<ContattiAdapter.ContattiViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)

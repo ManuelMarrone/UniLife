@@ -1,4 +1,4 @@
-package com.example.unilife.Adapter
+package com.example.unilife.View.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class PartecipantiAttivitaAdapter(val c:Context, val listener :RecyclerViewButtonClickListener<String>, val partecipanti:Map<String, Boolean>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
+class PartecipantiAttivitaAdapter(val c:Context, val listener : RecyclerViewButtonClickListener<String>, val partecipanti:Map<String, Boolean>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
 
 
     private val keys = partecipanti.keys.toList()

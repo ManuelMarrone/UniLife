@@ -1,19 +1,20 @@
-package com.example.unilife.View
+package com.example.unilife.View.Fragment
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Adapter.ListaSpesaAdapter
-import com.example.unilife.Adapter.RecyclerViewButtonClickListener
+import com.example.unilife.View.Adapter.ListaSpesaAdapter
+import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.R
+import com.example.unilife.View.Activity.ArchivioActivity
 import com.example.unilife.ViewModel.HomeViewModel
 import com.example.unilife.databinding.FragmentHomeBinding
 
@@ -48,7 +49,7 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
         viewModel.listaSpesa.observe(viewLifecycleOwner){listaUpdated ->
-            recyclerView.adapter = ListaSpesaAdapter(this ,listaUpdated)
+            recyclerView.adapter = ListaSpesaAdapter(this, listaUpdated)
         }
     }
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#817EFF"
     android:backgroundTint="@color/viola"
-    tools:context=".View.VisualizzaSpesaFragment" >
+    tools:context=".View.Fragment.VisualizzaSpesaFragment" >
 
     <ImageButton
         android:id="@+id/eliminaButton"

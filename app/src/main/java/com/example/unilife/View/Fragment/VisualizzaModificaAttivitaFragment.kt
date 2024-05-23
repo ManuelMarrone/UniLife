@@ -1,33 +1,25 @@
-package com.example.unilife.View
+package com.example.unilife.View.Fragment
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Adapter.PartecipantiAttivitaAdapter
-import com.example.unilife.Adapter.RecyclerViewButtonClickListener
+import com.example.unilife.View.Adapter.PartecipantiAttivitaAdapter
+import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.Model.Attivita
-import com.example.unilife.Model.Utente
 import com.example.unilife.R
-import com.example.unilife.ViewModel.AggiungiAttivitaViewModel
-import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.ViewModel.VisualizzaModificaAttivitaViewModel
-import com.example.unilife.databinding.FragmentCalendarioBinding
 import com.example.unilife.databinding.FragmentVisualizzaModificaAttivitaBinding
-import com.example.unilife.databinding.FragmentVisualizzaSpesaBinding
 import java.util.Calendar
 
 class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<String> {
@@ -58,7 +50,7 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
         viewModel.partecipanti.observe(viewLifecycleOwner){mapUpdated ->
-            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this ,mapUpdated)
+            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this, mapUpdated)
         }
 
 
@@ -114,8 +106,8 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
 
     private fun setUIModifica()
     {
-        viewBinding.completaButton.visibility =View.GONE
-        viewBinding.salvabutton.visibility =View.VISIBLE
+        viewBinding.completaButton.visibility = View.GONE
+        viewBinding.salvabutton.visibility = View.VISIBLE
         viewBinding.titoloFragment.text = "Modifica Attività"
         viewBinding.visualizzaTitoloText.isEnabled = true
         viewBinding.visualizzaDatatext.isEnabled = true
@@ -164,7 +156,7 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
 
 
                 viewBinding.completaButton.visibility = View.VISIBLE
-                viewBinding.salvabutton.visibility =View.GONE
+                viewBinding.salvabutton.visibility = View.GONE
 
                 viewModel.isPartecipante(partecipantiAttivita)
                 viewModel.isPartecipante.observe(viewLifecycleOwner) { isPartecipante ->
@@ -195,7 +187,9 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
                 if (data.isNotEmpty()) {
                     if (titolo.isNotEmpty()) {
                         viewModel.salvaModifica(chiave, titolo, data)
-                        parentFragmentManager.popBackStack("lista", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                        parentFragmentManager.popBackStack("lista",
+                            FragmentManager.POP_BACK_STACK_INCLUSIVE
+                        )
 
                     } else {
                         viewBinding.visualizzaTitoloText.setError("Non lasciare vuoto il campo")

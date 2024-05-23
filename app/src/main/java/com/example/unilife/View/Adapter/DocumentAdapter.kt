@@ -1,4 +1,4 @@
-package com.example.unilife.Adapter
+package com.example.unilife.View.Adapter
 
 import android.util.Log
 import android.view.LayoutInflater

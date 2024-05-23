@@ -1,30 +1,30 @@
-package com.example.unilife.View
+package com.example.unilife.View.Fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Adapter.ListaAttivitaAdapter
-import com.example.unilife.Adapter.RecyclerViewButtonClickListener
-import com.example.unilife.Adapter.RecyclerViewItemClickListener
+import com.example.unilife.View.Adapter.ListaAttivitaAdapter
+import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
+import com.example.unilife.View.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.R
 import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.databinding.FragmentListaAttivitaBinding
-
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ListaAttivitaFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,RecyclerViewItemClickListener {
+class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
+    RecyclerViewItemClickListener {
 
     private lateinit var viewBinding: FragmentListaAttivitaBinding
     private val viewModel: ListaAttivitaViewModel by viewModels()
@@ -52,8 +52,8 @@ class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,R
         fetchAttivita(data!!)
 
         viewModel.listaAttivita.observe(viewLifecycleOwner){listaUpdated ->
-            Log.d("listaAtivita" , "Recycler ${listaUpdated}")
-            recyclerView.adapter = ListaAttivitaAdapter(requireContext(),this ,this, listaUpdated)
+            Log.d("listaAtivita", "Recycler ${listaUpdated}")
+            recyclerView.adapter = ListaAttivitaAdapter(requireContext(), this, this, listaUpdated)
         }
     }
 

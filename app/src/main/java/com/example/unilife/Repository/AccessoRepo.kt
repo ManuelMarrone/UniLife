@@ -1,11 +1,7 @@
 package com.example.unilife.Repository
 
 import android.content.ContentValues
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import com.example.unilife.View.MainActivity
 import com.example.unilife.databinding.ActivityAccessoBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers

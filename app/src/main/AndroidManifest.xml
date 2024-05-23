@@ -18,26 +18,26 @@
         android:theme="@style/Theme.UniFile"
         tools:targetApi="31">
         <activity
-            android:name=".View.ArchivioActivity"
+            android:name=".View.Activity.ArchivioActivity"
             android:exported="false" />
         <activity
-            android:name=".View.AttivitaActivity"
+            android:name=".View.Activity.AttivitaActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.SpesaActivity"
+            android:name=".View.Activity.SpesaActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.MainActivity"
+            android:name=".View.Activity.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.RegistrazioneActivity"
+            android:name=".View.Activity.RegistrazioneActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.AccessoActivity"
+            android:name=".View.Activity.AccessoActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

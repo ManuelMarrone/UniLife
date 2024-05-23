@@ -1,16 +1,11 @@
 package com.example.unilife.ViewModel
 
 import android.content.ContentValues
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unilife.Repository.AccessoRepo
 import com.example.unilife.StateUI.StatoRegistrazioneUi
-import com.example.unilife.View.MainActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

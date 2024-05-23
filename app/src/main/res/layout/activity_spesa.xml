@@ -7,11 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/viola"
-        tools:context=".View.SpesaActivity">
+        tools:context=".View.Activity.SpesaActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView2"
-            android:name="com.example.unilife.View.ModificaAggiungiSpesaFragment"
+            android:name="com.example.unilife.View.Fragment.ModificaAggiungiSpesaFragment"
             android:layout_width="395dp"
             android:layout_height="707dp"
             android:layout_marginStart="85dp"

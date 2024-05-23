@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#817EFF"
-    tools:context=".View.InvitaFragment" >
+    tools:context=".View.Fragment.InvitaFragment" >
 
     <TextView
         android:id="@+id/textUnilife"

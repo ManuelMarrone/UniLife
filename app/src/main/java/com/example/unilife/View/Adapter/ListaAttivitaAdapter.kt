@@ -1,4 +1,4 @@
-package com.example.unilife.Adapter
+package com.example.unilife.View.Adapter
 
 import android.content.Context
 import android.util.Log
@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class ListaAttivitaAdapter(val c: Context, val listener :RecyclerViewButtonClickListener<Int>, val itemClicklistener : RecyclerViewItemClickListener, val listaAttivita:ArrayList<String>): RecyclerView.Adapter<ListaAttivitaAdapter.AttivitaViewHolder>() {
+class ListaAttivitaAdapter(val c: Context, val listener : RecyclerViewButtonClickListener<Int>, val itemClicklistener : RecyclerViewItemClickListener, val listaAttivita:ArrayList<String>): RecyclerView.Adapter<ListaAttivitaAdapter.AttivitaViewHolder>() {
 
 
     // This is where u inflate the layout(giving a look to out rows)

@@ -1,18 +1,18 @@
-package com.example.unilife.View
+package com.example.unilife.View.Fragment
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.Adapter.ListaPartecipantiAdapter
-import com.example.unilife.Adapter.RecyclerViewButtonClickListener
+import com.example.unilife.View.Adapter.ListaPartecipantiAdapter
+import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.InvitaViewModel
 import com.example.unilife.databinding.FragmentInvitaBinding
@@ -50,7 +50,7 @@ class InvitaFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
         viewModel.partecipanti.observe(viewLifecycleOwner){listaUpdated ->
-            recyclerView.adapter = ListaPartecipantiAdapter(requireContext(),this ,listaUpdated)
+            recyclerView.adapter = ListaPartecipantiAdapter(requireContext(), this, listaUpdated)
         }
 
         viewModel.idGruppo.observe(viewLifecycleOwner){idGruppo->
@@ -75,12 +75,12 @@ class InvitaFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
     {
         if (id != null) {
             binding.creaBtn.visibility = View.GONE
-            binding.destEmail.visibility =View.VISIBLE
+            binding.destEmail.visibility = View.VISIBLE
             binding.invitaBtn.visibility = View.VISIBLE
         }
         else
         {
-            binding.destEmail.visibility =View.GONE
+            binding.destEmail.visibility = View.GONE
             binding.creaBtn.visibility = View.VISIBLE
             binding.invitaBtn.visibility = View.GONE
         }

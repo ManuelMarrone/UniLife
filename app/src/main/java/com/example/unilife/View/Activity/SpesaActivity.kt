@@ -1,4 +1,4 @@
-package com.example.unilife.View
+package com.example.unilife.View.Activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

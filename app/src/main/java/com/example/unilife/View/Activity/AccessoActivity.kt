@@ -1,11 +1,8 @@
-package com.example.unilife.View
+package com.example.unilife.View.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import com.example.unilife.R
 import com.example.unilife.databinding.ActivityAccessoBinding
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast

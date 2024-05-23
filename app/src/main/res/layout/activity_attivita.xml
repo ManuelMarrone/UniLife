@@ -7,11 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/viola"
-        tools:context=".View.AttivitaActivity">
+        tools:context=".View.Activity.AttivitaActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView3"
-            android:name="com.example.unilife.View.VisualizzaModificaAttivitaFragment"
+            android:name="com.example.unilife.View.Fragment.VisualizzaModificaAttivitaFragment"
             android:layout_width="402dp"
             android:layout_height="719dp"
             android:layout_marginStart="5dp"

@@ -1,4 +1,4 @@
-package com.example.unilife.View
+package com.example.unilife.View.Activity
 
 import android.Manifest
 import android.content.Context
@@ -19,21 +19,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.unilife.Model.Documento
 import com.example.unilife.R
 //import com.example.unilife.Repository.ArchivioRepo
 import com.example.unilife.Utils.showSnackbar
 import com.example.unilife.ViewModel.ArchivioViewModel
 //import com.example.unilife.ViewModel.ArchivioViewModel
-import com.example.unilife.databinding.ActivityAccessoBinding
 import com.example.unilife.databinding.ActivityArchivioBinding
-import com.example.unilife.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
-import com.google.androidgamesdk.gametextinput.Settings
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import java.util.Date
 
 const val _REQUEST_PERMISSION_STORAGE = 0
 class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissionsResultCallback {

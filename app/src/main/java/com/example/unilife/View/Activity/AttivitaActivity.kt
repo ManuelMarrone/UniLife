@@ -1,14 +1,13 @@
-package com.example.unilife.View
+package com.example.unilife.View.Activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.unilife.R
+import com.example.unilife.View.Fragment.AggiungiAttivitaFragment
+import com.example.unilife.View.Fragment.ListaAttivitaFragment
 import com.example.unilife.databinding.ActivityAttivitaBinding
-import com.example.unilife.databinding.ActivityMainBinding
 
 class AttivitaActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityAttivitaBinding

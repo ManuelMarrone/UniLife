@@ -1,21 +1,16 @@
-package com.example.unilife.View
+package com.example.unilife.View.Fragment
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import com.example.unilife.Adapter.ListaPartecipantiAdapter
 import com.example.unilife.R
 import com.example.unilife.ViewModel.HomeNoGruppiViewModel
-import com.example.unilife.ViewModel.InvitaViewModel
-import com.example.unilife.databinding.FragmentHomeBinding
 import com.example.unilife.databinding.FragmentHomeNoGruppiBinding
-
 
 class HomeNoGruppiFragment : Fragment() {
     private lateinit var viewBinding: FragmentHomeNoGruppiBinding

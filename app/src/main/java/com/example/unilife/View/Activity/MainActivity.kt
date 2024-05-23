@@ -1,4 +1,4 @@
-package com.example.unilife.View
+package com.example.unilife.View.Activity
 
 import android.os.Bundle
 import android.util.Log
@@ -7,9 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.example.unilife.Adapter.ListaSpesaAdapter
 import com.example.unilife.R
-import com.example.unilife.ViewModel.AccessoViewModel
+import com.example.unilife.View.Fragment.CalendarioFragment
+import com.example.unilife.View.Fragment.ContattiFragment
+import com.example.unilife.View.Fragment.HomeFragment
+import com.example.unilife.View.Fragment.HomeNoGruppiFragment
+import com.example.unilife.View.Fragment.InvitaFragment
+import com.example.unilife.View.Fragment.SpeseFragment
 import com.example.unilife.ViewModel.MainViewModel
 import com.example.unilife.databinding.ActivityMainBinding
 
