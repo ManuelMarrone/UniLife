@@ -73,6 +73,7 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
         }
 
 
+        binding.downloadButton.setOnClickListener { clickDownloadButton() }
 
         binding.uploadButton.setOnClickListener {
             // Handle button click
@@ -191,6 +192,12 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
 
     fun Context.makeToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(this, message, duration).show()
+    }
+
+
+    fun clickDownloadButton(){
+        val intent = Intent(this, AllPdfActivity::class.java)
+        startActivity(intent)
     }
 
 

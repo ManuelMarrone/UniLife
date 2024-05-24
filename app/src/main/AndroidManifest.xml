@@ -20,6 +20,9 @@
         <activity
             android:name=".View.Activity.ArchivioActivity"
             android:exported="false" />
+        <activity android:name=".View.Activity.AllPdfActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".View.Activity.AttivitaActivity"
             android:exported="false"
