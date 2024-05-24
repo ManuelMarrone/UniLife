@@ -25,6 +25,7 @@ class GruppoRepo {
         val partecipanti = mutableListOf<String>(username)
         val listaSpesa = mutableListOf<String>()
         val contatti = mutableMapOf<String,String>()
+        val documenti = mutableMapOf<String, String>()
         val gruppo = Gruppo(partecipanti = partecipanti, listaSpesa, contatti)
         Log.d("crea gruppo inf", "repo")
 

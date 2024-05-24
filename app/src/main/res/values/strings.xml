@@ -79,4 +79,5 @@
     <string name="titolo_attivit">Titolo Attività</string>
     <string name="agg">Aggiungi</string>
     <string name="clicca_sul_calendario_per_visualizzare_le_attivit_del_giorno">Clicca sul calendario per visualizzare le attività del giorno</string>
+    <string name="no_pdf_file_selected_yet">no Pdf file selected</string>
 </resources>
