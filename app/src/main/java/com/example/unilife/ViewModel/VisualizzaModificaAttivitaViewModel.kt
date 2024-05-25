@@ -29,6 +29,18 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
     private var _isValid = MutableLiveData<Boolean>()
     val isValid: LiveData<Boolean> get() = _isValid
 
+    private var idGruppo : String? = null
+
+    init {
+        getIdGruppoUtente()
+    }
+    fun getIdGruppoUtente()
+    {
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+        }
+    }
+
     fun setPartecipantiAttività(partecipantiAttivita:Map<String, Boolean>)
     {
         val newMap = partecipantiAttivita as MutableMap<String,Boolean>
@@ -42,13 +54,10 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
     //se tutti sono a false allora elimina l'attività automaticamente
     fun completaAttivita(idAttivita:String, partecipantiAttivita:MutableMap<String, Boolean>)
     {
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
-            val idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             if (idGruppo != null) {
                 utenteRepo.getUtente().addOnSuccessListener { utente ->
                     val usernameUtente = utente.toObject(Utente::class.java)?.username
                     partecipantiAttivita[usernameUtente.toString()] = false
-                    Log.d("attivitaPArt", "idAttivita ${idAttivita} idGruppo ${idGruppo} partecipanti ${partecipantiAttivita}")
                     gruppoRepo.rimuoviPartecipanteAttivita(
                         idAttivita,
                         idGruppo!!,
@@ -56,37 +65,27 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
                     ).addOnFailureListener{e->
                         Log.d("attivitaPart" , "failed ${e}")
                     }
-                    partecipantiAttivita[usernameUtente.toString()] = false
                     if (partecipantiAttivita.values.all { it == false })
                     {
-                        gruppoRepo.rimuoviAttivita(idAttivita, idGruppo)
+                        gruppoRepo.rimuoviAttivita(idAttivita, idGruppo!!)
                     }
                 }
 
             }
-        }
     }
 
     fun isPartecipante (partecipantiAttivita:Map<String, Boolean>)
     {
         utenteRepo.getUtente().addOnSuccessListener { utente ->
-            val idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
-            if (idGruppo != null) { }
-                utenteRepo.getUtente().addOnSuccessListener { utente ->
-                    val usernameUtente = utente.toObject(Utente::class.java)?.username
-                    if (partecipantiAttivita.containsKey(usernameUtente)) {
-                        // Ottieni il valore booleano associato alla chiave
-                        val stato = partecipantiAttivita[usernameUtente]
-                        // Verifica se il valore booleano è true
-                        if (stato == true) {
-                            _isPartecipante.value = true
-                        } else {
-                            _isPartecipante.value = false
-                        }
-                    }
-                }
+            val usernameUtente = utente.toObject(Utente::class.java)?.username
+            if (partecipantiAttivita.containsKey(usernameUtente)) {
+                //ottieni il valore booleano associato alla chiave
+                val stato = partecipantiAttivita[usernameUtente]
+                //verifica se il valore booleano è true
+                _isPartecipante.value = stato == true
             }
         }
+    }
 
 
 
@@ -103,8 +102,6 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
     }
 
     fun salvaModifica(idAttivita: String, titolo: String, data: String) {
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
-            val idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             if (idGruppo != null) {
                     val attivita = Attivita(titolo, data, _partecipanti.value!!)
                     gruppoRepo.modificaAttivita(idAttivita,attivita, idGruppo!!).addOnFailureListener { e ->
@@ -112,7 +109,6 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
                     }
 
                 }
-        }
 
     }
 }
