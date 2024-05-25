@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viola"
+    android:background="@drawable/background"
     tools:context=".View.Fragment.ListaAttivitaFragment" >
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_marginStart="38dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="38dp"
-        android:background="@color/verdone"
+        android:background="#6B81C6BA"
         android:backgroundTint="@color/verdone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +41,6 @@
         android:layout_marginStart="38dp"
         android:layout_marginTop="140dp"
         android:layout_marginEnd="203dp"
-        android:background="@color/viola"
-        android:backgroundTint="@color/viola"
         android:textColor="#000000"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"

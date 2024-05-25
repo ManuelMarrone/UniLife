@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#817EFF"
+    android:background="@drawable/background"
     android:foregroundTint="#000000"
     tools:context=".View.Activity.RegistrazioneActivity">
 
@@ -12,8 +12,8 @@
         android:id="@+id/toolbar"
         android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:backgroundTint="#5FADE6"
+        android:background="@color/white"
+        android:backgroundTint="@color/bluScuro"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         app:title="Registrazione"
         app:titleMarginStart="135dp"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
-        app:titleTextColor="#000000" />
+        app:titleTextColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/textView"
@@ -159,26 +159,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="84dp"
-        android:backgroundTint="#6D91EAC5"
+        android:backgroundTint="#1082D5"
         android:text="@string/registrati"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFF1F1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/loginText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/loginText"
-        android:text="Already registered? Login"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:textColor="@color/red"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:text="Already registered? Login"
+        android:textColor="@color/verdeacqua"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/registrazioneButton"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registrazioneButton" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

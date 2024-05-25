@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viola"
+    android:background="@drawable/background"
     tools:context=".View.Fragment.HomeFragment" >
 
     <ImageButton
@@ -37,7 +37,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:background="#817EFF"
+        android:background="#00817EFF"
         android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -52,7 +52,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="49dp"
-        android:background="@color/verdeacqua"
+        android:background="#5E91EAC5"
         android:backgroundTint="@color/verdeacqua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textElemento"
@@ -77,6 +77,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="49dp"
+        android:backgroundTint="@color/azzurro"
         android:text="@string/aggiungi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textElemento"

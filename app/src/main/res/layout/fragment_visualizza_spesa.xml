@@ -5,8 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#817EFF"
-    android:backgroundTint="@color/viola"
+    android:background="@drawable/background"
     tools:context=".View.Fragment.VisualizzaSpesaFragment" >
 
     <ImageButton
@@ -46,8 +45,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="10dp"
-        android:background="#1082D5"
-        android:backgroundTint="#1082D5"
+        android:background="@color/bluScuro"
+        android:backgroundTint="@color/bluScuro"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <TextView
@@ -66,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:textSize="24sp" />
 
         <TextView
@@ -74,30 +73,32 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:textSize="24sp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/buttonIndietro"
-        android:layout_width="130dp"
-        android:layout_height="60dp"
+        android:layout_width="129dp"
+        android:layout_height="47dp"
         android:layout_marginTop="27dp"
-        android:backgroundTint="#1082D5"
+        android:backgroundTint="@color/GrigioChiaro"
         android:text="@string/indietro"
         android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/RVPartecipantiPagamento"
         app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiPagamento" />
 
     <Button
         android:id="@+id/buttonPaga"
-        android:layout_width="130dp"
-        android:layout_height="60dp"
+        android:layout_width="139dp"
+        android:layout_height="47dp"
         android:layout_marginTop="27dp"
-        android:backgroundTint="#91EAC5"
+        android:backgroundTint="@color/azzurro"
         android:text="@string/paga"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/RVPartecipantiPagamento"
         app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiPagamento" />
 
@@ -107,6 +108,7 @@
         android:layout_height="216dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="41dp"
+        android:background="#6FFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />

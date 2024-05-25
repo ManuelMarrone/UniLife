@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#817EFF"
+    android:background="@drawable/background"
     tools:context=".View.Fragment.AccountFragment">
 
     <TextView
@@ -60,9 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:backgroundTint="#91EAC5"
+        android:backgroundTint="@color/azzurro"
         android:text="@string/salva"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -76,7 +76,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="150dp"
-        android:backgroundTint="#FF000F"
+        android:backgroundTint="@color/GrigioScuro"
         android:text="@string/esci_dall_account"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
@@ -90,8 +90,9 @@
         android:layout_width="156dp"
         android:layout_height="49dp"
         android:layout_marginBottom="80dp"
-        android:backgroundTint="#37FF000F"
+        android:backgroundTint="@color/GrigioChiaro"
         android:text="@string/elimina_account"
+        android:textColor="#000000"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/esciAccountButton" />

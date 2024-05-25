@@ -5,16 +5,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#817EFF"
-        android:backgroundTint="#817EFF"
+        android:background="@drawable/background"
         tools:context=".View.Activity.AccessoActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:backgroundTint="#5FADE6"
+            android:background="@color/bluScuro"
+            android:backgroundTint="@color/bluScuro"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +21,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="Accesso"
             app:titleMarginStart="160dp"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large" />
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
+            app:titleTextColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/textView5"
@@ -45,9 +45,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="#6D91EAC5"
+            android:backgroundTint="@color/azzurro"
             android:text="@string/accedi"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
+            android:textColorLink="@color/azzurro"
             app:layout_constraintBottom_toTopOf="@+id/creaButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -58,9 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="84dp"
-            android:backgroundTint="#6F91EAC5"
+            android:backgroundTint="@color/azzurro"
             android:text="@string/crea_un_nuovo_account"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

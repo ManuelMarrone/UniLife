@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/viola"
+    android:background="@drawable/background"
     tools:context=".View.Fragment.ListaPagamentiFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -14,7 +14,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:background="#817EFF"
+        android:background="#00817EFF"
         android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -41,7 +41,7 @@
         android:layout_height="299dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
-        android:background="@color/verdone"
+        android:background="#6D81C6BA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -51,7 +51,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="56dp"
-        android:background="@color/verdeacqua"
+        android:background="@color/azzurro"
         android:contentDescription="@string/add"
         android:src="@drawable/ic_add"
         app:layout_constraintStart_toStartOf="parent"
