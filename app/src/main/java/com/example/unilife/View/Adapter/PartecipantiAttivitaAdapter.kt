@@ -8,7 +8,7 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.R
 
-class PartecipantiAttivitaAdapter(val c:Context, val listener : RecyclerViewButtonClickListener<String>, val partecipanti:Map<String, Boolean>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
+class PartecipantiAttivitaAdapter(val c:Context, val listener: RecyclerViewButtonClickListener<String>?, val partecipanti:Map<String, Boolean>): RecyclerView.Adapter<PartecipantiAttivitaAdapter.PartecipantiViewHolder>() {
 
 
     private val keys = partecipanti.keys.toList()
@@ -53,7 +53,7 @@ class PartecipantiAttivitaAdapter(val c:Context, val listener : RecyclerViewButt
 
         private fun onItemClick(username:String)
         {
-            listener.onButtonClick(username)
+            listener?.onButtonClick(username)
         }
 
     }

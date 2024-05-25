@@ -1,22 +1,181 @@
 package com.example.unilife.View.Fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.example.unilife.R
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.unilife.Model.Attivita
+import com.example.unilife.Model.Pagamento
+import com.example.unilife.View.Activity.MainActivity
+import com.example.unilife.View.Activity.SpesaActivity
+import com.example.unilife.View.Adapter.PartecipantiAttivitaAdapter
+import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
+import com.example.unilife.ViewModel.ModificaAggiungiSpesaViewModel
+import com.example.unilife.databinding.FragmentModificaAggiungiSpesaBinding
 
-class ModificaAggiungiSpesaFragment : Fragment() {
+class ModificaAggiungiSpesaFragment : Fragment() , RecyclerViewButtonClickListener<String> {
+
+    private lateinit var viewBinding: FragmentModificaAggiungiSpesaBinding
+
+    private lateinit var recyclerView: RecyclerView
+    private val viewModel: ModificaAggiungiSpesaViewModel by viewModels()
+    private lateinit var idPagamento:String
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modifica_aggiungi_spesa, container, false)
+        viewBinding = FragmentModificaAggiungiSpesaBinding.inflate(inflater, container, false)
+
+        return viewBinding.root
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView = viewBinding.RVpartecipantiPagamento
+        recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
+
+        viewModel.partecipanti.observe(viewLifecycleOwner) { mapUpdated ->
+            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this, mapUpdated)
+        }
+
+
+        viewBinding.aggiungiButton.setOnClickListener { aggiungiPagamento() }
+        viewBinding.annulaBtn.setOnClickListener { annulla() }
+
+        viewBinding.buttonSalva.visibility = View.GONE
+        viewBinding.aggiungiButton.visibility = View.VISIBLE
+        setUIModifica()
+
+        viewBinding.buttonSalva.setOnClickListener{onSalvaClick()}
+    }
+
+        companion object {
         fun newInstance() = ModificaAggiungiSpesaFragment()
     }
+
+    private fun setUIModifica() {
+        val bundle = arguments
+        if (bundle != null) {
+            val obiettivo: String = bundle.getString("OBIETTIVO").toString()
+            if (obiettivo == "Modifica") {
+                val pagamento: Pagamento = bundle.getSerializable("PAGAMENTO") as Pagamento
+                idPagamento = bundle.getSerializable("CHIAVE") as String
+
+                val titolo: String = pagamento.titolo
+                viewBinding.titoloText.setText(titolo)
+                val denaro: Double = pagamento.denaro
+                viewBinding.soldiText.setText(denaro.toString())
+
+                viewBinding.buttonSalva.visibility = View.VISIBLE
+                viewBinding.aggiungiButton.visibility = View.GONE
+                viewBinding.titFragment.text = "Modifica pagamento"
+
+            }
+
+
+        }
+    }
+
+    private fun onSalvaClick()
+    {    //al click di salva modifica l'attività e la salva nel db con update
+        viewModel.validaInput()
+
+        //osserva se il codice è valido
+        viewModel.isValid.observe(viewLifecycleOwner) { isInputValid ->
+
+            if (isInputValid) {
+                val titolo = viewBinding.titoloText.text.toString()
+                val denaro = viewBinding.soldiText.text.toString()
+
+                if (denaro.isNotEmpty()) {
+                    if (titolo.isNotEmpty()) {
+                        val soldi: Double = denaro.toDouble()
+                        viewModel.salvaModifica(idPagamento, titolo, soldi)
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                MainActivity::class.java
+                            )
+                        )
+
+                    } else {
+                        viewBinding.titoloText.setError("Non lasciare vuoto il campo")
+                    }
+                } else {
+                    viewBinding.soldiText.setError("Inserisci il denaro da dividere")
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Seleziona almeno un coinquilino",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    override fun onButtonClick(username: String) {
+        viewModel.setChecked(username)
+    }
+    private fun annulla()
+    {
+        startActivity(
+            Intent(
+                requireActivity(),
+                MainActivity::class.java
+            ))
+    }
+
+    private fun aggiungiPagamento() {
+
+        viewModel.validaInput()
+
+        //osserva se il codice è valido
+        viewModel.isValid.observe(viewLifecycleOwner) { isInputValid ->
+
+            if (isInputValid) {
+                val titolo = viewBinding.titoloText.text.toString()
+                val denaro = viewBinding.soldiText.text.toString()
+
+                if (denaro.isNotEmpty()) {
+                    if (titolo.isNotEmpty()) {
+                        // Conversione della stringa in un valore Double
+                        val soldi: Double = denaro.toDouble()
+                        viewModel.aggiungiPagamento(titolo, soldi)
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                MainActivity::class.java
+                            )
+                        )
+
+                    } else {
+                        viewBinding.titoloText.setError("Non lasciare vuoto il campo")
+                    }
+                } else {
+                    viewBinding.soldiText.setError("Inserisci il denaro da dividere")
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Seleziona almeno un coinquilino",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
 }

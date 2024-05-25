@@ -10,36 +10,19 @@
     tools:context=".View.Fragment.VisualizzaSpesaFragment" >
 
     <ImageButton
-        android:id="@+id/eliminaButton"
-        android:layout_width="55dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="56dp"
-        android:contentDescription="@string/elimina"
-        android:layout_marginBottom="13dp"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/modificaButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
         android:id="@+id/modificaButton"
         android:layout_width="55dp"
-        android:contentDescription="@string/modifica"
         android:layout_height="58dp"
-        android:layout_marginStart="226dp"
+        android:layout_marginStart="324dp"
         android:layout_marginTop="96dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="13dp"
+        android:contentDescription="@string/modifica"
         android:scaleType="centerInside"
         android:src="@drawable/pencil"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/eliminaButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView22"
@@ -61,14 +44,14 @@
         android:layout_width="320dp"
         android:layout_height="171dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="50dp"
         android:background="#1082D5"
         android:backgroundTint="#1082D5"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textViewTitolo"
@@ -86,71 +69,46 @@
             android:textColor="#000000"
             android:textSize="24sp" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textViewQuota"
             android:layout_width="match_parent"
-            android:layout_height="172dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textViewPagatoDa"
-                android:layout_width="wrap_content"
-                android:layout_height="53dp"
-                android:layout_weight="1"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewData"
-                android:layout_width="wrap_content"
-                android:layout_height="53dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-        </LinearLayout>
+            android:layout_height="58dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="316dp"
-        android:layout_height="193dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="150dp"
-        android:background="#A391EAC5"
-        android:backgroundTint="#BE91EAC5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonIndietro"
         android:layout_width="130dp"
         android:layout_height="60dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="27dp"
         android:backgroundTint="#1082D5"
         android:text="@string/indietro"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonPaga"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/RVPartecipantiPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiPagamento" />
 
     <Button
         android:id="@+id/buttonPaga"
         android:layout_width="130dp"
         android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="27dp"
         android:backgroundTint="#91EAC5"
         android:text="@string/paga"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/RVPartecipantiPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiPagamento" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVPartecipantiPagamento"
+        android:layout_width="324dp"
+        android:layout_height="216dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="41dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonIndietro" />
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

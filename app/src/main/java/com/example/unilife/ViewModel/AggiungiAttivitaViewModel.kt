@@ -30,7 +30,7 @@ class AggiungiAttivitaViewModel:ViewModel() {
         getIdGruppoUtente()
     }
     fun loadData() {
-        //inizializzazione listaSpesa prendendo i dati dal repo
+        //inizializzazione prendendo i dati dal repo
         if (idGruppo != null) {
             gruppoRepo.getGruppo(idGruppo!!).addSnapshotListener { gruppo, e ->
                 if (e != null) {

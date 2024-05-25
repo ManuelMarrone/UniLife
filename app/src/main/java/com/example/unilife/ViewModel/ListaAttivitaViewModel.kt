@@ -26,21 +26,30 @@ class ListaAttivitaViewModel:ViewModel() {
     private var _attivita = MutableLiveData<MutableMap<String, Attivita>>()
     val attivita: LiveData<MutableMap<String, Attivita>> get() = _attivita
     init {
+        getIdGruppoUtente()
         _listaAttivita.value = ArrayList()
+
     }
 
-//ricava l'array di Attivita e l'array dei titoli delle attività
+    fun getIdGruppoUtente()
+    {
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+            Log.d("listaAttivita", "inizia idGruppo ${idGruppo}")
+        }
+    }
+
+    //ricava l'array di Attivita e l'array dei titoli delle attività
     fun getAttivitaByData(data:String)
     {
         utenteRepo.getUtente().addOnSuccessListener { utente ->
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
-
             Log.d("listaAttivita", "getAttivita idGruppo ${idGruppo}")
             if (idGruppo != null) {
                 gruppoRepo.getAttivitaByData(data, idGruppo!!)
                     .addOnSuccessListener { listaAttivita ->
                         if (!listaAttivita.isEmpty) {
-                            val lista : ArrayList<String> = ArrayList()
+                            val lista: ArrayList<String> = ArrayList()
                             for (document in listaAttivita.documents) {
                                 //conversione a oggetto
                                 val attivita = document.toObject(Attivita::class.java)!!
@@ -71,8 +80,6 @@ class ListaAttivitaViewModel:ViewModel() {
 
     fun rimuoviAttivita(position:Int)
     {
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
-            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             if (idGruppo != null) {
 
                 //ricavo l'oggetto attività dalla posizione per ricavarmi l'id
@@ -88,13 +95,10 @@ class ListaAttivitaViewModel:ViewModel() {
                 }
 
             }
-            }
         }
 
     fun visualizzaItem(posizione:Int)
     {
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
-            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             if (idGruppo != null) {
                 // Ricava l'oggetto Attivita dalla posizione nella lista delle attività
                 val attivita: Attivita? = listaAttivitaObj.entries.elementAtOrNull(posizione)?.value
@@ -109,12 +113,6 @@ class ListaAttivitaViewModel:ViewModel() {
                 }
 
             }
-        }
     }
 
-
-
-
 }
-
-
