@@ -47,4 +47,5 @@ class PdfFilesAdapter(private val listener: PdfClickListener) : ListAdapter<Docu
     interface PdfClickListener{
         fun onPdfClicked (pdfFile: Documento)
 }
+
 }

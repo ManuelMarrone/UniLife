@@ -37,7 +37,6 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
         }
 
 
-
         initRecyclerView()
         getAllDocument()
 

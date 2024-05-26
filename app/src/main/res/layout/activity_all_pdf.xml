@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".View.Activity.AllPdfActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pdfsRecyclerView"
         android:layout_width="409dp"

@@ -81,7 +81,6 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
 
         }
     }
-
     private fun showStoragePreview() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (Environment.isExternalStorageManager()) {

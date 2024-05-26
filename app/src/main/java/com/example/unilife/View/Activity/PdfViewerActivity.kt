@@ -30,7 +30,6 @@ class PdfViewerActivity : AppCompatActivity() {
         val url = intent.extras?.getString("url")
 
 
-
         lifecycleScope.launch(Dispatchers.IO) {
 
             val inputStream = URL(url).openStream()
