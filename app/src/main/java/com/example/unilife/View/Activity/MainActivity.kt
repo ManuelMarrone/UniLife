@@ -13,7 +13,7 @@ import com.example.unilife.View.Fragment.ContattiFragment
 import com.example.unilife.View.Fragment.HomeFragment
 import com.example.unilife.View.Fragment.HomeNoGruppiFragment
 import com.example.unilife.View.Fragment.InvitaFragment
-import com.example.unilife.View.Fragment.SpeseFragment
+import com.example.unilife.View.Fragment.ListaPagamentiFragment
 import com.example.unilife.ViewModel.MainViewModel
 import com.example.unilife.databinding.ActivityMainBinding
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_phone -> replaceFragment(ContattiFragment.newInstance())
                 R.id.bottom_add -> replaceFragment(InvitaFragment.newInstance())
                 R.id.bottom_calendario -> replaceFragment(CalendarioFragment.newInstance())
-                R.id.bottom_spese -> replaceFragment(SpeseFragment.newInstance())
+                R.id.bottom_spese -> replaceFragment(ListaPagamentiFragment.newInstance())
                 else -> {}
             }
             true

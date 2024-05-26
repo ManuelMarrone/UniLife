@@ -30,11 +30,10 @@ class AggiungiAttivitaViewModel:ViewModel() {
         getIdGruppoUtente()
     }
     fun loadData() {
-        //inizializzazione listaSpesa prendendo i dati dal repo
+        //inizializzazione prendendo i dati dal repo
         if (idGruppo != null) {
             gruppoRepo.getGruppo(idGruppo!!).addSnapshotListener { gruppo, e ->
                 if (e != null) {
-                    // Gestisci l'eccezione se si verifica un errore
                     return@addSnapshotListener
                 }
                 if (gruppo?.toObject(Gruppo::class.java)?.listaSpesa != null) {
@@ -42,7 +41,7 @@ class AggiungiAttivitaViewModel:ViewModel() {
 
                     val newMap = partecipantiGruppo.associateWith { false } as MutableMap<String,Boolean>
 
-                    // Aggiornare il valore di _partecipanti
+                    //aggiornare il valore di _partecipanti
                     _partecipanti.value = newMap
 
                 }
@@ -54,15 +53,14 @@ class AggiungiAttivitaViewModel:ViewModel() {
     {
         utenteRepo.getUtente().addOnSuccessListener { utente ->
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
-            Log.d("inizializza", "idGruppo ${idGruppo}")
             loadData()
         }
     }
 
     fun setChecked(username: String)
     {
+        //cambia lo stato da false a true o viceversa dell'utente cliccato nella recyclerView
         val valore = !(_partecipanti.value?.get(username))!!
-        // Imposta nuovamente la mappa modificata all'interno di _partecipanti
         _partecipanti.value?.set(username, valore)
     }
 

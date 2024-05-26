@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.View.Adapter.PartecipantiAttivitaAdapter
 import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.View.Activity.MainActivity
+import com.example.unilife.View.Activity.SpesaActivity
 import com.example.unilife.ViewModel.AggiungiAttivitaViewModel
 import com.example.unilife.databinding.FragmentAggiungiAttivitaBinding
 import java.util.Calendar
@@ -93,8 +94,7 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Str
             Intent(
                 requireActivity(),
                 MainActivity::class.java
-            )
-        )
+            ))
     }
 
     private fun aggiungiAttivita() {

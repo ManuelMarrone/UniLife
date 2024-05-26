@@ -10,17 +10,18 @@ import com.example.unilife.View.Fragment.ListaAttivitaFragment
 import com.example.unilife.databinding.ActivityAttivitaBinding
 
 class AttivitaActivity : AppCompatActivity() {
+
     private lateinit var viewBinding: ActivityAttivitaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_attivita)
 
-        // Recupera l'Intent e i dati passati
+        //recupera i dati passati dall'activity
         val fragmentToLoad = intent.getStringExtra("FRAGMENT_TO_LOAD")
         val data = intent.getStringExtra("DATA")
 
-        // Carica il Fragment appropriato
+        //carica il Fragment appropriato
         when (fragmentToLoad) {
             "ListaAttivitaFragment" ->{
                 val bundle = Bundle()
@@ -41,4 +42,4 @@ class AttivitaActivity : AppCompatActivity() {
             commit()
         }
     }
-    }
+}

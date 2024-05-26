@@ -5,7 +5,9 @@
     <color name="azzurro">#1082D5</color>
     <color name="red">#F73E04</color>
     <color name="verdeacqua">#91EAC5</color>
-    <color name="viola">#817EFF</color>
     <color name="verdone">#81C6BA</color>#1082D5
     <color name="blu">#1082D5</color>
+    <color name="bluScuro">#00629E</color>
+    <color name="GrigioScuro">#364B45</color>
+    <color name="GrigioChiaro">#98B0A9</color>
 </resources>

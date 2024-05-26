@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viola"
+    android:background="@drawable/background"
     tools:context=".View.Fragment.ModificaAggiungiSpesaFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,7 +15,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:background="#817EFF"
+        android:background="#00817EFF"
         android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -24,106 +24,105 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView20"
-        android:layout_width="231dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="17dp"
-        android:background="@color/blu"
+        android:id="@+id/titFragment"
+        android:layout_width="302dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/bluScuro"
         android:gravity="center"
-        android:text="@string/nuova_spesa"
-        android:textColor="@color/black"
+        android:text="@string/nuovo_pagamento"
+        android:textColor="@color/white"
         android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/titoloText"
         android:layout_width="301dp"
         android:layout_height="53dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/verdone"
+        android:layout_marginTop="48dp"
+        android:background="#7081C6BA"
         android:ems="10"
         android:hint="@string/titolo"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/titFragment" />
 
     <EditText
-        android:id="@+id/editTextText8"
-        android:layout_width="303dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/verdone"
-        android:ems="10"
-        android:hint="@string/pagato_da"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
-
-    <EditText
-        android:id="@+id/editTextText7"
-        android:layout_width="303dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="36dp"
-        android:background="@color/verdone"
-        android:ems="10"
-        android:hint="@string/data"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
-
-    <EditText
-        android:id="@+id/editTextText6"
-        android:layout_width="295dp"
+        android:id="@+id/soldiText"
+        android:layout_width="301dp"
         android:layout_height="53dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="24dp"
-        android:background="@color/verdone"
+        android:background="#7481C6BA"
         android:ems="10"
         android:hint="@string/money"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+        app:layout_constraintTop_toBottomOf="@+id/titoloText" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView4"
-        android:layout_width="302dp"
+        android:id="@+id/RVpartecipantiPagamento"
+        android:layout_width="301dp"
         android:layout_height="139dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="44dp"
-        android:background="@color/verdone"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="57dp"
+        android:background="#7081C6BA"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText8" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <Button
         android:id="@+id/annulaBtn"
         android:layout_width="127dp"
         android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/blu"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/GrigioChiaro"
         android:text="@string/indietro"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+        app:layout_constraintStart_toStartOf="@+id/RVpartecipantiPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/RVpartecipantiPagamento" />
 
     <Button
         android:id="@+id/aggiungiButton"
         android:layout_width="137dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="@color/verdeacqua"
-        android:text="@string/completata"
+        android:text="@string/agg"
         android:textColor="@color/black"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/RVpartecipantiPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/RVpartecipantiPagamento" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/pagato_da"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/soldiText"
+        app:layout_constraintTop_toBottomOf="@+id/soldiText" />
+
+    <Button
+        android:id="@+id/buttonSalva"
+        android:layout_width="137dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="29dp"
+        android:backgroundTint="@color/azzurro"
+        android:text="@string/salva"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/RVpartecipantiPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/RVpartecipantiPagamento" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

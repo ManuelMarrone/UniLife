@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.Fragment.AggiungiAttivitaFragment"
-    android:background="@color/viola">
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/textUnilife"
@@ -13,7 +13,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:background="#817EFF"
+        android:background="#00817EFF"
         android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -27,10 +27,10 @@
         android:layout_height="64dp"
         android:layout_marginStart="92dp"
         android:layout_marginBottom="552dp"
-        android:background="#1082D5"
+        android:background="@color/bluScuro"
         android:gravity="center"
         android:text="@string/aggiungi_attivit"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,9 +41,9 @@
         android:layout_width="127dp"
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:backgroundTint="@color/blu"
+        android:backgroundTint="@color/GrigioChiaro"
         android:text="@string/annulla"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/RVPartecipantiAtt"
         app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiAtt" />
@@ -53,9 +53,9 @@
         android:layout_width="137dp"
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:backgroundTint="@color/verdeacqua"
+        android:backgroundTint="@color/azzurro"
         android:text="@string/agg"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/RVPartecipantiAtt"
         app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiAtt" />
@@ -67,7 +67,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="33dp"
         android:layout_marginEnd="52dp"
-        android:background="@color/verdone"
+        android:background="#6D81C6BA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

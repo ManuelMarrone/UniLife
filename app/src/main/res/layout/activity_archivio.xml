@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/viola"
+    android:background="@drawable/background"
     tools:context=".View.Activity.ArchivioActivity">
 
 
@@ -16,7 +16,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:background="#817EFF"
+        android:background="#00FFFFFF"
         android:text="@string/unilife"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -83,7 +83,7 @@
         android:layout_height="362dp"
         android:layout_marginStart="76dp"
         android:layout_marginTop="56dp"
-        android:background="@color/verdone"
+        android:background="#6091EAC5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
