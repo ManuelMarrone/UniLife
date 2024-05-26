@@ -63,8 +63,11 @@ dependencies {
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
-    implementation(libs.androidx.games.activity)
+    implementation(libs.android.pdf.viewer)
+    implementation("com.github.barteksc:android-pdf-viewer:2.8.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+

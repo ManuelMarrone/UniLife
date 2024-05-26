@@ -9,13 +9,13 @@ import com.example.unilife.Model.Documento
 import com.example.unilife.databinding.EachPdfItemBinding
 
 
-class PdfFilesAdapter : ListAdapter<Documento, PdfFilesAdapter.PdfFilesViewHolder>(PdfDiffCallback()){
+class PdfFilesAdapter(private val listener: PdfClickListener) : ListAdapter<Documento, PdfFilesAdapter.PdfFilesViewHolder>(PdfDiffCallback()){
 
     inner class PdfFilesViewHolder(private val binding: EachPdfItemBinding) : RecyclerView.ViewHolder(binding.root){
 
       init{
           binding.root.setOnClickListener{
-
+                listener.onPdfClicked(getItem(adapterPosition))
           }
       }
 
@@ -44,4 +44,7 @@ class PdfFilesAdapter : ListAdapter<Documento, PdfFilesAdapter.PdfFilesViewHolde
        holder.bind(getItem(position))
     }
 
+    interface PdfClickListener{
+        fun onPdfClicked (pdfFile: Documento)
+}
 }

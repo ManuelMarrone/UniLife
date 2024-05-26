@@ -1,5 +1,6 @@
 package com.example.unilife.View.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,7 +16,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 
-class AllPdfActivity : AppCompatActivity() {
+class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
 
     private lateinit var binding: ActivityAllPdfBinding
     private lateinit var storage : StorageReference
@@ -44,7 +45,7 @@ class AllPdfActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         binding.pdfsRecyclerView.setHasFixedSize(true)
         binding.pdfsRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        adapter = PdfFilesAdapter()
+        adapter = PdfFilesAdapter(this)
         binding.pdfsRecyclerView.adapter = adapter
 
     }
@@ -77,4 +78,11 @@ class AllPdfActivity : AppCompatActivity() {
                 }
             }
     }
+
+    override fun onPdfClicked(pdfFile: Documento) {
+       val intent = Intent(this, PdfViewerActivity::class.java)
+        intent.putExtra("fileName", pdfFile.nome_doc)
+        intent.putExtra("url", pdfFile.url)
+        startActivity(intent)
     }
+}
