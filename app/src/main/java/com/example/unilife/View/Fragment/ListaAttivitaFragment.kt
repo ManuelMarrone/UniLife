@@ -1,5 +1,6 @@
 package com.example.unilife.View.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.unilife.View.Adapter.ListaAttivitaAdapter
 import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.View.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.R
+import com.example.unilife.View.Activity.MainActivity
 import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.databinding.FragmentListaAttivitaBinding
 
@@ -54,6 +56,16 @@ class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
         viewModel.listaAttivita.observe(viewLifecycleOwner){listaUpdated ->
             Log.d("listaAtivita", "Recycler ${listaUpdated}")
             recyclerView.adapter = ListaAttivitaAdapter(requireContext(), this, this, listaUpdated)
+        }
+
+        viewBinding.indBtn.setOnClickListener{
+            startActivity(
+                Intent(
+                    requireActivity(),
+                    MainActivity::class.java
+                )
+                    .putExtra("FRAGMENT_TO_LOAD", "CalendarioFragment")
+            )
         }
     }
 

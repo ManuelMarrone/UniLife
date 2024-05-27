@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.unilife.R
+import com.example.unilife.View.Fragment.AggiungiAttivitaFragment
 import com.example.unilife.View.Fragment.CalendarioFragment
 import com.example.unilife.View.Fragment.ContattiFragment
 import com.example.unilife.View.Fragment.HomeFragment
 import com.example.unilife.View.Fragment.HomeNoGruppiFragment
 import com.example.unilife.View.Fragment.InvitaFragment
+import com.example.unilife.View.Fragment.ListaAttivitaFragment
 import com.example.unilife.View.Fragment.ListaPagamentiFragment
 import com.example.unilife.ViewModel.MainViewModel
 import com.example.unilife.databinding.ActivityMainBinding
@@ -42,14 +45,31 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(HomeFragment.newInstance())
             abilitaBottomNavigation()
             bottomNavigationListenerGruppi()
-            Log.d("MyActivity", "ID del gruppo: $idGruppo")
+            caricaFragment()
         } else {
             replaceFragment(HomeNoGruppiFragment.newInstance())
             disabilitaBottomNavigation()
             bottomNavigationListenerNoGruppi()
             Log.d("MyActivity", "ID del gruppo non disponibile nel main")
         }
-        binding.bottomNavigation.clearFocus()
+    }
+
+    private fun caricaFragment()
+    {
+        //recupera i dati passati dall'activity
+        val fragmentToLoad = intent.getStringExtra("FRAGMENT_TO_LOAD")
+
+        //carica il Fragment appropriato
+        when (fragmentToLoad) {
+            "ListaPagamentiFragment" ->
+            {replaceFragment(ListaPagamentiFragment.newInstance())
+            binding.bottomNavigation.selectedItemId = R.id.bottom_spese}
+            "CalendarioFragment" ->
+                {replaceFragment(CalendarioFragment.newInstance())
+                binding.bottomNavigation.selectedItemId = R.id.bottom_calendario}
+            else -> replaceFragment(HomeFragment.newInstance())
+        }
+
     }
 
     private fun disabilitaBottomNavigation(){

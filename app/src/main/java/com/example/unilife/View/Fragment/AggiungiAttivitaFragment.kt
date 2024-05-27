@@ -94,7 +94,9 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Str
             Intent(
                 requireActivity(),
                 MainActivity::class.java
-            ))
+            )
+                .putExtra("FRAGMENT_TO_LOAD", "CalendarioFragment")
+        )
     }
 
     private fun aggiungiAttivita() {
@@ -115,6 +117,7 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Str
                                     requireActivity(),
                                     MainActivity::class.java
                                 )
+                                    .putExtra("FRAGMENT_TO_LOAD", "CalendarioFragment")
                             )
 
                         } else {

@@ -23,8 +23,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RVListaAttivita"
-        android:layout_width="335dp"
-        android:layout_height="440dp"
+        android:layout_width="331dp"
+        android:layout_height="340dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="38dp"
@@ -47,5 +47,33 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="177dp"
+        android:text="Clicca su un'attività per scoprirne i dettagli"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RVListaAttivita" />
+
+    <Button
+        android:id="@+id/indBtn"
+        android:layout_width="127dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/GrigioChiaro"
+        android:text="@string/indietro"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

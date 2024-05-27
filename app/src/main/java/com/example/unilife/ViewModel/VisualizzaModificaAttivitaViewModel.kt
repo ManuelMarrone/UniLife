@@ -34,6 +34,7 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
     init {
         getIdGruppoUtente()
     }
+
     fun getIdGruppoUtente()
     {
         utenteRepo.getUtente().addOnSuccessListener { utente ->

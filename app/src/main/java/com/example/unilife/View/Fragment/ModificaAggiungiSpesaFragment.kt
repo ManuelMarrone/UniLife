@@ -136,7 +136,9 @@ class ModificaAggiungiSpesaFragment : Fragment() , RecyclerViewButtonClickListen
             Intent(
                 requireActivity(),
                 MainActivity::class.java
-            ))
+            )
+                .putExtra("FRAGMENT_TO_LOAD", "ListaPagamentiFragment")
+        )
     }
 
     private fun aggiungiPagamento() {
@@ -160,6 +162,7 @@ class ModificaAggiungiSpesaFragment : Fragment() , RecyclerViewButtonClickListen
                                 requireActivity(),
                                 MainActivity::class.java
                             )
+                                .putExtra("FRAGMENT_TO_LOAD", "ListaPagamentiFragment")
                         )
 
                     } else {

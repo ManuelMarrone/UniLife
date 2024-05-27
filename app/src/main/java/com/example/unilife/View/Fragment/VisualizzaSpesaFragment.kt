@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Model.Pagamento
 import com.example.unilife.R
+import com.example.unilife.View.Activity.AttivitaActivity
 import com.example.unilife.View.Activity.MainActivity
 import com.example.unilife.View.Activity.SpesaActivity
 import com.example.unilife.View.Adapter.PartecipantiAttivitaAdapter
@@ -68,7 +69,9 @@ class VisualizzaSpesaFragment : Fragment() {
                 Intent(
                     requireActivity(),
                     MainActivity::class.java
-                ))
+                )
+                    .putExtra("FRAGMENT_TO_LOAD", "ListaPagamentiFragment")
+            )
         }
     }
 
