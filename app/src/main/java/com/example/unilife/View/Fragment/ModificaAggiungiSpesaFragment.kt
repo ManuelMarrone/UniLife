@@ -92,8 +92,6 @@ class ModificaAggiungiSpesaFragment : Fragment() , RecyclerViewButtonClickListen
     private fun onSalvaClick()
     {    //al click di salva modifica l'attività e la salva nel db con update
         viewModel.validaInput()
-
-        //osserva se il codice è valido
         viewModel.isValid.observe(viewLifecycleOwner) { isInputValid ->
 
             if (isInputValid) {
@@ -101,18 +99,24 @@ class ModificaAggiungiSpesaFragment : Fragment() , RecyclerViewButtonClickListen
                 val denaro = viewBinding.soldiText.text.toString()
 
                 if (denaro.isNotEmpty()) {
-                    if (titolo.isNotEmpty()) {
+                    try {
+                        //conversione della stringa in un valore Double
                         val soldi: Double = denaro.toDouble()
-                        viewModel.salvaModifica(idPagamento, titolo, soldi)
-                        startActivity(
-                            Intent(
-                                requireActivity(),
-                                MainActivity::class.java
-                            )
-                        )
 
-                    } else {
-                        viewBinding.titoloText.setError("Non lasciare vuoto il campo")
+                        if (titolo.isNotEmpty()) {
+                            viewModel.salvaModifica(idPagamento, titolo, soldi)
+                            startActivity(
+                                Intent(
+                                    requireActivity(),
+                                    MainActivity::class.java
+                                )
+                                    .putExtra("FRAGMENT_TO_LOAD", "ListaPagamentiFragment")
+                            )
+                        } else {
+                            viewBinding.titoloText.setError("Non lasciare vuoto il campo")
+                        }
+                    } catch (e: NumberFormatException) {
+                        viewBinding.soldiText.setError("Inserisci un valore numerico valido")
                     }
                 } else {
                     viewBinding.soldiText.setError("Inserisci il denaro da dividere")
@@ -125,6 +129,7 @@ class ModificaAggiungiSpesaFragment : Fragment() , RecyclerViewButtonClickListen
                 ).show()
             }
         }
+
     }
 
     override fun onButtonClick(username: String) {
@@ -153,20 +158,23 @@ class ModificaAggiungiSpesaFragment : Fragment() , RecyclerViewButtonClickListen
                 val denaro = viewBinding.soldiText.text.toString()
 
                 if (denaro.isNotEmpty()) {
-                    if (titolo.isNotEmpty()) {
-                        // Conversione della stringa in un valore Double
+                    try {
+                        //conversione della stringa in un valore Double
                         val soldi: Double = denaro.toDouble()
-                        viewModel.aggiungiPagamento(titolo, soldi)
-                        startActivity(
-                            Intent(
-                                requireActivity(),
-                                MainActivity::class.java
-                            )
-                                .putExtra("FRAGMENT_TO_LOAD", "ListaPagamentiFragment")
-                        )
 
-                    } else {
-                        viewBinding.titoloText.setError("Non lasciare vuoto il campo")
+                        if (titolo.isNotEmpty()) {
+                            viewModel.aggiungiPagamento(titolo, soldi)
+                            startActivity(
+                                Intent(
+                                    requireActivity(),
+                                    MainActivity::class.java
+                                ).putExtra("FRAGMENT_TO_LOAD", "ListaPagamentiFragment")
+                            )
+                        } else {
+                            viewBinding.titoloText.setError("Non lasciare vuoto il campo")
+                        }
+                    } catch (e: NumberFormatException) {
+                        viewBinding.soldiText.setError("Inserisci un valore numerico valido")
                     }
                 } else {
                     viewBinding.soldiText.setError("Inserisci il denaro da dividere")

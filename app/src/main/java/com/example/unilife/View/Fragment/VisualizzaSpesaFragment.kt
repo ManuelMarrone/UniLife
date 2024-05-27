@@ -83,7 +83,9 @@ class VisualizzaSpesaFragment : Fragment() {
             Intent(
                 requireActivity(),
                 MainActivity::class.java
-            ))
+            )
+                .putExtra("FRAGMENT_TO_LOAD", "ListaPagamentiFragment")
+        )
     }
 
     private fun onModificaClick()
