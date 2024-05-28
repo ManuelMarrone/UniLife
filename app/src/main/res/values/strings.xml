@@ -82,4 +82,6 @@
     <string name="no_pdf_file_selected_yet">no Pdf file selected</string>
     <string name="nuovo_pagamento">Nuovo pagamento</string>
     <string name="chi_deve_pagare">Chi deve pagare</string>
+    <string name="Modifica" />
+    <string name="modificaUsernameandPassword">Modifica</string>
 </resources>
