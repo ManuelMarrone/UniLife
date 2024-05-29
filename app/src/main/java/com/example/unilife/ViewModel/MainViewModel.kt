@@ -19,16 +19,8 @@ class MainViewModel : ViewModel(){
 
     fun getIdGruppoUtente()
     {
-<<<<<<< HEAD
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
-            if(utente != null ) {
-                _idGruppoUtente.value = utente.toObject(Utente::class.java)?.id_gruppo
-                Log.d("login" , "id ${_idGruppoUtente}")
-            }
-=======
         utenteRepo.getUtenteLive().addSnapshotListener { utente,e ->
             _idGruppoUtente.value = utente?.toObject(Utente::class.java)?.id_gruppo
->>>>>>> parent of 3e92c37 (gestione account)
         }
     }
 
