@@ -20,11 +20,6 @@ import com.example.unilife.View.Activity.MainActivity
 import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.databinding.FragmentListaAttivitaBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaAttivitaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
     RecyclerViewItemClickListener {
 

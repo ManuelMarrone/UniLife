@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.View.Adapter.PartecipantiAttivitaAdapter
+import com.example.unilife.View.Adapter.PartecipantiCheckBoxAdapter
 import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.Model.Attivita
 import com.example.unilife.R
@@ -51,7 +51,7 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
 
         //aggiorna la lista osservabile di nomi con cui riempire la recyclerView
         viewModel.partecipanti.observe(viewLifecycleOwner){mapUpdated ->
-            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this, mapUpdated)
+            recyclerView.adapter = PartecipantiCheckBoxAdapter(requireContext(), this, mapUpdated)
         }
 
 

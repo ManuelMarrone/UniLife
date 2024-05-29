@@ -29,7 +29,7 @@ class ListaSpesaAdapter(val listener : RecyclerViewButtonClickListener<Int>, val
 
 
     //assign the views of the item to a variable
-    inner class SpesaViewHolder(val riga:View) : RecyclerView.ViewHolder(riga)
+    inner class SpesaViewHolder(riga:View) : RecyclerView.ViewHolder(riga)
     {
         val textView: TextView
         val button : ImageButton

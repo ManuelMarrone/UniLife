@@ -30,7 +30,7 @@ class ContattiAdapter(val listener : RecyclerViewButtonClickListener<String>, va
 
 
     //assign the views of the item to a variable
-    inner class ContattiViewHolder(val riga:View) : RecyclerView.ViewHolder(riga)
+    inner class ContattiViewHolder(riga:View) : RecyclerView.ViewHolder(riga)
     {
         val keyTextView: TextView
         val valueTextView:TextView

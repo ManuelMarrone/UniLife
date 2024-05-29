@@ -8,20 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.View.Activity.AccessoActivity
-import com.example.unilife.View.Activity.MainActivity
 import com.example.unilife.ViewModel.AccountViewModel
 import com.example.unilife.databinding.FragmentAccountBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AccountFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AccountFragment : Fragment() {
     private lateinit var viewBinding: FragmentAccountBinding
     private val viewModel: AccountViewModel by viewModels()
@@ -41,18 +33,17 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        lifecycleScope.launch {
-            viewModel.uiState.collect {
-                if (it.isLoggedOut) {
-                    startActivity(
-                        Intent(
-                            requireActivity(),
-                            AccessoActivity::class.java
-                        )
+        viewModel.logOut.observe(viewLifecycleOwner) { isLoggedOut ->
+            if (isLoggedOut) {
+                startActivity(
+                    Intent(
+                        requireActivity(),
+                        AccessoActivity::class.java
                     )
-                }
+                )
             }
         }
+
 
         setUI()
 
@@ -146,7 +137,6 @@ class AccountFragment : Fragment() {
     }
 
     companion object {
-
         fun newInstance() = AccountFragment()
     }
 

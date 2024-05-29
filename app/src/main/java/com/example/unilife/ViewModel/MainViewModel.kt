@@ -19,9 +19,10 @@ class MainViewModel : ViewModel(){
 
     fun getIdGruppoUtente()
     {
-        utenteRepo.getUtenteLive().addSnapshotListener { utente,e ->
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
             if(utente != null ) {
                 _idGruppoUtente.value = utente.toObject(Utente::class.java)?.id_gruppo
+                Log.d("login" , "id ${_idGruppoUtente}")
             }
         }
     }

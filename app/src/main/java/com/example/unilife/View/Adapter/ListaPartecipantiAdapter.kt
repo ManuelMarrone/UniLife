@@ -30,7 +30,7 @@ class ListaPartecipantiAdapter(val c:Context, val listener : RecyclerViewButtonC
 
 
     //assign the views of the item to a variable
-    inner class PartecipantiViewHolder(val riga:View) : RecyclerView.ViewHolder(riga)
+    inner class PartecipantiViewHolder(riga:View) : RecyclerView.ViewHolder(riga)
     {
         val textView: TextView
         val button : ImageButton
@@ -50,7 +50,6 @@ class ListaPartecipantiAdapter(val c:Context, val listener : RecyclerViewButtonC
                 .setPositiveButton("Sì"){
                     dialog,_->
                     listener.onButtonClick(adapterPosition)
-                    notifyDataSetChanged()
                     dialog.dismiss()
                 }
                 .setNegativeButton("No"){

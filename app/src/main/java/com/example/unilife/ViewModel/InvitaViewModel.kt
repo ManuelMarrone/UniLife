@@ -10,14 +10,10 @@ import androidx.lifecycle.ViewModel
 import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.GruppoRepo
-import com.example.unilife.Repository.ImpostazioniDB
 import com.example.unilife.Repository.UtenteRepo
 
 
 class InvitaViewModel: ViewModel() {
-    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
-
-
     private val gruppoRepo = GruppoRepo()
     private val utenteRepo = UtenteRepo()
 

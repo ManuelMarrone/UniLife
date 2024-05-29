@@ -8,16 +8,11 @@ import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
-import com.example.unilife.StateUI.AccountUiState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.tasks.await
 
 class AccountViewModel:ViewModel() {
     // StateFlow per la gestione dello stato dell'account
-    private val _uiState = MutableStateFlow(AccountUiState())
-    val uiState: StateFlow<AccountUiState> = _uiState.asStateFlow()
+    private val _logOut = MutableLiveData<Boolean>()
+    val logOut: LiveData<Boolean> get() = _logOut
     private var _utente = MutableLiveData<Utente>()
     val utente: LiveData<Utente> get() = _utente
     private var _isUnico = MutableLiveData<Boolean>()
@@ -27,12 +22,11 @@ class AccountViewModel:ViewModel() {
     private val userRepository = UtenteRepo()
     private val gruppoRepo = GruppoRepo()
 
-    /**
-     * Metodo per il logout
-     */
+
+     //Metodo per il logout
     fun logOut() {
         userRepository.logOut()
-        _uiState.value = AccountUiState.logout()
+        _logOut.value = true
     }
 
     fun eliminaAccount()

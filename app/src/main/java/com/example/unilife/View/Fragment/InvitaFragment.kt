@@ -17,11 +17,6 @@ import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.InvitaViewModel
 import com.example.unilife.databinding.FragmentInvitaBinding
 
-/**
-manca il controllo se il partecipante da eliminare è coinvolto in qualche attività del gruppo
- nessuna idea di come fare
-**/
-
 class InvitaFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
 
     private lateinit var binding: FragmentInvitaBinding
@@ -30,7 +25,6 @@ class InvitaFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
     private val inputCorretto = InputCorretto()
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewAdapter : ListaPartecipantiAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
