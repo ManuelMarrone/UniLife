@@ -4,7 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unilife.Model.Utente
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,15 +20,22 @@ class UtenteRepo {
     private val firebaseAuth = FirebaseAuth.getInstance()
     val db = FirebaseFirestore.getInstance()
 
-    private val idUtente = firebaseAuth.currentUser?.uid!!
-    private val utenteRef = db.collection("utenti").document(idUtente)
-    private var listenerRegistration : ListenerRegistration? = null
-
 
     fun getUtente(): Task<DocumentSnapshot> {
         val idUtente = firebaseAuth.currentUser!!.uid
         val documentReference = dbSettings.firestore.collection("utenti").document(idUtente)
         return documentReference.get()
+    }
+    fun eliminaUtenteFireStore(): Task<Void> {
+        val idUtente = firebaseAuth.currentUser!!.uid
+        val documentReference = dbSettings.firestore.collection("utenti").document(idUtente)
+        return documentReference.delete()
+    }
+
+    fun eliminaUtenteAuth(): Task<Void> {
+        val user = Firebase.auth.currentUser!!
+
+        return user.delete()
     }
 
     fun getUtenteLive(): DocumentReference {
@@ -55,6 +64,28 @@ class UtenteRepo {
     fun setIdGruppoByIdUtente(idUtente: String): Task<Void> {
         val utenteDoc = db.collection("utenti").document(idUtente)
         return utenteDoc.update("id_gruppo", null)
+    }
+
+    fun aggiornaUsername(user:String): Task<Void> {
+        val userId = firebaseAuth.currentUser?.uid
+        return db.collection("utenti").document(userId!!).update("username", user)
+    }
+
+    fun aggiornaPassword(pwd:String): Task<Void> {
+        val user = firebaseAuth.currentUser
+        return user!!.updatePassword(pwd)
+    }
+
+    fun aggiornaPasswordFireStore(pwd:String): Task<Void> {
+        val userId = firebaseAuth.currentUser?.uid!!
+        return db.collection("utenti").document(userId).update("password", pwd)
+
+    }
+
+    fun unicitaUsername(username:String): Task<QuerySnapshot> {
+        return dbSettings.firestore.collection("utenti").whereEqualTo("username", username)
+              .get()
+
     }
 
 
