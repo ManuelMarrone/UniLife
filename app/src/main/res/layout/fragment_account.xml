@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
-        android:id="@+id/salvaButton"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -67,35 +67,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <Button
         android:id="@+id/esciAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="150dp"
         android:backgroundTint="@color/GrigioScuro"
         android:text="@string/esci_dall_account"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/salvaButton" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintVertical_bias="0.457" />
 
     <Button
-        android:id="@+id/eliminaButton"
+        android:id="@+id/button6"
         android:layout_width="156dp"
         android:layout_height="49dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/GrigioChiaro"
         android:text="@string/elimina_account"
         android:textColor="#000000"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/esciAccountButton"
-        app:layout_constraintTop_toBottomOf="@+id/esciAccountButton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/esciAccountButton" />
 
     <EditText
-        android:id="@+id/userText"
+        android:id="@+id/editTextText2"
         android:layout_width="209dp"
         android:layout_height="53dp"
         android:layout_marginStart="32dp"
@@ -107,26 +110,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/emailText"
+        android:id="@+id/editTextTextEmailAddress"
         android:layout_width="210dp"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="@+id/userText"
-        app:layout_constraintTop_toBottomOf="@+id/userText" />
+        app:layout_constraintStart_toStartOf="@+id/editTextText2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
 
     <EditText
-        android:id="@+id/passwordText"
+        android:id="@+id/editTextTextPassword"
         android:layout_width="209dp"
         android:layout_height="51dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/emailText"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+        app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+    <TextView
+        android:id="@+id/ChangeUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:gravity="center"
+        android:text="Change username and password"
+        android:textColor="@color/verdeacqua"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
