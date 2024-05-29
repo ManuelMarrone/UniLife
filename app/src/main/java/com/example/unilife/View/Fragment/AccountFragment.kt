@@ -1,29 +1,5 @@
-package com.example.unilife.ViewModel
+package com.example.unilife.View.Fragment
 
-<<<<<<< HEAD
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.unilife.Model.Gruppo
-import com.example.unilife.Model.Utente
-import com.example.unilife.Repository.GruppoRepo
-import com.example.unilife.Repository.UtenteRepo
-import com.example.unilife.StateUI.AccountUiState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.tasks.await
-
-class AccountViewModel:ViewModel() {
-    // StateFlow per la gestione dello stato dell'account
-    private val _uiState = MutableStateFlow(AccountUiState())
-    val uiState: StateFlow<AccountUiState> = _uiState.asStateFlow()
-    private var _utente = MutableLiveData<Utente>()
-    val utente: LiveData<Utente> get() = _utente
-    private var _isUnico = MutableLiveData<Boolean>()
-    val isUnico: LiveData<Boolean> get() = _isUnico
-=======
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -59,23 +35,10 @@ class AccountFragment : Fragment() {
         // Inflate the layout for this fragment
         viewBinding = FragmentAccountBinding.inflate(inflater, container, false)
         return viewBinding.root
->>>>>>> parent of 1861c46 (rotto)
 
-    // Repository
-    private val userRepository = UtenteRepo()
-    private val gruppoRepo = GruppoRepo()
 
-    /**
-     * Metodo per il logout
-     */
-    fun logOut() {
-        userRepository.logOut()
-        _uiState.value = AccountUiState.logout()
     }
 
-<<<<<<< HEAD
-    fun eliminaAccount()
-=======
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         lifecycleScope.launch {
@@ -108,78 +71,74 @@ class AccountFragment : Fragment() {
     }
 
     private fun onEliminaClick()
->>>>>>> parent of 1861c46 (rotto)
     {
-        val username = _utente.value!!.username!!
-        val idGruppo = _utente.value!!.id_gruppo
-        if(idGruppo != null)
-        {
-            gruppoRepo.rimuoviPartecipante(username,idGruppo).addOnFailureListener{
-                Log.d("Rimozione partecipanti", "errore nella rimozione del partecipante")
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Eliminazione Account")
+            setMessage("Sei sicuro di voler eliminare il tuo account? Questa azione è irreversibile.")
+            setPositiveButton("Elimina") { dialog, which ->
+                viewModel.eliminaAccount()
+                viewModel.logOut()
             }
+            setNegativeButton("Annulla") { dialog, which ->
+                // Chiudi il dialogo
+                dialog.dismiss()
+            }
+            create()
+            show()
+        }
+    }
 
-            gruppoRepo.getGruppo(idGruppo).addSnapshotListener { gruppo, e ->
-                if (e != null) {
-                    return@addSnapshotListener
-                }
 
-                val partecipantiGruppo = gruppo!!.toObject(Gruppo::class.java)?.partecipanti as ArrayList<String>
-                if (partecipantiGruppo.isEmpty())
-                {
-                    gruppoRepo.eliminaGruppo(idGruppo).addOnFailureListener{
-                        Log.d("Rimozione partecipanti", "eliminazione gruppo fallita")
+    private fun setUI()
+    {
+        viewBinding.salvaButton.visibility = View.GONE
+        viewModel.getUtente()
+
+        viewModel.utente.observe(viewLifecycleOwner) { utente ->
+            val username: String = utente.username!!
+            viewBinding.userText.setText(username)
+            val email: String = utente.email!!
+            viewBinding.emailText.setText(email)
+            viewBinding.emailText.isEnabled = false
+            val password: String = utente.password!!
+            viewBinding.passwordText.setText(password)
+        }
+
+
+    }
+
+    private fun onSalvaClick()
+    {
+        val newUsername = viewBinding.userText.text.toString()
+        val newPassword = viewBinding.passwordText.text.toString()
+
+        when {
+            !inputCorretto.isValidUsername(newUsername) -> viewBinding.userText.error=
+                "Inserisci l'username. Non immettere degli spazi."
+
+
+            !inputCorretto.isValidPassword(newPassword) -> viewBinding.passwordText.error =
+                "Inserisci una password di almeno 6 caratteri"
+
+            else -> {
+                viewModel.unicitaUsername( newUsername)
+
+                viewModel.isUnico.observe(viewLifecycleOwner){unico ->
+                    if (unico) {
+                        viewModel.modificaUtente( newPassword, newUsername)
+                    } else {
+                        Snackbar.make(
+                            viewBinding.root,
+                            "trova un nuovo username o una nuova email",
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .show()
                     }
                 }
 
             }
-
-        }
-        userRepository.eliminaUtenteFireStore().addOnSuccessListener{
-            Log.d("Rimozione utente", "eliminazione utente fallita")
-        }
-        userRepository.eliminaUtenteAuth().addOnFailureListener{
-            Log.d("Rimozione utente", "eliminazione utente fallita")
-        }
-
-    }
-
-    fun modificaUtente(pwd:String, user:String){
-
-        userRepository.aggiornaUsername(user)
-            .addOnFailureListener { e ->
-                Log.e("modifica", "errore nella modifica dell'username${e.message}")
-            }
-
-        userRepository.aggiornaPassword(pwd)
-            .addOnFailureListener { e ->
-                Log.e("modifica", "errore nella modifica della password${e.message}")
-            }
-
-        userRepository.aggiornaPasswordFireStore(pwd)
-            .addOnFailureListener { e ->
-                Log.e("modifica", "errore nella modifica della password in firestore${e.message}")
-            }
-    }
-
-    fun unicitaUsername(user:String) {
-        userRepository.unicitaUsername(user)
-            .addOnSuccessListener{ controllo_username->
-                if (controllo_username.isEmpty()) {
-                    _isUnico.value = true
-                } else {
-                    _isUnico.value = false
-                }
-            }
-    }
-
-    fun getUtente()
-    {
-        userRepository.getUtente().addOnSuccessListener { user->
-            _utente.value = user?.toObject(Utente::class.java)
         }
     }
-<<<<<<< HEAD
-=======
 
     private fun modificaDati()
     {
@@ -192,5 +151,4 @@ class AccountFragment : Fragment() {
     }
 
 
->>>>>>> parent of 1861c46 (rotto)
 }

@@ -48,6 +48,10 @@
         "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\layout\\fragment_visualizza_spesa.xml"
     },
     {
+        "merged": "com.example.unilife.app-mergeDebugResources-63:/layout/activity_modifica.xml",
+        "source": "com.example.unilife.app-main-66:/layout/activity_modifica.xml"
+    },
+    {
         "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-mergeDebugResources-63:\\layout\\activity_modifica.xml",
         "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\layout\\activity_modifica.xml"
     },
@@ -114,9 +118,5 @@
     {
         "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-mergeDebugResources-63:\\layout\\fragment_invita.xml",
         "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\layout\\fragment_invita.xml"
-    },
-    {
-        "merged": "com.example.unilife.app-mergeDebugResources-63:/layout/fragment_account.xml",
-        "source": "com.example.unilife.app-main-66:/layout/fragment_account.xml"
     }
 ]

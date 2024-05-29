@@ -57,11 +57,14 @@ id bottom_home
 id bottom_navigation
 id bottom_phone
 id bottom_spese
+id button
 id buttonIndietro
 id buttonPaga
 id buttonSalva
 id calendarView
 id cardView
+id changePassword
+id changeUsername
 id checkBox
 id completaButton
 id confermaButton
@@ -172,6 +175,7 @@ layout activity_all_pdf
 layout activity_archivio
 layout activity_attivita
 layout activity_main
+layout activity_modifica
 layout activity_pdf_viewer
 layout activity_registrazione
 layout activity_spesa

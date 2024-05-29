@@ -39,6 +39,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.UniFile" >
         <activity
+            android:name="com.example.unilife.View.Activity.ModificaActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.unilife.View.Activity.PdfViewerActivity"
             android:exported="false" />
         <activity

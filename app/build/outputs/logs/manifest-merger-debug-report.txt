@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-58:12
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-61:12
+INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-61:12
+INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-61:12
+INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:2:1-61:12
 MERGED from [androidx.databinding:databinding-adapters:8.3.2] C:\Users\manum\.gradle\caches\transforms-3\7358c805de8518cd572a973a8968e393\transformed\databinding-adapters-8.3.2\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-ktx:8.3.2] C:\Users\manum\.gradle\caches\transforms-3\6b29ca9318b2a4794a0e798588273466\transformed\jetified-databinding-ktx-8.3.2\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-runtime:8.3.2] C:\Users\manum\.gradle\caches\transforms-3\e707d47e61378dccc1a75711f7017484\transformed\databinding-runtime-8.3.2\AndroidManifest.xml:2:1-7:12
@@ -188,8 +188,8 @@ ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidMani
 	android:name
 		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:8:22-79
 application
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:10:5-56:19
-INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:10:5-56:19
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:10:5-59:19
+INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:10:5-59:19
 MERGED from [com.google.firebase:firebase-firestore-ktx:25.0.0] C:\Users\manum\.gradle\caches\transforms-3\bfb6cfbccaf958fe58d88d3e39390f5c\transformed\jetified-firebase-firestore-ktx-25.0.0\AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-firestore-ktx:25.0.0] C:\Users\manum\.gradle\caches\transforms-3\bfb6cfbccaf958fe58d88d3e39390f5c\transformed\jetified-firebase-firestore-ktx-25.0.0\AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-database-ktx:21.0.0] C:\Users\manum\.gradle\caches\transforms-3\e537b10c0c03640f1504822aa8b63ca5\transformed\jetified-firebase-database-ktx-21.0.0\AndroidManifest.xml:8:5-16:19
@@ -292,76 +292,82 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ma
 		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:18:9-45
 	android:dataExtractionRules
 		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:12:9-65
-activity#com.example.unilife.View.Activity.PdfViewerActivity
+activity#com.example.unilife.View.Activity.ModificaActivity
 ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:20:9-22:40
 	android:exported
 		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:22:13-37
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:21:13-60
-activity#com.example.unilife.View.Activity.ArchivioActivity
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:21:13-59
+activity#com.example.unilife.View.Activity.PdfViewerActivity
 ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:23:9-25:40
 	android:exported
 		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:25:13-37
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:24:13-59
-activity#com.example.unilife.View.Activity.AllPdfActivity
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:26:9-29:52
-	android:screenOrientation
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:29:13-49
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:24:13-60
+activity#com.example.unilife.View.Activity.ArchivioActivity
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:26:9-28:40
 	android:exported
 		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:27:13-57
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:27:13-59
+activity#com.example.unilife.View.Activity.AllPdfActivity
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:29:9-32:52
+	android:screenOrientation
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:32:13-49
+	android:exported
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:30:13-57
 activity#com.example.unilife.View.Activity.AttivitaActivity
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:30:9-33:52
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:33:9-36:52
 	android:screenOrientation
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:33:13-49
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:36:13-49
 	android:exported
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:32:13-37
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:35:13-37
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:31:13-59
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:34:13-59
 activity#com.example.unilife.View.Activity.SpesaActivity
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:34:9-37:52
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:37:9-40:52
 	android:screenOrientation
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:37:13-49
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:40:13-49
 	android:exported
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:36:13-37
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:39:13-37
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:35:13-56
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:38:13-56
 activity#com.example.unilife.View.Activity.MainActivity
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:38:9-41:52
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:41:9-44:52
 	android:screenOrientation
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:41:13-49
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:44:13-49
 	android:exported
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:40:13-37
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:43:13-37
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:39:13-55
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:42:13-55
 activity#com.example.unilife.View.Activity.RegistrazioneActivity
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:42:9-45:52
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:45:9-48:52
 	android:screenOrientation
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:45:13-49
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:48:13-49
 	android:exported
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:44:13-37
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:43:13-64
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:46:13-64
 activity#com.example.unilife.View.Activity.AccessoActivity
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:46:9-55:20
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:49:9-58:20
 	android:screenOrientation
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:49:13-49
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:52:13-49
 	android:exported
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:48:13-36
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:51:13-36
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:47:13-58
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:50:13-58
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:50:13-54:29
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:53:13-57:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:51:17-69
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:54:17-69
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:51:25-66
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:54:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:53:17-77
+ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:56:17-77
 	android:name
-		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:53:27-74
+		ADDED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml:56:27-74
 uses-sdk
 INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\manum\AndroidStudioProjects\UniLife\app\src\main\AndroidManifest.xml
