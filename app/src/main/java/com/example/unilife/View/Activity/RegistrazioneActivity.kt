@@ -34,6 +34,9 @@ class RegistrazioneActivity : AppCompatActivity() {
         binding.registrazioneButton.setOnClickListener {registraClick()}
         binding.loginText.setOnClickListener {loginClick()}
 
+
+
+
         }
 
 
@@ -57,31 +60,27 @@ class RegistrazioneActivity : AppCompatActivity() {
 
             else -> {
 
-                viewModel.verificaUnicitaCredenziali(email, username)
+                lifecycleScope.launch {
+                    val unico = viewModel.verificaUnicitaCredenziali(email, username)
+                    if (unico) {
 
-                viewModel.userUnico.observe(this) { userUnico ->
-                    viewModel.emailUnica.observe(this ) { emailUnica ->
-                        if (userUnico && emailUnica) {
-                            viewModel.registraUtente(email, password, username)
-                            startActivity(
-                                Intent(
-                                    this@RegistrazioneActivity,
-                                    AccessoActivity::class.java
-                                )
-                            )
-                            finish()
-                        } else {
-                            Snackbar.make(
-                                binding.root,
-                                "trova un nuovo username o una nuova email",
-                                Snackbar.LENGTH_SHORT
-                            )
-                                .show()
-                        }
+                        viewModel.registraUtente(email, password, username)
+
+                        //viewModel.fireStoreUtente(email,username,password)
+
+                        startActivity(Intent(this@RegistrazioneActivity, AccessoActivity::class.java))
+                        finish()
+
+                    } else {
+                        Snackbar.make(
+                            binding.root,
+                            "trova un nuovo username o una nuova email",
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .show()
                     }
                 }
             }
-
         }
     }
 
@@ -92,5 +91,6 @@ class RegistrazioneActivity : AppCompatActivity() {
         finish()
     }
 
-}
+
+        }
 

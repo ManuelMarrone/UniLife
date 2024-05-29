@@ -23,7 +23,7 @@ class PdfFilesAdapter(private val listener: PdfClickListener) : ListAdapter<Docu
             binding.fileName.text = data.nome_doc
 
         }
-    }
+        }
     class PdfDiffCallback: DiffUtil.ItemCallback<Documento>(){
         override fun areItemsTheSame(oldItem: Documento, newItem: Documento) =
             oldItem.url == newItem.url

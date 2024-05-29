@@ -10,6 +10,11 @@ import androidx.fragment.app.Fragment
 import com.example.unilife.View.Activity.AttivitaActivity
 import com.example.unilife.databinding.FragmentCalendarioBinding
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [CalendarioFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class CalendarioFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentCalendarioBinding
@@ -28,18 +33,20 @@ class CalendarioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewBinding.calendarView
-            .setOnDateChangeListener { _, year, month, dayOfMonth ->
-                val data = (dayOfMonth.toString() + "-"
-                        + (month + 1) + "-" + year)
+            .setOnDateChangeListener(
+                CalendarView.OnDateChangeListener { view, year, month, dayOfMonth ->
+                    val data = (dayOfMonth.toString() + "-"
+                            + (month + 1) + "-" + year)
 
-                goToVisualizzaListaAttivita(data)
-            }
+                    goToVisualizzaListaAttivita(data)
+                })
 
 
-        viewBinding.attivitaBtn.setOnClickListener{goToAggiungiAttivita()}
+        viewBinding.attivitaBtn.setOnClickListener(goToAggiungiAttivita())
     }
 
-    private fun goToAggiungiAttivita() {
+    private fun goToAggiungiAttivita(): View.OnClickListener {
+        return View.OnClickListener {
             startActivity(
                 Intent(
                     requireActivity(),
@@ -47,6 +54,7 @@ class CalendarioFragment : Fragment() {
                 )
                     .putExtra("FRAGMENT_TO_LOAD", "AggiungiAttivitaFragment")
             )
+        }
     }
 
     private fun goToVisualizzaListaAttivita(data:String) {

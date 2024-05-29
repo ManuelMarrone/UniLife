@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.example.exampleinstrumentedtest.CreazioneGruppoInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="29.408" timestamp="2024-05-29T08:43:16" hostname="localhost">
+  <properties>
+    <property name="device" value="2201116SG - 13" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="gruppoTest" classname="com.example.exampleinstrumentedtest.CreazioneGruppoInstrumentedTest" time="27.706" />
+</testsuite>

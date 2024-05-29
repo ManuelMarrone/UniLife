@@ -1,28 +1,49 @@
 package com.example.unilife.Repository
 
+import android.content.Context
+import android.net.Uri
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.unilife.Model.Documento
 import com.google.android.gms.tasks.Task
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.util.Date
+
+
+
+
+
+
+
+
 
 class ArchivioRepo {
 
-    private val db = Firebase.firestore
+    private val storage = FirebaseStorage.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
+    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
+
     private val firebaseAuth = FirebaseAuth.getInstance()
 
     private val _lista_documenti : MutableLiveData<ArrayList<Documento>> = MutableLiveData()
     val lista_documenti: LiveData<ArrayList<Documento>> = _lista_documenti
 
 
-    //getUtente sta già in UtenteRepo non riscriverlo anche qui
+
+
 
     fun getUtente(): Task<DocumentSnapshot> {
         val idUtente = firebaseAuth.currentUser!!.uid
-        val documentReference = db.collection("utenti").document(idUtente)
+        val documentReference = dbSettings.firestore.collection("utenti").document(idUtente)
         return documentReference.get()
     }
 

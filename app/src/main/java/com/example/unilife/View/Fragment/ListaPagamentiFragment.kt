@@ -20,12 +20,19 @@ import com.example.unilife.View.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.ViewModel.ListaPagamentiViewModel
 import com.example.unilife.databinding.FragmentListaPagamentiBinding
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ListaPagamentiFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
     RecyclerViewItemClickListener {
     private lateinit var viewBinding: FragmentListaPagamentiBinding
     private val viewModel: ListaPagamentiViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +44,7 @@ class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewBinding.addButton.setOnClickListener{goToAggiungiSpesa()}
+        viewBinding.addButton.setOnClickListener(goToAggiungiSpesa())
 
         recyclerView = viewBinding.RVListaPagamenti
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
@@ -74,7 +81,8 @@ class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
         }
     }
 
-    private fun goToAggiungiSpesa(){
+    private fun goToAggiungiSpesa(): View.OnClickListener {
+        return View.OnClickListener {
             startActivity(
                 Intent(
                     requireActivity(),
@@ -82,6 +90,7 @@ class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
                 )
                     .putExtra("FRAGMENT", "AggiungiSpesaFragment")
             )
+        }
     }
 
     companion object {

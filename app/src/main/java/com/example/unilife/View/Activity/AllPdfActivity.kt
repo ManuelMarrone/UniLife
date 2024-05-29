@@ -19,6 +19,7 @@ import com.google.firebase.storage.StorageReference
 class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
 
     private lateinit var binding: ActivityAllPdfBinding
+    private lateinit var storage : StorageReference
     private lateinit var adapter: PdfFilesAdapter
     private lateinit var firestore : CollectionReference
 

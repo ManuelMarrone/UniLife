@@ -15,11 +15,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unilife.Model.Pagamento
 import com.example.unilife.R
+import com.example.unilife.View.Activity.AttivitaActivity
 import com.example.unilife.View.Activity.MainActivity
-import com.example.unilife.View.Adapter.PartecipantiCheckBoxAdapter
+import com.example.unilife.View.Activity.SpesaActivity
+import com.example.unilife.View.Adapter.PartecipantiAttivitaAdapter
 import com.example.unilife.ViewModel.VisualizzaSpesaViewModel
 import com.example.unilife.databinding.FragmentVisualizzaSpesaBinding
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [VisualizzaSpesaFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class VisualizzaSpesaFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentVisualizzaSpesaBinding
@@ -49,7 +56,7 @@ class VisualizzaSpesaFragment : Fragment() {
 
         //aggiorna la lista osservabile di nomi con cui riempire la recyclerView
         viewModel.partecipanti.observe(viewLifecycleOwner) { mapUpdated ->
-            recyclerView.adapter = PartecipantiCheckBoxAdapter(requireContext(), null, mapUpdated)
+            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), null, mapUpdated)
         }
 
         setUIVisualizzazione()

@@ -10,18 +10,13 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
 
 class UtenteRepo {
 
-    private val dbSettings = Firebase.firestore
+    private val dbSettings = ImpostazioniDB()
     private val firebaseAuth = FirebaseAuth.getInstance()
     val db = FirebaseFirestore.getInstance()
-
-    private val idUtente = firebaseAuth.currentUser?.uid!!
-    private val utenteRef = db.collection("utenti").document(idUtente)
-    private var listenerRegistration : ListenerRegistration? = null
 
 
     fun getUtente(): Task<DocumentSnapshot> {

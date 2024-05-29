@@ -18,7 +18,11 @@ import com.example.unilife.View.Activity.ArchivioActivity
 import com.example.unilife.ViewModel.HomeViewModel
 import com.example.unilife.databinding.FragmentHomeBinding
 
-
+/**
+ * A simple [Fragment] subclass.
+ * Use the [HomeFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
     private lateinit var viewBinding: FragmentHomeBinding
 
@@ -37,8 +41,8 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewBinding.accountButton.setOnClickListener{goToAccount()}
-        viewBinding.archivioButton.setOnClickListener{goToArchivio()}
+        viewBinding.accountButton.setOnClickListener(goToAccount())
+        viewBinding.archivioButton.setOnClickListener(goToArchivio())
         viewBinding.aggiungiBtn.setOnClickListener{aggiungiElementoLista()}
 
         recyclerView = viewBinding.RVListaSpesa
@@ -49,13 +53,17 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
         }
     }
 
-    private fun goToAccount() {
-        replaceFragment(AccountFragment.newInstance())
+    private fun goToAccount(): View.OnClickListener {
+        return View.OnClickListener {
+            replaceFragment(AccountFragment.newInstance())
+        }
     }
 
-    private fun goToArchivio() {
-        val intent = Intent(requireActivity(), ArchivioActivity::class.java)
-        startActivity(intent)
+    private fun goToArchivio(): View.OnClickListener {
+        return View.OnClickListener {
+            val intent = Intent(requireActivity(), ArchivioActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun aggiungiElementoLista()
@@ -88,6 +96,7 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
     override fun onButtonClick(position: Int) {
         viewModel.rimuoviElemento(position)
     }
+
 
 
     companion object {

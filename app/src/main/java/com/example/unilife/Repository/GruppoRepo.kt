@@ -5,22 +5,23 @@ import com.example.unilife.Model.Attivita
 import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Pagamento
 import com.google.android.gms.tasks.Task
-import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FieldValue.arrayRemove
 import com.google.firebase.firestore.FieldValue.arrayUnion
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.firestore
 
 
 //il repository decide come prendere il dato, decide queste polithce, il viewModel ottiene i dati
 //senza sapere come sono stati ricavati, disaccoppiare recupero dati dalla loro manipolazione
 class GruppoRepo {
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
 
-    private val db = Firebase.firestore
 
+    private val utenteRepo = UtenteRepo()
     fun creaGruppo(username: String): Task<DocumentReference> {
         val partecipanti = mutableListOf<String>(username)
         val listaSpesa = mutableListOf<String>()
@@ -29,25 +30,25 @@ class GruppoRepo {
         val gruppo = Gruppo(partecipanti = partecipanti, listaSpesa, contatti)
         Log.d("crea gruppo inf", "repo")
 
-        return db.collection("gruppi").add(gruppo)
+        return dbSettings.firestore.collection("gruppi").add(gruppo)
     }
 
 
     fun aggiungiPartecipante(username:String, idGruppo: String): Task<Void> {
-        val gruppoReference: DocumentReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
 
         return gruppoReference.update("partecipanti" , arrayUnion(username))
     }
 
     //aggiunge il documento dentro la raccolta attivita dentro la raccolta gruppi
     fun aggiungiAttivita(attivita: Attivita, idGruppo: String): Task<DocumentReference> {
-        val gruppoReference: DocumentReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
 
         return gruppoReference.collection("attivita").add(attivita)
     }
 
     fun aggiungiPagamento(pagamento: Pagamento, idGruppo: String): Task<DocumentReference> {
-        val gruppoReference: DocumentReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference: DocumentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
 
         return gruppoReference.collection("pagamenti").add(pagamento)
     }
@@ -55,7 +56,7 @@ class GruppoRepo {
 
     fun modificaAttivita(idAttivita: String , attivita: Attivita, idGruppo: String): Task<Void> {
 
-        val gruppoReference: DocumentReference =  db.collection("gruppi").document(idGruppo)
+        val gruppoReference: DocumentReference =  dbSettings.firestore.collection("gruppi").document(idGruppo)
         val attivitaReference = gruppoReference.collection("attivita").document(idAttivita)
 
         // Aggiorna i campi dell'attività utilizzando il metodo "set" o "update"
@@ -64,7 +65,7 @@ class GruppoRepo {
 
     fun modificaPagamento(idPagamento: String ,pagamento: Pagamento, idGruppo: String): Task<Void> {
 
-        val gruppoReference: DocumentReference =  db.collection("gruppi").document(idGruppo)
+        val gruppoReference: DocumentReference =  dbSettings.firestore.collection("gruppi").document(idGruppo)
         val pagamentoReference = gruppoReference.collection("pagamenti").document(idPagamento)
 
         // Aggiorna i campi dell'attività utilizzando il metodo "set" o "update"
@@ -73,7 +74,7 @@ class GruppoRepo {
 
     fun getPagamento(idPagamento: String, idGruppo: String): DocumentReference {
 
-        val gruppoReference: DocumentReference =  db.collection("gruppi").document(idGruppo)
+        val gruppoReference: DocumentReference =  dbSettings.firestore.collection("gruppi").document(idGruppo)
         val pagamentoReference = gruppoReference.collection("pagamenti").document(idPagamento)
 
         // Aggiorna i campi dell'attività utilizzando il metodo "set" o "update"
@@ -82,17 +83,17 @@ class GruppoRepo {
 
 
     fun aggiungiElementoListaSpesa(nome: String, idGruppo: String): Task<Void> {
-        val gruppoReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoReference.update("listaSpesa", arrayUnion(nome))
     }
 
     fun rimuoviElementoListaSpesa(nome: String, idGruppo: String): Task<Void> {
-        val gruppoReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoReference.update("listaSpesa", arrayRemove(nome))
     }
 
     fun aggiungiContatto(nomeContatto: String, numTel:String, idGruppo: String): Task<Void> {
-        val gruppoReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         val nuovoContatto: MutableMap<String, String> = mutableMapOf(nomeContatto to numTel)
         return gruppoReference.get().continueWithTask { task ->
             if (task.isSuccessful) {
@@ -120,57 +121,57 @@ class GruppoRepo {
     }
 
     fun rimuoviContatto(chiave: String, idGruppo: String): Task<Void> {
-        val gruppoReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoReference.update("contatti.$chiave", FieldValue.delete())
     }
 
     fun eliminaGruppo(idGruppo: String): Task<Void> {
-        val gruppoReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoReference.delete()
     }
 
     fun rimuoviPartecipante(username: String, idGruppo: String): Task<Void> {
-        val gruppoReference = db.collection("gruppi").document(idGruppo)
+        val gruppoReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoReference.update("partecipanti", arrayRemove(username))
     }
 
     fun rimuoviPartecipanteAttivita(idAttivita : String, idGruppo: String, partecipantiAttivita: Map<String, Boolean>): Task<Void> {
-        val gruppoDoc = db.collection("gruppi").document(idGruppo)
+        val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
         val attivitaDoc = gruppoDoc.collection("attivita").document(idAttivita)
         return attivitaDoc.update("partecipanti", partecipantiAttivita)
     }
 
     fun rimuoviPartecipantePagamento(idPagamento: String, idGruppo: String, partecipantiPagamento: Map<String, Boolean>): Task<Void> {
-        val gruppoDoc = db.collection("gruppi").document(idGruppo)
+        val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
         val pagamentoDoc = gruppoDoc.collection("pagamenti").document(idPagamento)
         return pagamentoDoc.update("partecipanti", partecipantiPagamento)
     }
 
     fun getGruppo(idGruppo: String): DocumentReference {
-        val gruppoDoc = db.collection("gruppi").document(idGruppo)
+        val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
         return gruppoDoc
     }
 
     fun getAttivitaByData(data: String, idGruppo: String): Task<QuerySnapshot> {
-        val documentReference = db.collection("gruppi").document(idGruppo)
+        val documentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
 
         return documentReference.collection("attivita").whereEqualTo("data", data).get()
     }
 
     fun fetchPagamenti( idGruppo: String): Task<QuerySnapshot> {
-        val documentReference = db.collection("gruppi").document(idGruppo)
+        val documentReference = dbSettings.firestore.collection("gruppi").document(idGruppo)
 
         return documentReference.collection("pagamenti").get()
     }
 
     fun rimuoviAttivita(id:String, idGruppo: String): Task<Void> {
-        val gruppoDoc = db.collection("gruppi").document(idGruppo)
+        val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
         val attivitaDoc = gruppoDoc.collection("attivita").document(id)
         return attivitaDoc.delete()
     }
 
     fun rimuoviPagamento(id:String, idGruppo: String): Task<Void> {
-        val gruppoDoc = db.collection("gruppi").document(idGruppo)
+        val gruppoDoc = dbSettings.firestore.collection("gruppi").document(idGruppo)
         val pagamentoDoc = gruppoDoc.collection("pagamenti").document(id)
         return pagamentoDoc.delete()
     }

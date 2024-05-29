@@ -7,8 +7,12 @@ import com.example.unilife.databinding.ActivityAccessoBinding
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.unilife.Utils.InputCorretto
+import com.example.unilife.Utils.SnackbarManager
 import com.example.unilife.ViewModel.AccessoViewModel
+import kotlinx.coroutines.launch
+
 
 
 class AccessoActivity : AppCompatActivity() {
@@ -19,6 +23,7 @@ class AccessoActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityAccessoBinding
+    private lateinit var firebaseAuth: FirebaseAuth
     private val viewModel: AccessoViewModel by viewModels()
     private val inputCorretto = InputCorretto()
 
@@ -27,8 +32,24 @@ class AccessoActivity : AppCompatActivity() {
         binding = ActivityAccessoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        firebaseAuth = FirebaseAuth.getInstance()
         binding.accediButton.setOnClickListener { onclickaccedi() }
         binding.creaButton.setOnClickListener { creaClick() }
+
+        lifecycleScope.launch {
+            viewModel.uiState.collect { state ->
+
+                if (state.isLoggedIn) {
+                    startActivity(Intent(this@AccessoActivity, MainActivity::class.java))
+                    finish()
+                }
+                if (state.error != null) {
+
+                    SnackbarManager.onFailure(state.error, this@AccessoActivity, binding.root)
+                }
+            }
+        }
 
     }
 
@@ -43,7 +64,7 @@ class AccessoActivity : AppCompatActivity() {
        if (inputCorretto.isValidEmail(email)) {
             if (inputCorretto.isValidPassword(password)) {
                 viewModel.accedi(email, password)
-                startActivity(Intent(this@AccessoActivity, MainActivity::class.java))
+
             } else {
                 binding.editTextPasswordLogin.error = ERRORE_PASSWORD
                 Toast.makeText(this, "pass Failed", Toast.LENGTH_SHORT).show()
@@ -56,6 +77,36 @@ class AccessoActivity : AppCompatActivity() {
 
 
     }
+
+
+
+
+
+
+
+
+
+       /**binding = DataBindingUtil.setContentView(this, R.layout.activity_accesso)
+        firebaseAuth = FirebaseAuth.getInstance()
+        if(email.isNotEmpty() && password.isNotEmpty()){
+
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this){task->
+                    if(task.isSuccessful){
+                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else{
+                        Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+        } else {
+            Toast.makeText(this, "please enter emain and password", Toast.LENGTH_SHORT).show()
+        }*/
+
 
 /**apertura activity registrazione*/
     private fun creaClick(){
@@ -71,7 +122,7 @@ class AccessoActivity : AppCompatActivity() {
         }
     }
 
-}
+    }
 
 
 

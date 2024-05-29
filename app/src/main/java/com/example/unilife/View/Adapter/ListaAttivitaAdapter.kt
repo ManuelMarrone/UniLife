@@ -30,7 +30,7 @@ class ListaAttivitaAdapter(val c: Context, val listener : RecyclerViewButtonClic
 
 
     //assign the views of the item to a variable
-    inner class AttivitaViewHolder(riga:View) : RecyclerView.ViewHolder(riga)
+    inner class AttivitaViewHolder(val riga:View) : RecyclerView.ViewHolder(riga)
     {
         val textView: TextView
         val button : ImageButton

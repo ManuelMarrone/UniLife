@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.example.unilife.Model.Documento
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.ArchivioRepo
+import com.example.unilife.Repository.ImpostazioniDB
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -18,6 +19,9 @@ import java.util.Date
 class ArchivioViewModel :ViewModel() {
 
     private val storage = FirebaseStorage.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
+    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
+    private val auth = FirebaseAuth.getInstance()
     private val archivioRepo = ArchivioRepo()
     private var idGruppo : String? = null
     private val _lista_documenti = MutableLiveData<List<Documento>>()
@@ -82,17 +86,13 @@ class ArchivioViewModel :ViewModel() {
             id_documento = id_doc,
             url = url
         )
-
-        /**Non va bene, le chiamate al DB vanno nel REPOSITORY**/
-
-
-//        firestore.collection("documenti").document(id_doc).set(documento)
-//            .addOnSuccessListener {
-//                Log.d("Firestore", "File metadata saved successfully in 'documenti' collection")
-//            }
-//            .addOnFailureListener { e ->
-//                Log.d("Firestore", "Failed to save file metadata in 'documenti' collection", e)
-//            }
+        firestore.collection("documenti").document(id_doc).set(documento)
+            .addOnSuccessListener {
+                Log.d("Firestore", "File metadata saved successfully in 'documenti' collection")
+            }
+            .addOnFailureListener { e ->
+                Log.d("Firestore", "Failed to save file metadata in 'documenti' collection", e)
+            }
     }
 /**
     fun addDocumentToList(documento: Documento) {

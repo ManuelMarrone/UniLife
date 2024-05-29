@@ -20,7 +20,13 @@ class MainViewModel : ViewModel(){
     fun getIdGruppoUtente()
     {
         utenteRepo.getUtenteLive().addSnapshotListener { utente,e ->
+<<<<<<< HEAD
             _idGruppoUtente.value = utente?.toObject(Utente::class.java)?.id_gruppo
+=======
+            if(utente != null ) {
+                _idGruppoUtente.value = utente.toObject(Utente::class.java)?.id_gruppo
+            }
+>>>>>>> parent of 1861c46 (rotto)
         }
     }
 

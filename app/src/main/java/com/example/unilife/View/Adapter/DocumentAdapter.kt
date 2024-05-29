@@ -34,7 +34,7 @@ class DocumentAdapter(val listener: RecyclerViewButtonClickListener<Int>, val li
 
 
     //assign the views of the item to a variable
-    inner class DocumentiViewHolder(riga: View) : RecyclerView.ViewHolder(riga)
+    inner class DocumentiViewHolder(val riga: View) : RecyclerView.ViewHolder(riga)
     {
         val keyTextView: TextView
         val valueTextView:TextView
@@ -52,6 +52,7 @@ class DocumentAdapter(val listener: RecyclerViewButtonClickListener<Int>, val li
         {
             Log.d("posizione", " adap${adapterPosition}")
             listener.onButtonClick(adapterPosition)
+            notifyDataSetChanged()
         }
 
     }

@@ -3,10 +3,8 @@ package com.example.unilife.Repository
 import android.content.ContentValues
 import android.util.Log
 import com.example.unilife.Model.Utente
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -14,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 class RegistrazioneRepo() {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
-    private val db = Firebase.firestore
+    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
 
     suspend fun registrazione(email: String, password:String, username: String):
             Result<Boolean> = withContext(Dispatchers.IO){
@@ -23,7 +21,7 @@ class RegistrazioneRepo() {
                 if (task.isSuccessful()) {
                     val idUtente = firebaseAuth.currentUser?.uid!!
                     val documentReference: DocumentReference =
-                        db.collection("utenti").document(idUtente)
+                        dbSettings.firestore.collection("utenti").document(idUtente)
                     val utente = Utente(
                         username = username,
                         email = email,

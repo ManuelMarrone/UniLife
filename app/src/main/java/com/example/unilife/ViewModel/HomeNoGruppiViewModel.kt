@@ -4,9 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.GruppoRepo
+import com.example.unilife.Repository.ImpostazioniDB
 import com.example.unilife.Repository.UtenteRepo
+import kotlinx.coroutines.launch
 
 class HomeNoGruppiViewModel: ViewModel() {
 
