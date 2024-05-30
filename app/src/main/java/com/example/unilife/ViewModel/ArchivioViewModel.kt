@@ -86,7 +86,8 @@ class ArchivioViewModel :ViewModel() {
             id_documento = id_doc,
             url = url
         )
-        firestore.collection("documenti").document(id_doc).set(documento)
+        val documentPath = "gruppi/$idGruppo/documenti/$id_doc"
+        firestore.document(documentPath).set(documento)
             .addOnSuccessListener {
                 Log.d("Firestore", "File metadata saved successfully in 'documenti' collection")
             }
