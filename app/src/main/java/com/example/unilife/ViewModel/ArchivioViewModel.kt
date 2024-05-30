@@ -86,6 +86,7 @@ class ArchivioViewModel :ViewModel() {
             id_documento = id_doc,
             url = url
         )
+
         val documentPath = "gruppi/$idGruppo/documenti/$id_doc"
         firestore.document(documentPath).set(documento)
             .addOnSuccessListener {
