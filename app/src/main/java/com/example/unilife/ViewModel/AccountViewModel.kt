@@ -61,7 +61,7 @@ class AccountViewModel:ViewModel() {
             }
 
         }
-        userRepository.eliminaUtenteFireStore().addOnSuccessListener{
+        userRepository.eliminaUtenteFireStore().addOnFailureListener{
             Log.d("Rimozione utente", "eliminazione utente fallita")
         }
         userRepository.eliminaUtenteAuth().addOnFailureListener{
@@ -73,7 +73,7 @@ class AccountViewModel:ViewModel() {
     fun modificaUtente(pwd:String, user:String){
 
         userRepository.aggiornaUsername(user)
-            .addOnFailureListener { e ->
+            ?.addOnFailureListener { e ->
                 Log.e("modifica", "errore nella modifica dell'username${e.message}")
             }
 

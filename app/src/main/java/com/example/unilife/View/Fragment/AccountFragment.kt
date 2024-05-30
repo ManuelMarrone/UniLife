@@ -126,10 +126,11 @@ class AccountFragment : Fragment() {
                 viewModel.isUnico.observe(viewLifecycleOwner){unico ->
                     if (unico) {
                         viewModel.modificaUtente( newPassword, newUsername)
+                        viewModel.logOut()
                     } else {
                         Snackbar.make(
                             viewBinding.root,
-                            "trova un nuovo username o una nuova email",
+                            "trova un nuovo username",
                             Snackbar.LENGTH_SHORT
                         )
                             .show()

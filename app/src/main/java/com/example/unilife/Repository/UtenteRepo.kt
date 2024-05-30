@@ -66,9 +66,17 @@ class UtenteRepo {
         return utenteDoc.update("id_gruppo", null)
     }
 
-    fun aggiornaUsername(user:String): Task<Void> {
+    fun aggiornaUsername(user:String): Task<Void>? {
         val userId = firebaseAuth.currentUser?.uid
-        return db.collection("utenti").document(userId!!).update("username", user)
+        if (userId != null)
+        {
+            return db.collection("utenti").document(userId).update("username", user)
+
+        }
+        else
+        {
+            return null
+        }
     }
 
     fun aggiornaPassword(pwd:String): Task<Void> {
