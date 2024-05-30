@@ -3344,7 +3344,6 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
-id button
 id buttonIndietro
 id buttonPaga
 id buttonPanel
@@ -3364,8 +3363,6 @@ id center_vertical
 id chain
 id chain2
 id chains
-id changePassword
-id changeUsername
 id checkBox
 id checkbox
 id checked
@@ -3995,7 +3992,6 @@ layout activity_all_pdf
 layout activity_archivio
 layout activity_attivita
 layout activity_main
-layout activity_modifica
 layout activity_pdf_viewer
 layout activity_registrazione
 layout activity_spesa

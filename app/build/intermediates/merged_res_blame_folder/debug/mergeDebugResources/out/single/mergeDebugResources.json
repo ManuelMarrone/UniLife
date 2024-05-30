@@ -4,12 +4,12 @@
         "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\drawable\\background.xml"
     },
     {
-        "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-debug-64:\\mipmap-anydpi_ic_launcher.xml.flat",
-        "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\mipmap-anydpi\\ic_launcher.xml"
-    },
-    {
         "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-debug-64:\\layout_fragment_aggiungi_attivita.xml.flat",
         "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\layout\\fragment_aggiungi_attivita.xml"
+    },
+    {
+        "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-debug-64:\\mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\mipmap-anydpi\\ic_launcher.xml"
     },
     {
         "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-debug-64:\\layout_activity_pdf_viewer.xml.flat",
@@ -102,10 +102,6 @@
     {
         "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-debug-64:\\drawable_usericon.png.flat",
         "source": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-main-66:\\drawable\\usericon.png"
-    },
-    {
-        "merged": "com.example.unilife.app-debug-64:/layout_activity_modifica.xml.flat",
-        "source": "com.example.unilife.app-main-66:/layout/activity_modifica.xml"
     },
     {
         "merged": "C:\\Users\\manum\\.gradle\\daemon\\8.4\\com.example.unilife.app-debug-64:\\drawable_ic_launcher_background.xml.flat",

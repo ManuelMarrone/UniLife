@@ -3343,7 +3343,6 @@ int id browser_actions_menu_item_icon 0x7f08007d
 int id browser_actions_menu_item_text 0x7f08007e
 int id browser_actions_menu_items 0x7f08007f
 int id browser_actions_menu_view 0x7f080080
-int id button 0x7f080290
 int id buttonIndietro 0x7f080081
 int id buttonPaga 0x7f080082
 int id buttonPanel 0x7f080083
@@ -3363,8 +3362,6 @@ int id center_vertical 0x7f080090
 int id chain 0x7f080091
 int id chain2 0x7f080092
 int id chains 0x7f080093
-int id changePassword 0x7f080291
-int id changeUsername 0x7f080292
 int id checkBox 0x7f080094
 int id checkbox 0x7f080095
 int id checked 0x7f080096
@@ -3994,7 +3991,6 @@ int layout activity_all_pdf 0x7f0b001d
 int layout activity_archivio 0x7f0b001e
 int layout activity_attivita 0x7f0b001f
 int layout activity_main 0x7f0b0020
-int layout activity_modifica 0x7f0b0092
 int layout activity_pdf_viewer 0x7f0b0021
 int layout activity_registrazione 0x7f0b0022
 int layout activity_spesa 0x7f0b0023
