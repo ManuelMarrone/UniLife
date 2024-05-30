@@ -39,14 +39,13 @@
         android:testOnly="true"
         android:theme="@style/Theme.UniFile" >
         <activity
-            android:name="com.example.unilife.View.Activity.ModificaActivity"
-            android:exported="false" />
-        <activity
             android:name="com.example.unilife.View.Activity.PdfViewerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.unilife.View.Activity.ArchivioActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.unilife.View.Activity.AllPdfActivity"
             android:exported="false"
