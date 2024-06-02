@@ -1,29 +1,14 @@
 package com.example.unilife.Repository
 
-import android.content.Context
-import android.net.Uri
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.unilife.Model.Documento
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import java.io.File
-import java.util.Date
-
-
-
-
-
-
-
 
 
 class ArchivioRepo {
@@ -47,6 +32,19 @@ class ArchivioRepo {
         return documentReference.get()
     }
 
+
+    fun deleteFile(documentId: String): Task<Void> {
+        val deleteTask = firestore.collection("documenti").document(documentId).delete()
+        return deleteTask
+    }
+
+    fun getFirestoreCollection(): CollectionReference {
+        return FirebaseFirestore.getInstance().collection("documenti")
+    }
+
+    fun saveDocumentToFirestore(documentPath: String, documento: Documento): Task<Void> {
+        return FirebaseFirestore.getInstance().document(documentPath).set(documento)
+    }
     /**
     suspend fun uploadFile(byteArray: ByteArray, uri: Uri) {
         // Implementazione dell'upload del file su Firebase Storage

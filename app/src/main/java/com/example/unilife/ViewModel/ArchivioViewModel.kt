@@ -88,12 +88,24 @@ class ArchivioViewModel :ViewModel() {
         )
 
         val documentPath = "gruppi/$idGruppo/documenti/$id_doc"
-        firestore.document(documentPath).set(documento)
+        archivioRepo.saveDocumentToFirestore(documentPath, documento)
             .addOnSuccessListener {
                 Log.d("Firestore", "File metadata saved successfully in 'documenti' collection")
             }
             .addOnFailureListener { e ->
                 Log.d("Firestore", "Failed to save file metadata in 'documenti' collection", e)
+            }
+    }
+
+    fun eliminaDocumento(documentId: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        archivioRepo.deleteFile(documentId)
+            .addOnSuccessListener {
+                Log.d("eliminazione", "Eliminazione del documento $documentId completata con successo")
+                onSuccess.invoke()
+            }
+            .addOnFailureListener { e ->
+                Log.e("eliminazione", "Errore durante l'eliminazione del documento $documentId: $e")
+                onFailure.invoke(e)
             }
     }
 /**

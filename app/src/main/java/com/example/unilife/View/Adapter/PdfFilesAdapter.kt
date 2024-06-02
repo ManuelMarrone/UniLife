@@ -17,6 +17,9 @@ class PdfFilesAdapter(private val listener: PdfClickListener) : ListAdapter<Docu
           binding.root.setOnClickListener{
                 listener.onPdfClicked(getItem(adapterPosition))
           }
+          binding.deleteimageview.setOnClickListener {
+              listener.onPdfDelete(getItem(adapterPosition))
+          }
       }
 
         fun bind(data : Documento) {
@@ -46,6 +49,7 @@ class PdfFilesAdapter(private val listener: PdfClickListener) : ListAdapter<Docu
 
     interface PdfClickListener{
         fun onPdfClicked (pdfFile: Documento)
+        fun onPdfDelete(pdfFile: Documento)
 }
 
 }
