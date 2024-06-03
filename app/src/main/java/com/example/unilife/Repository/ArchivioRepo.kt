@@ -33,18 +33,32 @@ class ArchivioRepo {
     }
 
 
-    fun deleteFile(documentId: String): Task<Void> {
-        val deleteTask = firestore.collection("documenti").document(documentId).delete()
+    fun deleteFile(groupId: String, documentId: String): Task<Void> {
+        // Elimina il documento da Firestore
+        val deleteTask = firestore.collection("gruppi").document(groupId).collection("documenti").document(documentId).delete()
+
+        // Elimina il documento dallo Storage (da implementare)
+        // Esempio:
+        // val storageRef = storage.reference.child("gruppi/$groupId/documenti/$documentId")
+        // return storageRef.delete()
+
         return deleteTask
     }
 
-    fun getFirestoreCollection(): CollectionReference {
-        return FirebaseFirestore.getInstance().collection("documenti")
+    fun getFirestoreCollection(groupId: String): CollectionReference {
+        return firestore.collection("gruppi").document(groupId).collection("documenti")
     }
 
     fun saveDocumentToFirestore(documentPath: String, documento: Documento): Task<Void> {
         return FirebaseFirestore.getInstance().document(documentPath).set(documento)
     }
+
+   /** fun fetchDocumenti(groupId: String): Task<QuerySnapshot> {
+        val documentiRef = getFirestoreCollection(groupId)
+        return documentiRef.get()
+    }*/
+
+
     /**
     suspend fun uploadFile(byteArray: ByteArray, uri: Uri) {
         // Implementazione dell'upload del file su Firebase Storage

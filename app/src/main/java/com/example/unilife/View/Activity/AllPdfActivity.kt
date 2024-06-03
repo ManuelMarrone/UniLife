@@ -1,5 +1,6 @@
 package com.example.unilife.View.Activity
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -33,19 +34,69 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
         enableEdgeToEdge()
         binding = ActivityAllPdfBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        firestore = archivioRepo.getFirestoreCollection()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        // Sostituisci con l'ID effettivo del gruppo desiderato
 
+
+       // viewModel.getIdGruppo()
+      //  viewModel.idGruppoUtente.observe(this) { groupId ->
+         //   if (!groupId.isNullOrEmpty()) {
+           //     firestore = viewModel.getFirestoreCollection(groupId)
+
+                ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+                    val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+                    insets
+                }
+
+                setupViewModel()
+
+              //  getAllDocument()
+           // } else {
+            //    Toast.makeText(this, "ID del gruppo non disponibile", Toast.LENGTH_SHORT).show()
+           // }
+      //  }
+
+
+        /** val utenteRepo = UtenteRepo()
+        val utenteTask = utenteRepo.getUtente()
+
+        utenteTask.addOnSuccessListener { documentSnapshot ->
+        val groupId = documentSnapshot?.getString("id_gruppo")
+        if (!groupId.isNullOrEmpty()) {
+        firestore = viewModel.getFirestoreCollection(groupId)
+        //viewModel.fetchDocumenti(groupId)
+
+        //firestore = FirebaseFirestore.getInstance().collection("gruppi").document(groupId).collection("documenti")
+        //firestore = archivioRepo.getFirestoreCollection(groupId)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+        insets
+        }
 
         initRecyclerView()
         getAllDocument()
-
+        } else {
+        Toast.makeText(this, "ID del gruppo non disponibile", Toast.LENGTH_SHORT).show()
+        }
+        }.addOnFailureListener { e ->
+        Toast.makeText(this, "Errore durante il recupero dell'utente: ${e.message}", Toast.LENGTH_SHORT).show()
+        }*/
     }
 
+    private fun setupViewModel() {
+        viewModel.getIdGruppo()
+        viewModel.idGruppoUtente.observe(this) { groupId ->
+
+            if (!groupId.isNullOrEmpty()) {
+                firestore = viewModel.getFirestoreCollection(groupId)
+                initRecyclerView()
+                getAllDocument()
+             }
+        }
+
+    }
     private fun initRecyclerView() {
         binding.pdfsRecyclerView.setHasFixedSize(true)
         binding.pdfsRecyclerView.layoutManager = GridLayoutManager(this, 2)
@@ -54,9 +105,24 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
 
     }
 
-
-
     private fun getAllDocument() {
+        viewModel.getAllDocument(
+            firestore,
+            onSuccess = { documentList ->
+                if (documentList.isEmpty()) {
+                    Toast.makeText(this@AllPdfActivity, "No data found", Toast.LENGTH_SHORT).show()
+                } else {
+                    adapter.submitList(documentList)
+                }
+            },
+            onFailure = { errorMessage ->
+                Toast.makeText(this@AllPdfActivity, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        )
+    }
+
+
+  /** private fun getAllDocument() {
 
             firestore.addSnapshotListener { snapshot, error ->
                 if (error != null) {
@@ -81,7 +147,7 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
                     Toast.makeText(this@AllPdfActivity, "No data found", Toast.LENGTH_SHORT).show()
                 }
             }
-    }
+    }*/
 
     override fun onPdfClicked(pdfFile: Documento) {
        val intent = Intent(this, PdfViewerActivity::class.java)
@@ -93,9 +159,14 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
         // Rimuovi l'elemento dalla RecyclerView
         (adapter as PdfFilesAdapter).submitList((adapter as PdfFilesAdapter).currentList.filter { it != pdfFile })
         Toast.makeText(this@AllPdfActivity, "Documento eliminato", Toast.LENGTH_SHORT).show()
+        viewModel.getIdGruppo()
+        viewModel.idGruppoUtente.observe(this) { groupId ->
 
+            if (!groupId.isNullOrEmpty()) {
+                firestore = viewModel.getFirestoreCollection(groupId)
         // Chiama direttamente il metodo del ViewModel per eliminare il file
         viewModel.eliminaDocumento(
+            groupId,
             pdfFile.id_documento,
             onSuccess = {
                 // Gestisci il successo dell'eliminazione
@@ -107,5 +178,5 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
                 Toast.makeText(this@AllPdfActivity, "Errore durante l'eliminazione del documento", Toast.LENGTH_SHORT).show()
             }
         )
-    }
+    }}}
 }
