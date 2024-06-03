@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import com.example.unilife.Model.Documento
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.ArchivioRepo
-import com.example.unilife.Repository.ImpostazioniDB
 import com.example.unilife.Repository.UtenteRepo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
@@ -23,7 +22,6 @@ class ArchivioViewModel :ViewModel() {
     private val utenteRepo = UtenteRepo()
     private val storage = FirebaseStorage.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
-    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
     private val auth = FirebaseAuth.getInstance()
     private val archivioRepo = ArchivioRepo()
     var idGruppoRecuperato = false

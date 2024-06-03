@@ -4,12 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.RegistrazioneViewModel
 import com.example.unilife.databinding.ActivityRegistrazioneBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
 
 class RegistrazioneActivity : AppCompatActivity() {
 
@@ -60,26 +58,34 @@ class RegistrazioneActivity : AppCompatActivity() {
 
             else -> {
 
-                lifecycleScope.launch {
-                    val unico = viewModel.verificaUnicitaCredenziali(email, username)
-                    if (unico) {
 
-                        viewModel.registraUtente(email, password, username)
+                    viewModel.verificaUnicitaCredenziali(email, username)
+                        viewModel.isUnico.observe(this) { unico ->
 
-                        //viewModel.fireStoreUtente(email,username,password)
 
-                        startActivity(Intent(this@RegistrazioneActivity, AccessoActivity::class.java))
-                        finish()
+                            if (unico) {
 
-                    } else {
-                        Snackbar.make(
-                            binding.root,
-                            "trova un nuovo username o una nuova email",
-                            Snackbar.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-                }
+                                viewModel.registraUtente(email, password, username)
+
+                                //viewModel.fireStoreUtente(email,username,password)
+
+                                startActivity(
+                                    Intent(
+                                        this@RegistrazioneActivity,
+                                        AccessoActivity::class.java
+                                    )
+                                )
+                                finish()
+
+                            } else {
+                                Snackbar.make(
+                                    binding.root,
+                                    "trova un nuovo username o una nuova email",
+                                    Snackbar.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
+                        }
             }
         }
     }

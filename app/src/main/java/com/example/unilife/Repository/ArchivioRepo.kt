@@ -1,26 +1,22 @@
 package com.example.unilife.Repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.unilife.Model.Documento
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.firestore.firestore
 
 
 class ArchivioRepo {
 
-    private val storage = FirebaseStorage.getInstance()
+
     private val firestore = FirebaseFirestore.getInstance()
-    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
+    private val db =  Firebase.firestore
 
     private val firebaseAuth = FirebaseAuth.getInstance()
-
-    private val _lista_documenti : MutableLiveData<ArrayList<Documento>> = MutableLiveData()
-    val lista_documenti: LiveData<ArrayList<Documento>> = _lista_documenti
 
 
 
@@ -28,14 +24,14 @@ class ArchivioRepo {
 
     fun getUtente(): Task<DocumentSnapshot> {
         val idUtente = firebaseAuth.currentUser!!.uid
-        val documentReference = dbSettings.firestore.collection("utenti").document(idUtente)
+        val documentReference = db.collection("utenti").document(idUtente)
         return documentReference.get()
     }
 
 
     fun deleteFile(groupId: String, documentId: String): Task<Void> {
         // Elimina il documento da Firestore
-        val deleteTask = firestore.collection("gruppi").document(groupId).collection("documenti").document(documentId).delete()
+        val deleteTask = db.collection("gruppi").document(groupId).collection("documenti").document(documentId).delete()
 
         // Elimina il documento dallo Storage (da implementare)
         // Esempio:
@@ -46,7 +42,7 @@ class ArchivioRepo {
     }
 
     fun getFirestoreCollection(groupId: String): CollectionReference {
-        return firestore.collection("gruppi").document(groupId).collection("documenti")
+        return db.collection("gruppi").document(groupId).collection("documenti")
     }
 
     fun saveDocumentToFirestore(documentPath: String, documento: Documento): Task<Void> {

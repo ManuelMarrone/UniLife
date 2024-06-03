@@ -1,29 +1,30 @@
 package com.example.unilife.ViewModel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.unilife.Model.Gruppo
+import com.example.unilife.Model.Utente
+import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
 import com.example.unilife.StateUI.AccountUiState
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class AccountViewModel:ViewModel() {
-
-
     // StateFlow per la gestione dello stato dell'account
     private val _uiState = MutableStateFlow(AccountUiState())
     val uiState: StateFlow<AccountUiState> = _uiState.asStateFlow()
-
-    private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
-    private val db: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
-    private val repo: UtenteRepo by lazy { UtenteRepo() }
-
+    private var _utente = MutableLiveData<Utente>()
+    val utente: LiveData<Utente> get() = _utente
+    private var _isUnico = MutableLiveData<Boolean>()
+    val isUnico: LiveData<Boolean> get() = _isUnico
 
     // Repository
     private val userRepository = UtenteRepo()
+    private val gruppoRepo = GruppoRepo()
 
     /**
      * Metodo per il logout
@@ -33,99 +34,83 @@ class AccountViewModel:ViewModel() {
         _uiState.value = AccountUiState.logout()
     }
 
-    fun updateUsername(newUsername: String) {
-        val userId = repo.firebaseAuth.currentUser?.uid
-        if (userId != null) {
-            repo.updateUsernameInFirestore(userId, newUsername)
-                .addOnSuccessListener {
-                    Log.d("modifyUsername", "Username updated successfully")
+    fun eliminaAccount()
+    {
+        val username = _utente.value!!.username!!
+        val idGruppo = _utente.value!!.id_gruppo
+        if(idGruppo != null)
+        {
+            gruppoRepo.rimuoviPartecipante(username,idGruppo).addOnFailureListener{
+                Log.d("Rimozione partecipanti", "errore nella rimozione del partecipante")
+            }
+
+            gruppoRepo.getGruppo(idGruppo).addSnapshotListener { gruppo, e ->
+                if (e != null) {
+                    return@addSnapshotListener
                 }
-                .addOnFailureListener { e ->
-                    Log.e("modifyUsername", "${e.message}")
+
+                val partecipantiGruppo = gruppo!!.toObject(Gruppo::class.java)?.partecipanti as ArrayList<String>
+                if (partecipantiGruppo.isEmpty())
+                {
+                    gruppoRepo.eliminaGruppo(idGruppo).addOnFailureListener{
+                        Log.d("Rimozione partecipanti", "eliminazione gruppo fallita")
+                    }
                 }
+
+            }
+
+        }
+        userRepository.eliminaUtenteFireStore().addOnFailureListener{
+            Log.d("Rimozione utente", "eliminazione utente fallita")
+        }
+        userRepository.eliminaUtenteAuth().addOnFailureListener{
+            Log.d("Rimozione utente", "eliminazione utente fallita")
+        }
+
+    }
+
+    fun modificaUtente(pwd:String, user:String) {
+
+
+        userRepository.getUtente().addOnSuccessListener { utente ->
+            val username = utente!!.toObject(Utente::class.java)!!.username.toString()
+            val idGruppo = utente?.toObject(Utente::class.java)?.id_gruppo
+            if (idGruppo != null) {
+                gruppoRepo.aggiornaPartecipante(idGruppo, user, username)
+            }
+        }
+
+        userRepository.aggiornaUsername(user)
+            ?.addOnFailureListener { e ->
+                Log.e("modifica", "errore nella modifica dell'username${e.message}")
+            }
+
+        userRepository.aggiornaPassword(pwd)
+            .addOnFailureListener { e ->
+                Log.e("modifica", "errore nella modifica della password${e.message}")
+            }
+
+        userRepository.aggiornaPasswordFireStore(pwd)
+            .addOnFailureListener { e ->
+                Log.e("modifica", "errore nella modifica della password in firestore${e.message}")
+            }
+    }
+
+    fun unicitaUsername(user:String) {
+        userRepository.unicitaUsername(user)
+            .addOnSuccessListener{ controllo_username->
+                if (controllo_username.isEmpty()) {
+                    _isUnico.value = true
+                } else {
+                    _isUnico.value = false
+                }
+            }
+    }
+
+    fun getUtente()
+    {
+        userRepository.getUtente().addOnSuccessListener { user->
+            _utente.value = user?.toObject(Utente::class.java)
         }
     }
-
-
-
-    fun updatePassword(newPassword: String) {
-        repo.updateUserPassword(newPassword)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userId = repo.firebaseAuth.currentUser?.uid
-                    if (userId != null) {
-                        repo.updatePasswordInFirestore(userId, newPassword)
-                            .addOnSuccessListener {
-                                Log.d("modify", "Password updated successfully")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.e("modify", "${e.message}")
-                            }
-                    }
-                    Log.d("modifypass", "Password modificata")
-                } else {
-                    Log.e("modifypass", "${task.exception?.message}")
-                }
-            }
-    }
-
-
-    fun updateEmail(newEmail: String) {
-        repo.updateUserEmail(newEmail)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userId = repo.firebaseAuth.currentUser?.uid
-                    if (userId != null) {
-                        repo.updateEmailInFirestore(userId, newEmail)
-                            .addOnSuccessListener {
-                                Log.d("modify", "Email updated successfully")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.e("modify", "${e.message}")
-                            }
-                    }
-                    Log.d("modifyEmail", "Email modificata")
-                } else {
-                    Log.e("modifyEmail", "${task.exception?.message}")
-                }
-            }
-    }
-
-
-    fun updatePasswordInFirestore(userId: String, newPassword: String) {
-        repo.updatePasswordInFirestore(userId, newPassword)
-            .addOnSuccessListener {
-                Log.d("modifyPassword", "Password updated successfully in Firestore")
-            }
-            .addOnFailureListener { e ->
-                Log.e("modifyPassword", "${e.message}")
-            }
-    }
-
-    fun updateEmailInFirestore(userId: String, newEmail: String) {
-        repo.updateEmailInFirestore(userId, newEmail)
-            .addOnSuccessListener {
-                Log.d("modifyEmail", "Email updated successfully in Firestore")
-            }
-            .addOnFailureListener { e ->
-                Log.e("modifyEmail", "${e.message}")
-            }
-    }
-
-    fun isUsernameUnique(username: String, onSuccess: () -> Unit, onError: () -> Unit) {
-        db.collection("utenti")
-            .whereEqualTo("username", username)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (documents.isEmpty) {
-                    onSuccess.invoke()
-                } else {
-                    onError.invoke()
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("FirestoreError", "${e.message}")
-            }
-    }
-
 }

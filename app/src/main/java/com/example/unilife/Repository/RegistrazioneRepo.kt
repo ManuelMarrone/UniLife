@@ -3,16 +3,34 @@ package com.example.unilife.Repository
 import android.content.ContentValues
 import android.util.Log
 import com.example.unilife.Model.Utente
+import com.google.android.gms.tasks.Task
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
-import kotlinx.coroutines.withContext
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class RegistrazioneRepo() {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
-    private val dbSettings: ImpostazioniDB by lazy { ImpostazioniDB() }
+    private val db = Firebase.firestore
+
+
+    fun controlloUsername(username: String): Task<QuerySnapshot> {
+       return db.collection("utenti")
+           .whereEqualTo("username", username)
+           .get()
+    }
+
+    fun controlloEmail(email: String): Task<QuerySnapshot>{
+        return db.collection("utenti")
+            .whereEqualTo("email", email)
+            .get()
+    }
+
 
     suspend fun registrazione(email: String, password:String, username: String):
             Result<Boolean> = withContext(Dispatchers.IO){
@@ -21,7 +39,7 @@ class RegistrazioneRepo() {
                 if (task.isSuccessful()) {
                     val idUtente = firebaseAuth.currentUser?.uid!!
                     val documentReference: DocumentReference =
-                        dbSettings.firestore.collection("utenti").document(idUtente)
+                        db.collection("utenti").document(idUtente)
                     val utente = Utente(
                         username = username,
                         email = email,
