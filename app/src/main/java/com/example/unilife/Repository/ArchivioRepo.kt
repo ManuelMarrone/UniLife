@@ -8,6 +8,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.storage
 
 
 class ArchivioRepo {
@@ -15,6 +16,7 @@ class ArchivioRepo {
 
     private val firestore = FirebaseFirestore.getInstance()
     private val db =  Firebase.firestore
+    val storage = Firebase.storage
 
     private val firebaseAuth = FirebaseAuth.getInstance()
 
@@ -39,6 +41,12 @@ class ArchivioRepo {
         // return storageRef.delete()
 
         return deleteTask
+    }
+
+    fun deleteFileFromStorage(groupId: String, fileName: String): Task<Void> {
+        // Elimina il documento dallo Storage
+        val fileRef = storage.reference.child("documents/$groupId/$fileName")
+        return fileRef.delete()
     }
 
     fun getFirestoreCollection(groupId: String): CollectionReference {

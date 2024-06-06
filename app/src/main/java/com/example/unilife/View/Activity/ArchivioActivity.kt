@@ -67,6 +67,14 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
             showStoragePreview()
 
         }
+
+        binding.buttonIndietro.setOnClickListener {
+            // Avvia MainActivity
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            // Opzionalmente, puoi chiamare finish() per chiudere l'attività corrente
+            finish()
+        }
     }
     private fun showStoragePreview() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

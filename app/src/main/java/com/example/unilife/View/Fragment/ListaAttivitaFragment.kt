@@ -12,11 +12,11 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unilife.R
+import com.example.unilife.View.Activity.MainActivity
 import com.example.unilife.View.Adapter.ListaAttivitaAdapter
 import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.View.Adapter.RecyclerViewItemClickListener
-import com.example.unilife.R
-import com.example.unilife.View.Activity.MainActivity
 import com.example.unilife.ViewModel.ListaAttivitaViewModel
 import com.example.unilife.databinding.FragmentListaAttivitaBinding
 

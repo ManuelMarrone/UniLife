@@ -46,7 +46,7 @@ class AccessoActivity : AppCompatActivity() {
 
                     Toast.makeText(
                         this@AccessoActivity,
-                        "Seleziona almeno un coinquilino",
+                        "credenziali sbagliate",
                         Toast.LENGTH_SHORT
                     ).show()
 

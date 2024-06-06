@@ -12,7 +12,7 @@ import com.example.unilife.Repository.ArchivioRepo
 import com.example.unilife.Repository.UtenteRepo
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.storage.FirebaseStorage
-import java.util.Date
+import java.util.UUID
 
 
 class ArchivioViewModel :ViewModel() {
@@ -46,9 +46,9 @@ class ArchivioViewModel :ViewModel() {
     fun uploadFile(byteArray: ByteArray, uri: Uri) {
         // Implementazione dell'upload del file su Firebase Storage
         val storageRef = storage.reference
-
+        val fileName = generateRandomFileName()
         if (idGruppo != null) {
-            val fileRef = storageRef.child("documents/$idGruppo/${Date().time}.bin")
+            val fileRef = storageRef.child("documents/$idGruppo/$fileName")
             fileRef.putBytes(byteArray)
                 .addOnSuccessListener {
                     Log.d("upload", "File uploaded successfully")
@@ -56,7 +56,8 @@ class ArchivioViewModel :ViewModel() {
                     // Ottenere l'URL di download del file caricato
                     fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
                         val fileUrl = downloadUri.toString()
-                        saveDocumentToFirestore(uri.lastPathSegment ?: "uploaded_file", idGruppo.toString(), fileUrl)
+                        val documentId = generateRandomDocumentId()
+                        saveDocumentToFirestore(fileName, documentId, fileUrl)
                     }.addOnFailureListener {
                         Log.d("upload", "Failed to get download URL")
                     }
@@ -69,6 +70,13 @@ class ArchivioViewModel :ViewModel() {
         }
     }
 
+    fun generateRandomFileName(): String {
+        return UUID.randomUUID().toString() + ".bin"
+    }
+
+    fun generateRandomDocumentId(): String {
+        return UUID.randomUUID().toString()
+    }
 
     fun saveDocumentToFirestore(fileName: String, id_doc: String, url: String) {
         // Implementazione del salvataggio dei metadati del documento su Firestore
@@ -88,7 +96,7 @@ class ArchivioViewModel :ViewModel() {
             }
     }
 
-    fun eliminaDocumento(groupId: String, documentId: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+  /**  fun eliminaDocumento(groupId: String, documentId: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         archivioRepo.deleteFile(groupId, documentId)
             .addOnSuccessListener {
                 Log.d("eliminazione", "Eliminazione del documento $documentId completata con successo")
@@ -99,7 +107,43 @@ class ArchivioViewModel :ViewModel() {
                 onFailure.invoke(e)
             }
     }
+*/
 
+  fun eliminaDocumento(groupId: String, documentId: String, fileName: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+      // Elimina il documento da Firestore
+      archivioRepo.deleteFile(groupId, documentId)
+          .addOnSuccessListener {
+              // Eliminazione da Firestore riuscita
+              Log.d("eliminazione", "Eliminazione del documento $documentId completata con successo")
+
+              // Elimina il documento da Storage
+
+                      // Eliminazione da Storage riuscita
+              eliminaDocumentoDaStorage(groupId, fileName, onSuccess, onFailure)
+                  }
+
+
+          .addOnFailureListener { e ->
+              // Gestisci eventuali errori durante l'eliminazione da Firestore
+              onFailure.invoke(e)
+          }
+  }
+
+
+    private fun eliminaDocumentoDaStorage(groupId: String, fileName: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        Log.d("filebin2", "$groupId/$fileName")
+       archivioRepo.deleteFileFromStorage(groupId, fileName)
+            .addOnSuccessListener {
+                // Eliminazione da Storage riuscita
+                Log.d("eliminazione", "Eliminazione del documento $fileName dallo Storage completata con successo")
+                onSuccess.invoke()
+            }
+            .addOnFailureListener { e ->
+
+                // Gestisci eventuali errori durante l'eliminazione da Storage
+                onFailure.invoke(e)
+            }
+    }
 
 
 fun getAllDocument(

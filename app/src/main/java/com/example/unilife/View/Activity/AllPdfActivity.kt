@@ -26,6 +26,7 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
     private val viewModel: ArchivioViewModel by viewModels()
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,6 +41,12 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
                 }
 
                 setupViewModel()
+
+        binding.indietroButton.setOnClickListener {
+
+            val intent = Intent(this, ArchivioActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -96,6 +103,7 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
         viewModel.eliminaDocumento(
             groupId,
             pdfFile.id_documento,
+            pdfFile.nome_doc,
             onSuccess = {
                 Log.d("eliminazione", "Documento eliminato con successo")
             },
@@ -105,6 +113,7 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
             }
         )
     }}}
+
 }
 
 // eliminazione Storage e tasto indietro
