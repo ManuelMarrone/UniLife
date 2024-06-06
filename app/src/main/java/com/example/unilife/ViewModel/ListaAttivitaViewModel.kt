@@ -5,11 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.unilife.Model.Attivita
-import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
-import org.checkerframework.checker.units.qual.A
 
 class ListaAttivitaViewModel:ViewModel() {
 

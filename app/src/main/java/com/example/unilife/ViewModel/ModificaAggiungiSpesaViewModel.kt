@@ -4,13 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.unilife.Model.Attivita
 import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Pagamento
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
-import com.example.unilife.View.Fragment.ModificaAggiungiSpesaFragment
 
 class ModificaAggiungiSpesaViewModel:ViewModel() {
     private val gruppoRepo = GruppoRepo()
@@ -54,10 +52,6 @@ class ModificaAggiungiSpesaViewModel:ViewModel() {
         }
     }
 
-    fun setPagamentoId(id:String)
-    {
-        pagamentoId = id
-    }
     fun setChecked(username: String)
     {
         //cambia lo stato da false a true o viceversa dell'utente cliccato nella recyclerView
@@ -72,7 +66,8 @@ class ModificaAggiungiSpesaViewModel:ViewModel() {
 
     fun aggiungiPagamento(titolo: String, denaro: Double) {
         if (idGruppo != null) {
-            val quota = denaro/(_partecipanti.value!!.size)
+            val partecipantiAttivi = _partecipanti.value!!.filter { it.value }.keys
+            val quota = denaro/(partecipantiAttivi.size)
             val pagamento = Pagamento(titolo, denaro,quota, _partecipanti.value!!)
             gruppoRepo.aggiungiPagamento(pagamento, idGruppo!!).addOnFailureListener {e->
                 Log.e("pagamento","Failed adding element ${e}")
@@ -83,7 +78,8 @@ class ModificaAggiungiSpesaViewModel:ViewModel() {
 
     fun salvaModifica(idPagamento: String, titolo: String, denaro: Double) {
         if (idGruppo != null) {
-            val quota = denaro/(_partecipanti.value!!.size)
+            val partecipantiAttivi = _partecipanti.value!!.filter { it.value }.keys
+            val quota = denaro/(partecipantiAttivi.size)
             val pagamento = Pagamento(titolo, denaro, quota, _partecipanti.value!!)
             Log.d("pagamentoTest", "part ${_partecipanti.value!!}")
             gruppoRepo.modificaPagamento(idPagamento,pagamento, idGruppo!!).addOnFailureListener { e ->

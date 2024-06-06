@@ -1,6 +1,6 @@
 package com.example.unilife.ViewModel
 
-//import com.example.unilife.Repository.ArchivioRepo
+
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,9 +10,7 @@ import com.example.unilife.Model.Documento
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.ArchivioRepo
 import com.example.unilife.Repository.UtenteRepo
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.util.Date
 
@@ -21,15 +19,12 @@ class ArchivioViewModel :ViewModel() {
 
     private val utenteRepo = UtenteRepo()
     private val storage = FirebaseStorage.getInstance()
-    private val firestore = FirebaseFirestore.getInstance()
-    private val auth = FirebaseAuth.getInstance()
     private val archivioRepo = ArchivioRepo()
     var idGruppoRecuperato = false
     private var idGruppo : String? = null
     private val _idGruppoUtente = MutableLiveData<String>().apply { value = "" }
     val idGruppoUtente: LiveData<String> = _idGruppoUtente
-    //private val _lista_documenti = MutableLiveData<List<Documento>>()
-    //val lista_documenti: LiveData<List<Documento>> get() = _lista_documenti
+
 
     private val _lista_documenti : MutableLiveData<List<Documento>?> = MutableLiveData()
     val lista_documenti: LiveData<List<Documento>?> = _lista_documenti
@@ -74,16 +69,6 @@ class ArchivioViewModel :ViewModel() {
         }
     }
 
-    /**
-        fun uploadFile(byteArray: ByteArray, uri: Uri) {
-
-            viewModelScope.launch {
-                archivioRepo.uploadFile(byteArray, uri)
-            }
-        }*/
-
-
-
 
     fun saveDocumentToFirestore(fileName: String, id_doc: String, url: String) {
         // Implementazione del salvataggio dei metadati del documento su Firestore
@@ -115,46 +100,7 @@ class ArchivioViewModel :ViewModel() {
             }
     }
 
-    /**
-    fun addDocumentToList(documento: Documento) {
-        val currentList = _lista_documenti.value ?: mutableListOf()
-        currentList.add(documento)
-        _lista_documenti.postValue(currentList)
-    }
 
-    fun loadDocument(groupId: String) {
-        firestore.collection("documenti").document(groupId).get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val documento = document.toObject(Documento::class.java)
-                    documento?.let {
-                        addDocumentToList(it)
-                    }
-                } else {
-                    Log.d("Firestore", "Document not found")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.d("Firestore", "Failed to load document", e)
-            }
-    }
-
-    fun fetchDocumenti() {
-        firestore.collection("documenti")
-            .get()
-            .addOnSuccessListener { result ->
-                val documenti = mutableListOf<Documento>()
-                for (document in result) {
-                    val id = document.id
-                    val nomeDoc = document.getString("nome_doc") ?: ""
-                    documenti.add(Documento(nomeDoc, id))
-                }
-                _lista_documenti.postValue(documenti)
-            }
-            .addOnFailureListener { exception ->
-                Log.d("Firestore", "Failed to fetch documents", exception)
-            }
-    }*/
 
 fun getAllDocument(
     firestore: CollectionReference,
@@ -182,18 +128,6 @@ fun getAllDocument(
     }
 }
 
-
-   /** fun fetchDocumenti(groupId: String) {
-        val task = archivioRepo.fetchDocumenti(groupId)
-        task.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val documentiList = task.result?.documents?.map { it.toObject(Documento::class.java)!! }
-                _lista_documenti.postValue(documentiList) // Aggiornamento sicuro di LiveData
-            } else {
-                Log.e("fetchDocumenti", "Errore durante il recupero dei documenti")
-            }
-        }
-    }*/
 
 
     fun getFirestoreCollection(groupId: String): CollectionReference {

@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.unilife.R
-import com.example.unilife.View.Fragment.AggiungiAttivitaFragment
-import com.example.unilife.View.Fragment.ListaAttivitaFragment
 import com.example.unilife.View.Fragment.ModificaAggiungiSpesaFragment
 import com.example.unilife.View.Fragment.VisualizzaSpesaFragment
 import com.example.unilife.databinding.ActivitySpesaBinding

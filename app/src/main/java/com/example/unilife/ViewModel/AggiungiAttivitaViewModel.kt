@@ -9,8 +9,6 @@ import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
-import java.time.LocalDate
-import java.util.Date
 
 class AggiungiAttivitaViewModel:ViewModel() {
 

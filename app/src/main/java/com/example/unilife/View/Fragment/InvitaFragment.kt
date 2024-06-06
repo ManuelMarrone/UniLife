@@ -11,16 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.View.Adapter.ListaPartecipantiAdapter
 import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
-import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.ViewModel.InvitaViewModel
 import com.example.unilife.databinding.FragmentInvitaBinding
 
-/**
-manca il controllo se il partecipante da eliminare è coinvolto in qualche attività del gruppo
- nessuna idea di come fare
-**/
 
 class InvitaFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
 
@@ -30,7 +26,6 @@ class InvitaFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
     private val inputCorretto = InputCorretto()
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewAdapter : ListaPartecipantiAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

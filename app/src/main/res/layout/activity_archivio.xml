@@ -35,8 +35,8 @@
         android:id="@+id/textView17"
         android:layout_width="99dp"
         android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="64dp"
         android:text="@string/archivio"
         android:textColor="@color/black"
         android:textSize="23sp"
@@ -44,47 +44,38 @@
         app:layout_constraintTop_toBottomOf="@+id/textUnilife" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="104dp"
-        android:contentDescription="@string/elimina"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintStart_toEndOf="@+id/uploadButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
         android:id="@+id/uploadButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="100dp"
+        android:layout_width="80dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="100dp"
         android:contentDescription="@string/aggiungi"
         android:src="@drawable/ic_add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/downloadButton" />
 
     <ImageButton
         android:id="@+id/downloadButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="86dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="84dp"
         android:contentDescription="@string/scarica"
         android:src="@drawable/ic_cloud"
-        app:layout_constraintEnd_toStartOf="@+id/uploadButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="258dp"
-        android:layout_height="362dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="56dp"
-        android:background="#6091EAC5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <Button
+        android:id="@+id/button_Indietro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="260dp"
+        android:backgroundTint="@color/GrigioChiaro"
+        android:text="@string/indietro"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/downloadButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

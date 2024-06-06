@@ -11,10 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.View.Adapter.PartecipantiAttivitaAdapter
-import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.View.Activity.MainActivity
-import com.example.unilife.View.Activity.SpesaActivity
+import com.example.unilife.View.Adapter.PartecipantiCheckBoxAdapter
+import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
 import com.example.unilife.ViewModel.AggiungiAttivitaViewModel
 import com.example.unilife.databinding.FragmentAggiungiAttivitaBinding
 import java.util.Calendar
@@ -44,7 +43,7 @@ class AggiungiAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Str
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
 
         viewModel.partecipanti.observe(viewLifecycleOwner){mapUpdated ->
-            recyclerView.adapter = PartecipantiAttivitaAdapter(requireContext(), this, mapUpdated)
+            recyclerView.adapter = PartecipantiCheckBoxAdapter(requireContext(), this, mapUpdated)
         }
 
         viewBinding.aggiungiButton.setOnClickListener{aggiungiAttivita()}

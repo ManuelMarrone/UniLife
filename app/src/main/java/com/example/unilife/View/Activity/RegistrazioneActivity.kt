@@ -67,7 +67,7 @@ class RegistrazioneActivity : AppCompatActivity() {
 
                                 viewModel.registraUtente(email, password, username)
 
-                                //viewModel.fireStoreUtente(email,username,password)
+
 
                                 startActivity(
                                     Intent(

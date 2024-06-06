@@ -18,11 +18,6 @@ import com.example.unilife.View.Activity.ArchivioActivity
 import com.example.unilife.ViewModel.HomeViewModel
 import com.example.unilife.databinding.FragmentHomeBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
     private lateinit var viewBinding: FragmentHomeBinding
 

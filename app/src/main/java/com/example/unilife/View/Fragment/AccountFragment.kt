@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.unilife.Utils.InputCorretto
 import com.example.unilife.View.Activity.AccessoActivity
-import com.example.unilife.View.Activity.MainActivity
 import com.example.unilife.ViewModel.AccountViewModel
 import com.example.unilife.databinding.FragmentAccountBinding
 import com.google.android.material.snackbar.Snackbar

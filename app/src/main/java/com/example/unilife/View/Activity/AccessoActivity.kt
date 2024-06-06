@@ -2,17 +2,15 @@ package com.example.unilife.View.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.unilife.databinding.ActivityAccessoBinding
-import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.unilife.Utils.InputCorretto
-import com.example.unilife.Utils.SnackbarManager
 import com.example.unilife.ViewModel.AccessoViewModel
+import com.example.unilife.databinding.ActivityAccessoBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
-
 
 
 class AccessoActivity : AppCompatActivity() {
@@ -46,7 +44,12 @@ class AccessoActivity : AppCompatActivity() {
                 }
                 if (state.error != null) {
 
-                    SnackbarManager.onFailure(state.error, this@AccessoActivity, binding.root)
+                    Toast.makeText(
+                        this@AccessoActivity,
+                        "Seleziona almeno un coinquilino",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
                 }
             }
         }
@@ -77,36 +80,6 @@ class AccessoActivity : AppCompatActivity() {
 
 
     }
-
-
-
-
-
-
-
-
-
-       /**binding = DataBindingUtil.setContentView(this, R.layout.activity_accesso)
-        firebaseAuth = FirebaseAuth.getInstance()
-        if(email.isNotEmpty() && password.isNotEmpty()){
-
-            firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this){task->
-                    if(task.isSuccessful){
-                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else{
-                        Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
-                    }
-
-                }
-
-        } else {
-            Toast.makeText(this, "please enter emain and password", Toast.LENGTH_SHORT).show()
-        }*/
-
 
 /**apertura activity registrazione*/
     private fun creaClick(){

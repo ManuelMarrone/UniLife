@@ -10,11 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.unilife.View.Activity.AttivitaActivity
 import com.example.unilife.databinding.FragmentCalendarioBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CalendarioFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class CalendarioFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentCalendarioBinding

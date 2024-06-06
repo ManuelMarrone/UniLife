@@ -7,12 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unilife.R
 import com.example.unilife.View.Activity.SpesaActivity
 import com.example.unilife.View.Adapter.ListaAttivitaAdapter
 import com.example.unilife.View.Adapter.RecyclerViewButtonClickListener
@@ -20,11 +17,7 @@ import com.example.unilife.View.Adapter.RecyclerViewItemClickListener
 import com.example.unilife.ViewModel.ListaPagamentiViewModel
 import com.example.unilife.databinding.FragmentListaPagamentiBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaPagamentiFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
     RecyclerViewItemClickListener {
     private lateinit var viewBinding: FragmentListaPagamentiBinding

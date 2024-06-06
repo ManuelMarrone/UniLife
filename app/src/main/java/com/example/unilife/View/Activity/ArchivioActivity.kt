@@ -1,7 +1,6 @@
 package com.example.unilife.View.Activity
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -20,28 +19,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.unilife.R
-//import com.example.unilife.Repository.ArchivioRepo
 import com.example.unilife.Utils.showSnackbar
 import com.example.unilife.ViewModel.ArchivioViewModel
-//import com.example.unilife.ViewModel.ArchivioViewModel
 import com.example.unilife.databinding.ActivityArchivioBinding
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 
 const val _REQUEST_PERMISSION_STORAGE = 0
 class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissionsResultCallback {
     private lateinit var binding: ActivityArchivioBinding
-    private val storage = FirebaseStorage.getInstance()
-    private val firestore = FirebaseFirestore.getInstance()
     private lateinit var layout: View
     private lateinit var viewModel: ArchivioViewModel
-
-    //  private val archivioRepo = ArchivioRepo(this)
-  //  private val archivioViewModel = ArchivioViewModel()
-
-
-
 
 
     private val selectFileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -76,7 +63,7 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
         binding.downloadButton.setOnClickListener { clickDownloadButton() }
 
         binding.uploadButton.setOnClickListener {
-            // Handle button click
+
             showStoragePreview()
 
         }
@@ -188,18 +175,9 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
         }
     }
 
-
-    fun Context.makeToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
-        Toast.makeText(this, message, duration).show()
-    }
-
-
     fun clickDownloadButton(){
         val intent = Intent(this, AllPdfActivity::class.java)
         startActivity(intent)
     }
-
-
-
 
 }

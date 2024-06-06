@@ -6,11 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unilife.Repository.RegistrazioneRepo
-import com.example.unilife.StateUI.StatoRegistrazioneUi
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 
@@ -22,14 +17,6 @@ class RegistrazioneViewModel : ViewModel() {
     private var _isUnico = MutableLiveData<Boolean>()
     val isUnico: LiveData<Boolean> get() = _isUnico
     private val repository = RegistrazioneRepo()
-    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-
-
-
-    private val _uiState = MutableStateFlow(StatoRegistrazioneUi())
-    val uiState: StateFlow<StatoRegistrazioneUi> = _uiState.asStateFlow()
-
-
 
 
     fun registraUtente(email: String, password: String, username: String) {
@@ -51,12 +38,7 @@ class RegistrazioneViewModel : ViewModel() {
                         }
                     }
                 }
-
-
-
             }
-
-
     }
 
 

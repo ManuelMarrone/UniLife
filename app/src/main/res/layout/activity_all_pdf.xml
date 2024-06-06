@@ -10,10 +10,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pdfsRecyclerView"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="404dp"
+        android:layout_height="626dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/indietroButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="22dp"
+        android:backgroundTint="@color/GrigioChiaro"
+        android:text="@string/indietro"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pdfsRecyclerView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
