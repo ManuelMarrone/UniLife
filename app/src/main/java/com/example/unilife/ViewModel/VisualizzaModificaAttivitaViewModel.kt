@@ -31,11 +31,7 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
 
     fun getIdGruppoUtente()
     {
-<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
-=======
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
         }
     }
@@ -54,11 +50,7 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
     fun completaAttivita(idAttivita:String, partecipantiAttivita:MutableMap<String, Boolean>)
     {
             if (idGruppo != null) {
-<<<<<<< HEAD
                 utenteRepo.getUtente()?.addOnSuccessListener { utente ->
-=======
-                utenteRepo.getUtente().addOnSuccessListener { utente ->
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
                     val usernameUtente = utente.toObject(Utente::class.java)?.username
                     partecipantiAttivita[usernameUtente.toString()] = false
                     gruppoRepo.rimuoviPartecipanteAttivita(
@@ -79,11 +71,7 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
 
     fun isPartecipante (partecipantiAttivita:Map<String, Boolean>)
     {
-<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
-=======
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             val usernameUtente = utente.toObject(Utente::class.java)?.username
             if (partecipantiAttivita.containsKey(usernameUtente)) {
                 //ottieni il valore booleano associato alla chiave

@@ -27,11 +27,7 @@ class VisualizzaSpesaViewModel:ViewModel() {
     }
     fun getIdGruppoUtente()
     {
-<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
-=======
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
         }
     }
@@ -47,11 +43,7 @@ class VisualizzaSpesaViewModel:ViewModel() {
     fun completaPagamento(idPagamento:String, partecipantiPagamento:MutableMap<String, Boolean>)
     {
         if (idGruppo != null) {
-<<<<<<< HEAD
             utenteRepo.getUtente()?.addOnSuccessListener { utente ->
-=======
-            utenteRepo.getUtente().addOnSuccessListener { utente ->
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
                 val usernameUtente = utente.toObject(Utente::class.java)?.username
                 partecipantiPagamento[usernameUtente.toString()] = false
                 gruppoRepo.rimuoviPartecipantePagamento(
@@ -72,11 +64,7 @@ class VisualizzaSpesaViewModel:ViewModel() {
 
     fun isPartecipante (partecipantiPagamento:Map<String, Boolean>)
     {
-<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
-=======
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             val usernameUtente = utente.toObject(Utente::class.java)?.username
             if (partecipantiPagamento.containsKey(usernameUtente)) {
                 //ottieni il valore booleano associato alla chiave

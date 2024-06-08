@@ -69,11 +69,7 @@ class ListaPagamentiViewModel:ViewModel() {
     }
 
     fun getIdGruppoUtente() {
-<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
-=======
-        utenteRepo.getUtente().addOnSuccessListener { utente ->
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             loadData()
         }

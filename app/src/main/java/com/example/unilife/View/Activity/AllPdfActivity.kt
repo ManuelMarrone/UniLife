@@ -115,5 +115,3 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
     }}}
 
 }
-
-// eliminazione Storage e tasto indietro

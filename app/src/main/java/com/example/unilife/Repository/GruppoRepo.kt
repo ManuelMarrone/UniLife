@@ -171,7 +171,6 @@ class GruppoRepo {
         val gruppoDoc = db.collection("gruppi").document(idGruppo)
 
         gruppoDoc.get().addOnSuccessListener { documentSnapshot ->
-<<<<<<< HEAD
             val partecipanti = documentSnapshot?.get("partecipanti") as? MutableList<String>
             Log.d("AggiornaUser", "Partecipanti ${partecipanti}")
             if (partecipanti != null) {
@@ -196,33 +195,6 @@ class GruppoRepo {
         }
     }
 
-
-
-=======
-
-            val partecipanti = (documentSnapshot.get("partecipanti") as? MutableList<String>)
-
-
-            val indiceUtente = partecipanti?.indexOf(username)
-            if (indiceUtente != null && indiceUtente != -1) {
-
-                partecipanti[indiceUtente] = user
-
-                // Aggiorna il campo "partecipanti" con la nuova lista
-                gruppoDoc.update("partecipanti", partecipanti).addOnSuccessListener {
-                    println("Partecipante aggiornato con successo!")
-                }.addOnFailureListener { exception ->
-                    println("Errore durante l'aggiornamento del partecipante: $exception")
-                }
-            } else {
-                println("L'utente $user non è presente nell'elenco dei partecipanti.")
-            }
-        }.addOnFailureListener { exception ->
-            println("Errore durante il recupero del documento gruppo: $exception")
-        }
-    }
-
->>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
 }
 
 

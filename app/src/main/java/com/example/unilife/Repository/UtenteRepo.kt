@@ -20,10 +20,6 @@ class UtenteRepo {
     private val fire = Firebase.firestore
 
 
-    //private val idUtente = firebaseAuth.currentUser?.uid!!
-
-
-
     fun getUtente(): Task<DocumentSnapshot>? {
         val currentUser = firebaseAuth.currentUser
         return if (currentUser != null) {
