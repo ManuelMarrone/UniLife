@@ -40,7 +40,11 @@ class HomeNoGruppiViewModel: ViewModel() {
         utenteRepo.setIdGruppo(idGruppo).addOnFailureListener{
             Log.d("AggiuntiUtenteGruppo", "idGruppo utente non settato")
         }
+<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
+=======
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+>>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             val username = utente!!.toObject(Utente::class.java)!!.username
             gruppoRepo.aggiungiPartecipante(username!!, idGruppo).addOnFailureListener{
                 Log.d("AggiuntiUtenteGruppo", "username non salvato in lista")

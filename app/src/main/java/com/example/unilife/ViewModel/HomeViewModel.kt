@@ -44,6 +44,7 @@ class HomeViewModel:ViewModel() {
 
     fun getIdGruppoUtente()
     {
+<<<<<<< HEAD
         val utenteTask = utenteRepo.getUtente()
         if (utenteTask != null) {
             utenteTask.addOnSuccessListener { utente ->
@@ -60,6 +61,12 @@ class HomeViewModel:ViewModel() {
             }
         } else {
             Log.e("HomeViewModel", "Errore: utente non autenticato")
+=======
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+            idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
+            Log.d("inizializza", "idGruppo ${idGruppo}")
+            loadData()
+>>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
         }
     }
 

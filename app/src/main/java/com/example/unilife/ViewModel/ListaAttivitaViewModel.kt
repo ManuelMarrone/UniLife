@@ -31,7 +31,11 @@ class ListaAttivitaViewModel:ViewModel() {
 
     fun getIdGruppoUtente()
     {
+<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
+=======
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+>>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             Log.d("listaAttivita", "inizia idGruppo ${idGruppo}")
         }
@@ -40,7 +44,11 @@ class ListaAttivitaViewModel:ViewModel() {
     //ricava l'array di Attivita e l'array dei titoli delle attività
     fun getAttivitaByData(data:String)
     {
+<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
+=======
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+>>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             Log.d("listaAttivita", "getAttivita idGruppo ${idGruppo}")
             if (idGruppo != null) {

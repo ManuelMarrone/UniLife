@@ -19,6 +19,7 @@ class UtenteRepo {
     val db = FirebaseFirestore.getInstance()
     private val fire = Firebase.firestore
 
+
     //private val idUtente = firebaseAuth.currentUser?.uid!!
 
 
@@ -45,6 +46,7 @@ class UtenteRepo {
             Log.e("UtenteRepo", "User is not authenticated")
             null
         }
+
     }
 
 

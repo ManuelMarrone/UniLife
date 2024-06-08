@@ -71,7 +71,6 @@ class AccountViewModel:ViewModel() {
             Log.d("Rimozione utente", "eliminazione utente fallita")
         }
 
-
     }
 
     fun modificaUtente(pwd:String, user:String) {

@@ -37,7 +37,11 @@ class ArchivioViewModel :ViewModel() {
 
     fun getIdGruppoUtente()
     {
+<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
+=======
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+>>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             Log.d("inizializza", "idGruppo ${idGruppo}")
 
@@ -179,12 +183,20 @@ fun getAllDocument(
     }
 
     fun getIdGruppo() {
+<<<<<<< HEAD
         utenteRepo.getUtente()?.addOnSuccessListener { utente ->
+=======
+        utenteRepo.getUtente().addOnSuccessListener { utente ->
+>>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             val idGruppo = utente.toObject(Utente::class.java)?.id_gruppo
             _idGruppoUtente.postValue(idGruppo)
             idGruppoRecuperato = true
             Log.d("inizializza", "idGruppo $idGruppo")
+<<<<<<< HEAD
         }?.addOnFailureListener { e ->
+=======
+        }.addOnFailureListener { e ->
+>>>>>>> e3e61815e5443287f29611ab6c96961b462470ec
             Log.e("getIdGruppoUtente", "Errore durante il recupero dell'utente: ${e.message}")
         }
     }
