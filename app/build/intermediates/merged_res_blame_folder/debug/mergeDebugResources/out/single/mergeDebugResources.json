@@ -1,0 +1,262 @@
+[
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_archive.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_archive.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_pdf_viewer.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_pdf_viewer.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_spesa.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_spesa.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.unilife.app-main-66:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_fotospese_jpg.webp.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/fotospese_jpg.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/xml_backup_rules.xml.flat",
+        "source": "com.example.unilife.app-main-66:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_calendario.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_calendario.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_visualizza_modifica_attivita.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_visualizza_modifica_attivita.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_invita.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_invita.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_delete.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_delete.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_item_spesa.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/item_spesa.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/menu_bottom_menu.xml.flat",
+        "source": "com.example.unilife.app-main-66:/menu/bottom_menu.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_person.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_person.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_lista_pagamenti.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_lista_pagamenti.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_all_pdf.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_all_pdf.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_item_contatto.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/item_contatto.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_each_pdf_item.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/each_pdf_item.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_add.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_lockicon.png.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/lockicon.png"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_fotoarchivio.png.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/fotoarchivio.png"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_contatti.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_contatti.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_item_partecipante_gruppo.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/item_partecipante_gruppo.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_checkbox_item.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/checkbox_item.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_attivita.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_attivita.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_fotocalendario.jpg.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/fotocalendario.jpg"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_cloud.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_cloud.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_calendar.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_calendar.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_fotohome.png.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/fotohome.png"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_usericon.png.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/usericon.png"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_fotocalendario2.jpg.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/fotocalendario2.jpg"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_pencil.png.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/pencil.png"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_modifica_aggiungi_spesa.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_modifica_aggiungi_spesa.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_registrazione.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_registrazione.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_money.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_money.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_home_no_gruppi.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_home_no_gruppi.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_account.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_account.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_elemento_lista_spesa.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/elemento_lista_spesa.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_visualizza_spesa.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_visualizza_spesa.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_emailicon.png.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/emailicon.png"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_accesso.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_accesso.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_fotophone.png.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/fotophone.png"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_phone.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_phone.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_home.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.unilife.app-main-66:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_background.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/background.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_lista_attivita.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_lista_attivita.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_item_attivita.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/item_attivita.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_fotoprofilo.jpg.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/fotoprofilo.jpg"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/drawable_ic_home.xml.flat",
+        "source": "com.example.unilife.app-main-66:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_fragment_aggiungi_attivita.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/fragment_aggiungi_attivita.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_main.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.unilife.app-debug-64:/layout_activity_archivio.xml.flat",
+        "source": "com.example.unilife.app-main-66:/layout/activity_archivio.xml"
+    }
+]

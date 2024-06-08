@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="azzurro">#1082D5</color>
+    <color name="red">#F73E04</color>
+    <color name="verdeacqua">#91EAC5</color>
+    <color name="verdone">#81C6BA</color>#1082D5
+    <color name="blu">#1082D5</color>
+    <color name="bluScuro">#00629E</color>
+    <color name="GrigioScuro">#364B45</color>
+    <color name="GrigioChiaro">#98B0A9</color>
+</resources>
