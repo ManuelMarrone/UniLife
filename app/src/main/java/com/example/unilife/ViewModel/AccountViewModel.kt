@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
+import com.example.unilife.Repository.ArchivioRepo
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
 import com.example.unilife.StateUI.AccountUiState
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class AccountViewModel:ViewModel() {
-    // StateFlow per la gestione dello stato dell'account
+    //StateFlow per la gestione dello stato dell'account
     private val _uiState = MutableStateFlow(AccountUiState())
     val uiState: StateFlow<AccountUiState> = _uiState.asStateFlow()
     private var _utente = MutableLiveData<Utente>()
@@ -25,6 +26,7 @@ class AccountViewModel:ViewModel() {
     // Repository
     private val userRepository = UtenteRepo()
     private val gruppoRepo = GruppoRepo()
+    private val archivioRepo = ArchivioRepo()
 
     /**
      * Metodo per il logout
@@ -52,9 +54,15 @@ class AccountViewModel:ViewModel() {
                 val partecipantiGruppo = gruppo?.toObject(Gruppo::class.java)?.partecipanti as ArrayList<String>?
                 if (partecipantiGruppo != null) {
                     if (partecipantiGruppo.isEmpty()) {
-                        gruppoRepo.eliminaGruppo(idGruppo).addOnFailureListener{
-                            Log.d("Rimozione partecipanti", "eliminazione gruppo fallita")
+                        archivioRepo.eliminaStorage(idGruppo)
+                        archivioRepo.eliminaRaccolta(idGruppo)
+                        gruppoRepo.eliminaPagamenti(idGruppo)
+                        gruppoRepo.eliminaAttivita(idGruppo)
+                        gruppoRepo.eliminaGruppo(idGruppo).addOnFailureListener {e->
+                            Log.e("Rimozione gruppo", "error ${e}")
+
                         }
+
                     }
                 }
 
@@ -64,9 +72,6 @@ class AccountViewModel:ViewModel() {
         userRepository.eliminaUtenteFireStore().addOnFailureListener{
             Log.d("Rimozione utente", "eliminazione utente fallita")
         }
-            .addOnSuccessListener {
-                Log.d("Rimozione utente", "eliminazione utente ok")
-            }
         userRepository.eliminaUtenteAuth().addOnFailureListener{
             Log.d("Rimozione utente", "eliminazione utente fallita")
         }
@@ -88,11 +93,6 @@ class AccountViewModel:ViewModel() {
         userRepository.aggiornaUsername(user)
             ?.addOnFailureListener { e ->
                 Log.e("modifica", "errore nella modifica dell'username${e.message}")
-            }
-            ?.addOnSuccessListener {
-               //trova l'utente dall'username
-
-                //sostituisci
             }
 
         userRepository.aggiornaPassword(pwd)

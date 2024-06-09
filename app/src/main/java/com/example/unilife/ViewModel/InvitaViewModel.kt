@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.unilife.Model.Gruppo
 import com.example.unilife.Model.Utente
+import com.example.unilife.Repository.ArchivioRepo
 import com.example.unilife.Repository.GruppoRepo
 import com.example.unilife.Repository.UtenteRepo
 
@@ -19,6 +20,7 @@ class InvitaViewModel: ViewModel() {
 
     private val gruppoRepo = GruppoRepo()
     private val utenteRepo = UtenteRepo()
+    private val archivioRepo = ArchivioRepo()
 
     private val _emailIntent = MutableLiveData<Intent>()
     val emailIntent: LiveData<Intent> get() = _emailIntent
@@ -91,14 +93,10 @@ class InvitaViewModel: ViewModel() {
         _partecipanti.value!!.remove(username)
 
 
-        Log.d("Rimozione partecipanti", "username ${username}")
         utenteRepo.getIdUtenteDaUsername(username).addOnSuccessListener { utente ->
-            Log.d("Rimozione partecipanti", "utente, ${utente}")
             //se troviamo un documento con l'username corrispondente, otteniamo l'ID dell'utente
             val document = utente.documents[0] // Otteniamo il primo documento (nel caso ce ne sia più di uno)
-            Log.d("Rimozione partecipanti", "docuemnti, ${document}")
             val idUtente = document.id // Otteniamo l'ID del documento
-            Log.d("Rimozione partecipanti", "id utente, ${idUtente}")
             utenteRepo.setIdGruppoByIdUtente(idUtente)
         }
             .addOnFailureListener{e->
@@ -106,12 +104,17 @@ class InvitaViewModel: ViewModel() {
 
             }
 
+        Log.d("EliminaCollezione", "partecipanti ${_partecipanti.value}")
         if (_partecipanti.value!!.isEmpty())
         {
-            Log.d("Rimozione partecipanti", "partecipanti vuota, ${_idGruppo}")
+            archivioRepo.eliminaStorage(_idGruppo.value!!)
+            archivioRepo.eliminaRaccolta(_idGruppo.value!!)
+            gruppoRepo.eliminaPagamenti(_idGruppo.value!!)
+            gruppoRepo.eliminaAttivita(_idGruppo.value!!)
             gruppoRepo.eliminaGruppo(_idGruppo.value!!).addOnFailureListener{
-                Log.d("Rimozione partecipanti", "eliminazione gruppo fallita")
+                Log.d("EliminaCollezione", "eliminazione gruppo fallita")
             }
+
         }
     }
 

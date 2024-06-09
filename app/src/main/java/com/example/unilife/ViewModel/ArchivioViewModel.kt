@@ -97,28 +97,20 @@ class ArchivioViewModel :ViewModel() {
     }
 
 
-  fun eliminaDocumento(groupId: String, documentId: String, fileName: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+  fun eliminaDocumento(groupId: String, documentId: String, fileName: String, onSuccess: () -> Unit) {
       // Elimina il documento da Firestore
       archivioRepo.deleteFile(groupId, documentId)
           .addOnSuccessListener {
               // Eliminazione da Firestore riuscita
               Log.d("eliminazione", "Eliminazione del documento $documentId completata con successo")
 
-              // Elimina il documento da Storage
-
-                      // Eliminazione da Storage riuscita
-              eliminaDocumentoDaStorage(groupId, fileName, onSuccess, onFailure)
+              eliminaDocumentoDaStorage(groupId, fileName, onSuccess)
                   }
 
-
-          .addOnFailureListener { e ->
-              // Gestisci eventuali errori durante l'eliminazione da Firestore
-              onFailure.invoke(e)
-          }
   }
 
 
-    private fun eliminaDocumentoDaStorage(groupId: String, fileName: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+    private fun eliminaDocumentoDaStorage(groupId: String, fileName: String, onSuccess: () -> Unit) {
         Log.d("filebin2", "$groupId/$fileName")
        archivioRepo.deleteFileFromStorage(groupId, fileName)
             .addOnSuccessListener {
@@ -126,22 +118,15 @@ class ArchivioViewModel :ViewModel() {
                 Log.d("eliminazione", "Eliminazione del documento $fileName dallo Storage completata con successo")
                 onSuccess.invoke()
             }
-            .addOnFailureListener { e ->
-
-                // Gestisci eventuali errori durante l'eliminazione da Storage
-                onFailure.invoke(e)
-            }
     }
 
 
 fun getAllDocument(
     firestore: CollectionReference,
     onSuccess: (List<Documento>) -> Unit,
-    onFailure: (String) -> Unit
 ) {
     firestore.addSnapshotListener { snapshot, error ->
         if (error != null) {
-            onFailure(error.message.toString())
             return@addSnapshotListener
         }
 
@@ -154,8 +139,6 @@ fun getAllDocument(
                 }
             }
             onSuccess(tempList)
-        } else {
-            onFailure("No data found")
         }
     }
 }

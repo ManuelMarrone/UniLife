@@ -38,8 +38,12 @@ class ModificaAggiungiSpesaViewModel:ViewModel() {
                         return@addSnapshotListener
                     }
                     val partecipantiGruppo = gruppo?.toObject(Gruppo::class.java)?.partecipanti as ArrayList<String>?
-                    val newMap = partecipantiGruppo?.associateWith { false } as MutableMap<String, Boolean>
-                    _partecipanti.value = newMap
+                    if(partecipantiGruppo != null)
+                    {
+                        val newMap = partecipantiGruppo.associateWith { false } as MutableMap<String, Boolean>
+                        _partecipanti.value = newMap
+                    }
+
                 }
             }
     }

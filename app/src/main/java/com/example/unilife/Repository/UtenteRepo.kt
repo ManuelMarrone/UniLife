@@ -57,7 +57,6 @@ class UtenteRepo {
 
     fun eliminaUtenteAuth(): Task<Void> {
         val user = Firebase.auth.currentUser!!
-
         return user.delete()
     }
 

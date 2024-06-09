@@ -195,6 +195,44 @@ class GruppoRepo {
         }
     }
 
+    fun eliminaPagamenti(groupId: String){
+        val fileRef = db.collection("gruppi").document(groupId).collection("pagamenti")
+        fileRef.get()
+            .addOnSuccessListener { documents ->
+                val batch = db.batch()
+                for (document in documents) {
+                    batch.delete(document.reference)
+                }
+                batch.commit()
+                    .addOnSuccessListener {
+                        Log.d("EliminaCollezione", "Tutti i documenti eliminati con successo.")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("EliminaCollezione", "Errore durante l'eliminazione dei documenti", e)
+                    }
+            }
+
+    }
+
+    fun eliminaAttivita(groupId: String){
+        val fileRef = db.collection("gruppi").document(groupId).collection("attivita")
+        fileRef.get()
+            .addOnSuccessListener { documents ->
+                val batch = db.batch()
+                for (document in documents) {
+                    batch.delete(document.reference)
+                }
+                batch.commit()
+                    .addOnSuccessListener {
+                        Log.d("EliminaCollezione", "Tutti i documenti eliminati con successo.")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("EliminaCollezione", "Errore durante l'eliminazione dei documenti", e)
+                    }
+            }
+
+    }
+
 }
 
 

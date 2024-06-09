@@ -80,9 +80,6 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
                     adapter.submitList(documentList)
                 }
             },
-            onFailure = { errorMessage ->
-                Toast.makeText(this@AllPdfActivity, errorMessage, Toast.LENGTH_SHORT).show()
-            }
         )
     }
 
@@ -106,10 +103,6 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
             pdfFile.nome_doc,
             onSuccess = {
                 Log.d("eliminazione", "Documento eliminato con successo")
-            },
-            onFailure = { e ->
-                Log.e("eliminazione", "Errore durante l'eliminazione del documento ${pdfFile.id_documento}: $e")
-                Toast.makeText(this@AllPdfActivity, "Errore durante l'eliminazione del documento", Toast.LENGTH_SHORT).show()
             }
         )
     }}}
