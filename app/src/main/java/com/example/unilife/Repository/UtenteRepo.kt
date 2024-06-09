@@ -51,7 +51,7 @@ class UtenteRepo {
         val idUtente = firebaseAuth.currentUser!!.uid
         Log.d("Rimozione utente", "id ${idUtente}")
         val documentReference = fire.collection("utenti").document(idUtente)
-        Log.d("Rimozione utente", "docu ${documentReference}")
+        Log.d("Rimozione utente", "docu ${documentReference.id}")
         return documentReference.delete()
     }
 
