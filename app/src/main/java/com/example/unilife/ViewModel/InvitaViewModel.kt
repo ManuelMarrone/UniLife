@@ -118,7 +118,6 @@ class InvitaViewModel: ViewModel() {
         }
     }
 
-    //se idgruppo non è nullo allora invita e basta, altrimenti crea il gruppo
     fun invita(destinatario:String)
     {
         if(_idGruppo.value != null)

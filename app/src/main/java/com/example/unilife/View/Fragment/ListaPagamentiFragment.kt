@@ -57,7 +57,7 @@ class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
             val chiave = pagamento.keys.first()
             val pagamento = pagamento[chiave]
 
-            // Supponendo che 'pagamento' e 'chiave' siano serializzabili
+
             val bundle = Bundle().apply {
                 putSerializable("PAGAMENTO", pagamento) // Converte l'HashMap in ArrayList e la mette nel Bundle
                 putSerializable("CHIAVE", chiave)

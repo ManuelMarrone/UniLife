@@ -69,10 +69,9 @@ class ArchivioActivity : AppCompatActivity(),  ActivityCompat.OnRequestPermissio
         }
 
         binding.buttonIndietro.setOnClickListener {
-            // Avvia MainActivity
+            //avvia MainActivity
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            // Opzionalmente, puoi chiamare finish() per chiudere l'attività corrente
             finish()
         }
     }

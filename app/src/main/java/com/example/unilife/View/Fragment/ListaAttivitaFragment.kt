@@ -99,9 +99,9 @@ class ListaAttivitaFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        // Ottieni il FragmentManager della tua Activity
+
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-        // Inizia una transazione per sostituire il fragment
+
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView3, fragment)
         fragmentTransaction.addToBackStack("lista") // Aggiungi la transazione allo stack per tornare indietro

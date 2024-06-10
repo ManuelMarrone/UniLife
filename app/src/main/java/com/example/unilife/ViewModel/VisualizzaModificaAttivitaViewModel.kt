@@ -40,7 +40,6 @@ class VisualizzaModificaAttivitaViewModel:ViewModel() {
     {
         val newMap = partecipantiAttivita as MutableMap<String,Boolean>
 
-        // Aggiornare il valore di _partecipanti
         _partecipanti.value = newMap
     }
 

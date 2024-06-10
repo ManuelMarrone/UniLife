@@ -77,7 +77,6 @@ class VisualizzaModificaAttivitaFragment : Fragment(), RecyclerViewButtonClickLi
             val day = c.get(Calendar.DAY_OF_MONTH)
 
             val datePickerDialog = DatePickerDialog(
-                // on below line we are passing context.
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
                     // on below line we are setting

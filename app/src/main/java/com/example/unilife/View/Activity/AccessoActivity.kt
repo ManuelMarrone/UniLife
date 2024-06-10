@@ -21,7 +21,6 @@ class AccessoActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityAccessoBinding
-    private lateinit var firebaseAuth: FirebaseAuth
     private val viewModel: AccessoViewModel by viewModels()
     private val inputCorretto = InputCorretto()
 
@@ -30,8 +29,6 @@ class AccessoActivity : AppCompatActivity() {
         binding = ActivityAccessoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        firebaseAuth = FirebaseAuth.getInstance()
         binding.accediButton.setOnClickListener { onclickaccedi() }
         binding.creaButton.setOnClickListener { creaClick() }
 
@@ -96,58 +93,3 @@ class AccessoActivity : AppCompatActivity() {
     }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /** private fun accediClick(email: String, password: String): View.OnClickListener {
-        return View.OnClickListener {
-
-            //va fatto tutto il controllo sulle crendenziali
-            startActivity(
-                Intent(
-                    this,
-                    MainActivity::class.java
-                )
-            )
-        }
-    }*/
-
-
-
-
-

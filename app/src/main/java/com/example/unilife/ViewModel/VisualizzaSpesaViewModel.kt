@@ -36,7 +36,7 @@ class VisualizzaSpesaViewModel:ViewModel() {
     {
         val newMap = partecipantiPagamento as MutableMap<String,Boolean>
 
-        // Aggiornare il valore di _partecipanti
+
         _partecipanti.value = newMap
     }
 

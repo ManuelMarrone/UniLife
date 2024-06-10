@@ -21,8 +21,6 @@ class GruppoRepo {
 
     private val db = Firebase.firestore
 
-
-
     fun creaGruppo(username: String): Task<DocumentReference> {
         val partecipanti = mutableListOf<String>(username)
         val listaSpesa = mutableListOf<String>()

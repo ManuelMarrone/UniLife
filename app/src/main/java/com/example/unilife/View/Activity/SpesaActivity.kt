@@ -18,7 +18,7 @@ class SpesaActivity : AppCompatActivity() {
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_spesa)
         val fragmentToLoad = intent.getStringExtra("FRAGMENT")
 
-        // Recupera il Bundle dall'Intent
+        //recupera il Bundle dall'Intent
         val bundle = intent.extras
 
         //carica il Fragment appropriato
@@ -36,9 +36,7 @@ class SpesaActivity : AppCompatActivity() {
 
     }
     private fun replaceFragment(fragment: Fragment) {
-        // Ottieni il FragmentManager della tua Activity
         val fragmentManager: FragmentManager = this.supportFragmentManager
-        // Inizia una transazione per sostituire il fragment
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView2, fragment)
         fragmentTransaction.commit()

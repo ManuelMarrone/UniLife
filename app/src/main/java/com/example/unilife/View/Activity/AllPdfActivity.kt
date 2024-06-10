@@ -25,8 +25,6 @@ class AllPdfActivity : AppCompatActivity(), PdfFilesAdapter.PdfClickListener {
     private lateinit var firestore : CollectionReference
     private val viewModel: ArchivioViewModel by viewModels()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

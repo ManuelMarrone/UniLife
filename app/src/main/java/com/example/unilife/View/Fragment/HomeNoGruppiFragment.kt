@@ -20,7 +20,6 @@ class HomeNoGruppiFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         viewBinding = FragmentHomeNoGruppiBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
@@ -63,14 +62,11 @@ class HomeNoGruppiFragment : Fragment() {
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        // Ottieni il FragmentManager della tua Activity
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
 
-        // Inizia una transazione per sostituire il fragment
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
 
-        // Esegui la transazione
         fragmentTransaction.commit()
 
     }

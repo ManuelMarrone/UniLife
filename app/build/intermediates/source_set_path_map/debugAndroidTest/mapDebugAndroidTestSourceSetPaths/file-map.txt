@@ -1,0 +1,6 @@
+com.example.unilife.test.app-jetified-annotation-experimental-1.3.0-0 C:\Users\manum\.gradle\caches\transforms-3\a7991ce7f97b4e19384babd9e8e65011\transformed\jetified-annotation-experimental-1.3.0\res
+com.example.unilife.test.app-jetified-core-1.5.0-1 C:\Users\manum\.gradle\caches\transforms-3\f8caa44a65b0819a7c9369216f97cfbb\transformed\jetified-core-1.5.0\res
+com.example.unilife.test.app-androidTest-2 C:\Users\manum\OneDrive\Desktop\UniLife-master\app\build\generated\res\resValues\androidTest\debug
+com.example.unilife.test.app-mergeDebugAndroidTestResources-3 C:\Users\manum\OneDrive\Desktop\UniLife-master\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.unilife.test.app-mergeDebugAndroidTestResources-4 C:\Users\manum\OneDrive\Desktop\UniLife-master\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.unilife.test.app-debugAndroidTest-5 C:\Users\manum\OneDrive\Desktop\UniLife-master\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

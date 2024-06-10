@@ -28,7 +28,6 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         viewBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
         return viewBinding.root
@@ -76,14 +75,11 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
 
 
     private fun replaceFragment(fragment: Fragment) {
-        // Ottieni il FragmentManager della tua Activity
         val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
 
-        // Inizia una transazione per sostituire il fragment
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
 
-        // Esegui la transazione
         fragmentTransaction.commit()
 
     }

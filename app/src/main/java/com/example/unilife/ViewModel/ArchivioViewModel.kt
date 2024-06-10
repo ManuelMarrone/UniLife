@@ -25,10 +25,6 @@ class ArchivioViewModel :ViewModel() {
     private val _idGruppoUtente = MutableLiveData<String>().apply { value = "" }
     val idGruppoUtente: LiveData<String> = _idGruppoUtente
 
-
-    private val _lista_documenti : MutableLiveData<List<Documento>?> = MutableLiveData()
-    val lista_documenti: LiveData<List<Documento>?> = _lista_documenti
-
     init {
         getIdGruppoUtente()
         getIdGruppo()
@@ -44,7 +40,7 @@ class ArchivioViewModel :ViewModel() {
         }
     }
     fun uploadFile(byteArray: ByteArray, uri: Uri) {
-        // Implementazione dell'upload del file su Firebase Storage
+        //implementazione dell'upload del file su Firebase Storage
         val storageRef = storage.reference
         val fileName = generateRandomFileName()
         if (idGruppo != null) {
@@ -53,7 +49,7 @@ class ArchivioViewModel :ViewModel() {
                 .addOnSuccessListener {
                     Log.d("upload", "File uploaded successfully")
 
-                    // Ottenere l'URL di download del file caricato
+                    //ottenere l'URL di download del file caricato
                     fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
                         val fileUrl = downloadUri.toString()
                         val documentId = generateRandomDocumentId()
@@ -79,7 +75,7 @@ class ArchivioViewModel :ViewModel() {
     }
 
     fun saveDocumentToFirestore(fileName: String, id_doc: String, url: String) {
-        // Implementazione del salvataggio dei metadati del documento su Firestore
+        //implementazione del salvataggio dei metadati del documento su Firestore
         val documento = Documento(
             nome_doc = fileName,
             id_documento = id_doc,
@@ -98,7 +94,7 @@ class ArchivioViewModel :ViewModel() {
 
 
   fun eliminaDocumento(groupId: String, documentId: String, fileName: String, onSuccess: () -> Unit) {
-      // Elimina il documento da Firestore
+      //elimina il documento da Firestore
       archivioRepo.deleteFile(groupId, documentId)
           .addOnSuccessListener {
               // Eliminazione da Firestore riuscita
@@ -161,8 +157,3 @@ fun getAllDocument(
     }
 
     }
-
-
-
-
-

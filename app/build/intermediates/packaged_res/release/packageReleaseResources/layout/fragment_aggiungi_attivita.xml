@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Fragment.AggiungiAttivitaFragment"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/textUnilife"
+        android:layout_width="92dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="#00817EFF"
+        android:text="@string/unilife"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titoloFragment"
+        android:layout_width="221dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="552dp"
+        android:background="@color/bluScuro"
+        android:gravity="center"
+        android:text="@string/aggiungi_attivit"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/annulaBtn"
+        android:layout_width="127dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/GrigioChiaro"
+        android:text="@string/annulla"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/RVPartecipantiAtt"
+        app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiAtt" />
+
+    <Button
+        android:id="@+id/aggiungiButton"
+        android:layout_width="137dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/azzurro"
+        android:text="@string/agg"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/RVPartecipantiAtt"
+        app:layout_constraintTop_toBottomOf="@+id/RVPartecipantiAtt" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVPartecipantiAtt"
+        android:layout_width="307dp"
+        android:layout_height="208dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="52dp"
+        android:background="#6D81C6BA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataTxt" />
+
+    <EditText
+        android:id="@+id/titoloTxt"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="68dp"
+        android:hint="@string/titolo_attivit"
+        android:layout_marginEnd="81dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titoloFragment" />
+
+    <EditText
+        android:id="@+id/dataTxt"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:hint="@string/data"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/titoloTxt"
+        app:layout_constraintTop_toBottomOf="@+id/titoloTxt"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

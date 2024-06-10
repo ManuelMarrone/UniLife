@@ -23,8 +23,6 @@ class ModificaAggiungiSpesaViewModel:ViewModel() {
     private var idGruppo : String? = null
 
 
-    private var pagamentoId : String = ""
-
     init {
         getIdGruppoUtente()
     }

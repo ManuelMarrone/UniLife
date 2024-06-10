@@ -15,8 +15,7 @@ import com.google.firebase.firestore.firestore
 class UtenteRepo {
 
 
-    val firebaseAuth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private val fire = Firebase.firestore
 
 
@@ -63,7 +62,7 @@ class UtenteRepo {
     fun aggiornaUsername(user:String): Task<Void>? {
         val userId = firebaseAuth.currentUser?.uid
         return if (userId != null) {
-            db.collection("utenti").document(userId).update("username", user)
+            fire.collection("utenti").document(userId).update("username", user)
 
         } else {
             null
@@ -77,7 +76,7 @@ class UtenteRepo {
 
     fun aggiornaPasswordFireStore(pwd:String): Task<Void> {
         val userId = firebaseAuth.currentUser?.uid!!
-        return db.collection("utenti").document(userId).update("password", pwd)
+        return fire.collection("utenti").document(userId).update("password", pwd)
 
     }
 
@@ -104,7 +103,7 @@ class UtenteRepo {
     }
 
     fun setIdGruppoByIdUtente(idUtente: String): Task<Void> {
-        val utenteDoc = db.collection("utenti").document(idUtente)
+        val utenteDoc = fire.collection("utenti").document(idUtente)
         return utenteDoc.update("id_gruppo", null)
     }
 
