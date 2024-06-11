@@ -38,11 +38,10 @@ class CalendarioFragment : Fragment() {
                 })
 
 
-        viewBinding.attivitaBtn.setOnClickListener(goToAggiungiAttivita())
+        viewBinding.attivitaBtn.setOnClickListener{goToAggiungiAttivita()}
     }
 
-    private fun goToAggiungiAttivita(): View.OnClickListener {
-        return View.OnClickListener {
+    private fun goToAggiungiAttivita() {
             startActivity(
                 Intent(
                     requireActivity(),
@@ -50,7 +49,6 @@ class CalendarioFragment : Fragment() {
                 )
                     .putExtra("FRAGMENT_TO_LOAD", "AggiungiAttivitaFragment")
             )
-        }
     }
 
     private fun goToVisualizzaListaAttivita(data:String) {

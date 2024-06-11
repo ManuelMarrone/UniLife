@@ -37,7 +37,7 @@ class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewBinding.addButton.setOnClickListener(goToAggiungiSpesa())
+        viewBinding.addButton.setOnClickListener{goToAggiungiSpesa()}
 
         recyclerView = viewBinding.RVListaPagamenti
         recyclerView.setLayoutManager(LinearLayoutManager(requireContext()))
@@ -74,8 +74,7 @@ class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
         }
     }
 
-    private fun goToAggiungiSpesa(): View.OnClickListener {
-        return View.OnClickListener {
+    private fun goToAggiungiSpesa() {
             startActivity(
                 Intent(
                     requireActivity(),
@@ -83,7 +82,6 @@ class ListaPagamentiFragment : Fragment(), RecyclerViewButtonClickListener<Int>,
                 )
                     .putExtra("FRAGMENT", "AggiungiSpesaFragment")
             )
-        }
     }
 
     companion object {

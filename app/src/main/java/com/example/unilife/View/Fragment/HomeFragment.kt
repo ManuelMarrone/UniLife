@@ -35,8 +35,8 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewBinding.accountButton.setOnClickListener(goToAccount())
-        viewBinding.archivioButton.setOnClickListener(goToArchivio())
+        viewBinding.accountButton.setOnClickListener{goToAccount()}
+        viewBinding.archivioButton.setOnClickListener{goToArchivio()}
         viewBinding.aggiungiBtn.setOnClickListener{aggiungiElementoLista()}
 
         recyclerView = viewBinding.RVListaSpesa
@@ -47,17 +47,13 @@ class HomeFragment : Fragment(), RecyclerViewButtonClickListener<Int> {
         }
     }
 
-    private fun goToAccount(): View.OnClickListener {
-        return View.OnClickListener {
-            replaceFragment(AccountFragment.newInstance())
-        }
+    private fun goToAccount() {
+        replaceFragment(AccountFragment.newInstance())
     }
 
-    private fun goToArchivio(): View.OnClickListener {
-        return View.OnClickListener {
+    private fun goToArchivio() {
             val intent = Intent(requireActivity(), ArchivioActivity::class.java)
             startActivity(intent)
-        }
     }
 
     private fun aggiungiElementoLista()

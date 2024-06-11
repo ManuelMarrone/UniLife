@@ -26,7 +26,7 @@ class HomeNoGruppiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewBinding.accountButton.setOnClickListener(goToAccount())
+        viewBinding.accountButton.setOnClickListener{goToAccount()}
         viewBinding.confermaButton.setOnClickListener{accettaInvito()}
 
     }
@@ -35,10 +35,8 @@ class HomeNoGruppiFragment : Fragment() {
         fun newInstance() = HomeNoGruppiFragment()
     }
 
-    private fun goToAccount(): View.OnClickListener {
-        return View.OnClickListener {
-            replaceFragment(AccountFragment.newInstance())
-        }
+    private fun goToAccount() {
+        replaceFragment(AccountFragment.newInstance())
     }
 
     private fun accettaInvito()
